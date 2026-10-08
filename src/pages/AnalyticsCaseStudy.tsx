@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router"
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import TechBadge from "../components/TechBadge"
 import { analyticsCaseStudy as project } from "../data/caseStudies"
@@ -141,9 +142,9 @@ function CaseStudyHero() {
     <section className="cs-hero">
       <Header active="Projets" />
       <div className="shell cs-breadcrumbs">
-        <a href="/">⌂</a>
+        <Link to="/">⌂</Link>
         <span>›</span>
-        <a href="/projets">Projets</a>
+        <Link to="/projets">Projets</Link>
         <span>›</span>
         <b>Analytics Dashboard</b>
       </div>
@@ -583,17 +584,17 @@ function ProjectNavigation() {
       className="cs-project-nav shell"
       aria-label="Navigation entre les projets"
     >
-      <a href="/projets/taskflow-mobile">
+      <Link to="/projets/taskflow-mobile">
         <span>← Projet précédent</span>
         <b>TaskFlow Mobile</b>
-      </a>
-      <a className="all" href="/projets">
+      </Link>
+      <Link className="all" to="/projets">
         Tous les projets
-      </a>
-      <a href="/projets/shopvista">
+      </Link>
+      <Link to="/projets/shopvista">
         <span>Projet suivant →</span>
         <b>ShopVista</b>
-      </a>
+      </Link>
     </nav>
   )
 }

@@ -5,9 +5,15 @@ import "./index.css"
 import "./polish.css"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
+const supportsVercelSpeedInsights =
+  typeof window !== "undefined" &&
+  !["localhost", "127.0.0.1", "::1", "[::1]"].includes(
+    window.location.hostname,
+  )
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-    <SpeedInsights />
+    {supportsVercelSpeedInsights && <SpeedInsights />}
   </React.StrictMode>,
 )

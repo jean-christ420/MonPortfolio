@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint"
 
 export default tseslint.config(
   {
-    ignores: ["dist", "node_modules", ".figma", ".vite"],
+    ignores: ["dist", "node_modules", ".vite"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

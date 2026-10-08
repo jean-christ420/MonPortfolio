@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react"
+import { Link } from "react-router"
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import {
   certifications,
@@ -254,9 +255,9 @@ function ExpertiseSection() {
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <a href="#technologies" aria-label={`Voir ${item.title}`}>
+                <Link to="#technologies" aria-label={`Voir ${item.title}`}>
                   <Icon name="arrow" size={14} />
-                </a>
+                </Link>
               </div>
             </article>
           ))}
@@ -480,7 +481,7 @@ function PracticeSection() {
         />
         <div className="practice-grid">
           {projectLinks.map(([slug, title, tech]) => (
-            <a href={`/projets/${slug}`} className="practice-card" key={slug}>
+            <Link to={`/projets/${slug}`} className="practice-card" key={slug}>
               <ProjectMiniVisual slug={slug} />
               <div>
                 <b>{title}</b>
@@ -489,7 +490,7 @@ function PracticeSection() {
                   <Icon name="arrow" size={14} />
                 </i>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,27 +1,31 @@
 import {
   createContext,
+  useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react"
 
-export type ThemeName = "ocean" | "amber"
+export type Theme = "ocean" | "arctic"
 
 type ThemeContextValue = {
-  theme: ThemeName
-  setTheme: (theme: ThemeName) => void
+  theme: Theme
+  setTheme: (theme: Theme) => void
   toggleTheme: () => void
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
-function getInitialTheme(): ThemeName {
+function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "ocean"
   try {
-    return window.localStorage.getItem("portfolio-theme") === "amber"
-      ? "amber"
+    const storedTheme = window.localStorage.getItem("portfolio-theme")
+    return storedTheme === "arctic" || storedTheme === "amber"
+      ? "arctic"
       : "ocean"
   } catch {
     return "ocean"
@@ -29,19 +33,27 @@ function getInitialTheme(): ThemeName {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeName>(getInitialTheme)
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme)
+  const transitionTimer = useRef<number | undefined>(undefined)
 
-  const setTheme = (nextTheme: ThemeName) => {
+  const setTheme = useCallback((nextTheme: Theme) => {
     document.documentElement.classList.add("theme-transitioning")
     setThemeState(nextTheme)
-    window.setTimeout(() => {
+    if (transitionTimer.current !== undefined) {
+      window.clearTimeout(transitionTimer.current)
+    }
+    transitionTimer.current = window.setTimeout(() => {
       document.documentElement.classList.remove("theme-transitioning")
     }, 420)
-  }
+  }, [])
 
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme
-    document.documentElement.style.colorScheme = "dark"
+    document.documentElement.style.colorScheme =
+      theme === "arctic" ? "light" : "dark"
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "arctic" ? "#f5f7ff" : "#020f18")
     try {
       window.localStorage.setItem("portfolio-theme", theme)
     } catch {
@@ -49,13 +61,28 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme])
 
+  useEffect(
+    () => () => {
+      if (transitionTimer.current !== undefined) {
+        window.clearTimeout(transitionTimer.current)
+      }
+      document.documentElement.classList.remove("theme-transitioning")
+    },
+    [],
+  )
+
+  const toggleTheme = useCallback(
+    () => setTheme(theme === "ocean" ? "arctic" : "ocean"),
+    [setTheme, theme],
+  )
+
   const value = useMemo(
     () => ({
       theme,
       setTheme,
-      toggleTheme: () => setTheme(theme === "ocean" ? "amber" : "ocean"),
+      toggleTheme,
     }),
-    [theme],
+    [setTheme, theme, toggleTheme],
   )
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -1,4 +1,4 @@
-# Portfolio personnel
+# Alex Rivera — Portfolio professionnel
 
 Portfolio professionnel construit avec React + TypeScript + Vite, pensé pour rester simple à maintenir et prêt au déploiement sur Vercel.
 
@@ -9,6 +9,17 @@ Portfolio professionnel construit avec React + TypeScript + Vite, pensé pour re
 - Vite 8
 - Tailwind CSS 4
 - React Router
+- ESLint
+- Vercel Speed Insights
+
+## Thèmes
+
+Le portfolio propose deux thèmes accessibles depuis le Header :
+
+- **Ocean / Electric** — fond navy, cyan, bleu électrique et violet.
+- **Arctic / Violet** — surfaces claires nuancées de glace et de lavande, accents violets et ombres douces.
+
+Le thème choisi est mémorisé dans le navigateur et conservé lors de la navigation.
 
 ## Installation
 

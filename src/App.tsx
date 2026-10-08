@@ -538,9 +538,9 @@ function Projects() {
               façon de travailler.
             </p>
           </div>
-          <a className="text-link" href="/projets">
+          <Link className="text-link" to="/projets">
             Voir tous les projets <Icon name="arrow" />
-          </a>
+          </Link>
         </div>
         <div className="project-grid">
           {projects.map((project) => (
@@ -556,9 +556,9 @@ function Projects() {
                       <span key={tag}>{tag}</span>
                     ))}
                   </div>
-                  <a href="#contact" aria-label={`Voir ${project.title}`}>
+                  <Link to="/#contact" aria-label={`Voir ${project.title}`}>
                     <Icon name="arrow" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>
@@ -584,9 +584,9 @@ function Skills() {
               développer et déployer des solutions complètes.
             </p>
           </div>
-          <a className="text-link" href="/competences">
+          <Link className="text-link" to="/competences">
             Voir toutes les compétences <Icon name="arrow" />
-          </a>
+          </Link>
         </div>
         <div className="skill-grid">
           {skills.map(([mark, name, color]) => (

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react"
-import { createBrowserRouter, useParams } from "react-router"
+import { createBrowserRouter, Link, useParams } from "react-router"
 import HomePage from "../App"
 import { projects } from "../data/projects"
 
@@ -58,7 +58,7 @@ function ProjectRoute() {
     return (
       <main className="route-message">
         <h1>Projet introuvable</h1>
-        <a href="/projets">Retour aux projets</a>
+        <Link to="/projets">Retour aux projets</Link>
       </main>
     )
   }
@@ -88,7 +88,7 @@ function NotFound() {
   return (
     <main className="route-message">
       <h1>Page introuvable</h1>
-      <a href="/">Retour à l'accueil</a>
+      <Link to="/">Retour à l'accueil</Link>
     </main>
   )
 }
