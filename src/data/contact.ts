@@ -1,24 +1,26 @@
+import { profile } from "./profile"
+
 export const contactInfo = [
   {
     type: "email",
     label: "Email",
-    value: "alex.rivera@example.com",
-    href: "mailto:alex.rivera@example.com",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
     icon: "mail",
     color: "pink",
   },
   {
     type: "phone",
     label: "Téléphone",
-    value: "+225 07 58 12 34 56",
-    href: "tel:+2250758123456",
+    value: profile.phone,
+    href: profile.phoneLink,
     icon: "phone",
     color: "blue",
   },
   {
     type: "location",
     label: "Localisation",
-    value: "Abidjan, Côte d'Ivoire",
+    value: profile.location,
     href: "https://www.google.com/maps/search/?api=1&query=Abidjan%2C+C%C3%B4te+d%27Ivoire",
     icon: "pin",
     color: "cyan",
@@ -26,23 +28,23 @@ export const contactInfo = [
   {
     type: "linkedin",
     label: "LinkedIn",
-    value: "linkedin.com/in/alexrivera",
-    href: "https://www.linkedin.com/in/alexrivera",
+    value: "linkedin.com/in/jean-christ-ouali-5037aa254",
+    href: profile.linkedin,
     icon: "in",
     color: "blue",
   },
   {
     type: "github",
     label: "GitHub",
-    value: "github.com/alexrivera",
-    href: "https://github.com/alexrivera",
+    value: "github.com/jean-christ420",
+    href: profile.github,
     icon: "github",
     color: "black",
   },
   {
     type: "availability",
-    label: "Disponibilité",
-    value: "Ouvert à de nouvelles opportunités",
+    label: "Statut actuel",
+    value: "Stage en cours chez CIS Info",
     href: null,
     icon: "calendar",
     color: "violet",
@@ -65,27 +67,27 @@ export const collaborationModes = [
   {
     icon: "link",
     title: "Freelance",
-    detail: "Projets courts ou longs termes",
+    detail: "Conception et développement de solutions web",
     color: "blue",
   },
   {
     icon: "building",
     title: "En entreprise",
-    detail: "CDD, mission, partenariat",
+    detail: "Projets numériques et applications métier",
     color: "teal",
   },
 ]
 
 export const faqItems = [
   {
-    question: "Quel est votre délai de réponse ?",
+    question: "Comment vous contacter ?",
     answer:
-      "Je réponds généralement sous 24 heures ouvrées, selon la nature et le niveau de détail de la demande.",
+      "Pour me joindre, écrivez-moi à l'adresse indiquée ou contactez-moi par téléphone.",
   },
   {
-    question: "Êtes-vous disponible pour des projets freelance ?",
+    question: "Réalisez-vous des missions freelance ?",
     answer:
-      "Oui, je suis ouvert aux missions freelance, collaborations ponctuelles et projets à moyen terme.",
+      "J'exerce une activité freelance depuis septembre 2025 et effectue actuellement un stage chez CIS Info. Contactez-moi pour échanger sur votre besoin.",
   },
   {
     question: "Travaillez-vous uniquement à distance ?",

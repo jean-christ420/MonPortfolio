@@ -91,6 +91,48 @@ html[data-theme="arctic"] :is(
     linear-gradient(160deg, #eff1fb 0%, #e9ecfa 58%, #f1f0fb 100%);
 }
 
+html[data-theme="arctic"] .about-page .timeline-event {
+  border-color: rgba(86, 74, 220, 0.18);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(242, 244, 255, 0.92));
+  box-shadow: 0 14px 32px rgba(49, 52, 112, 0.1);
+}
+
+html[data-theme="arctic"] .about-page .interest-card {
+  border-color: rgba(86, 74, 220, 0.18);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+html[data-theme="arctic"] .about-page .interest-card > .interest-copy {
+  color: #171a35;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(242, 244, 255, 0.96));
+}
+
+html[data-theme="arctic"] .about-page .interest-card > .interest-copy small {
+  color: #505a79;
+}
+
+html[data-theme="arctic"] .about-page .interest-card > .interest-copy > span {
+  border-color: rgba(86, 74, 220, 0.22);
+}
+
+html[data-theme="arctic"] .about-page .timeline-event > span {
+  color: #5546e8;
+}
+
+html[data-theme="arctic"] .about-page .timeline-event h3 {
+  color: #171a35;
+}
+
+html[data-theme="arctic"] .about-page .timeline-event p {
+  color: #505a79;
+}
+
+html[data-theme="arctic"] .about-page .timeline-icon {
+  color: #5546e8;
+  border-color: rgba(86, 74, 220, 0.2);
+  background: rgba(225, 228, 251, 0.8);
+}
+
 html[data-theme="arctic"] .hero {
   background:
     radial-gradient(ellipse at 76% 36%, rgba(143, 168, 255, 0.25), transparent 27%),

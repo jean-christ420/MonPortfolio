@@ -2,17 +2,16 @@ import { useMemo, useState } from "react"
 import { Link } from "react-router"
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import {
-  certifications,
   expertise,
   mastery,
   skills,
   tools,
   type Skill,
+  type SkillCategory,
 } from "../data/skills"
+import { projects } from "../data/projects"
+import { ProductArtwork } from "../components/ProjectArtwork"
 import "../skills.css"
-
-const ctaPhoto =
-  "https://images.unsplash.com/photo-1650661926447-9efb2610f64c?crop=entropy&fit=crop&fm=jpg&q=84&w=1500&h=600"
 
 function SectionIntro({
   label,
@@ -153,10 +152,9 @@ function SkillsGlobe() {
 
 function SkillsHero() {
   const stats = [
-    ["▧", "3+", "Années d'expérience"],
-    ["⌁", "15+", "Projets réalisés"],
-    ["◇", "10+", "Technologies maîtrisées"],
-    ["✣", "100%", "Passion & Engagement"],
+    ["▧", String(expertise.length), "Domaines présentés"],
+    ["⌁", String(skills.length), "Compétences présentées"],
+    ["◇", String(tools.length), "Outils listés"],
   ]
   return (
     <section className="skills-hero">
@@ -172,16 +170,15 @@ function SkillsHero() {
             des idées en <em>solutions</em>
           </h1>
           <p>
-            Une combinaison de compétences techniques, de sens du design et de
-            vision produit pour concevoir, développer et déployer des solutions
-            digitales utiles, performantes et durables.
+            Les technologies et outils présentés reflètent mon expérience en
+            développement web, applications métier et intégration de services.
           </p>
           <div className="hero-actions">
             <Button href="/projets">
               Voir mes projets <Icon name="arrow" />
             </Button>
             <Button href="/cv" secondary>
-              Télécharger mon CV <Icon name="download" />
+              Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
         </div>
@@ -269,16 +266,10 @@ function ExpertiseSection() {
   )
 }
 
-const categories = [
+const categories: ("Tous" | SkillCategory)[] = [
   "Tous",
-  "Frontend",
-  "Backend",
-  "Mobile",
-  "Data / IA",
-  "Outils",
-  "Design",
-  "DevOps",
-] as const
+  ...new Set(skills.map((skill) => skill.category)),
+]
 
 function SkillCard({
   skill,
@@ -306,15 +297,10 @@ function SkillCard({
 }
 
 function TechnologySection() {
-  const [category, setCategory] = useState<typeof categories[number]>("Tous")
+  const [category, setCategory] = useState<(typeof categories)[number]>("Tous")
   const [selected, setSelected] = useState(skills[0])
   const visible = useMemo(() => {
     if (category === "Tous") return skills
-    if (category === "Mobile") {
-      return skills.filter((skill) =>
-        ["React", "TypeScript", "JavaScript"].includes(skill.name),
-      )
-    }
     return skills.filter((skill) => skill.category === category)
   }, [category])
   return (
@@ -363,20 +349,17 @@ function MasterySection() {
       <div className="shell">
         <SectionIntro
           label="COMPÉTENCES TECHNIQUES"
-          title="Niveau de maîtrise"
+          title="Technologies utilisées"
         />
         <div className="mastery-grid">
           <div className="mastery-list">
-            {mastery.map(([name, value], index) => (
+            {mastery.map((name) => (
               <div className="mastery-row" key={name}>
                 <span className="mastery-mark">
-                  {["⚛", "TS", "JS", "◇", "◉", "F", "▦", "⌁"][index]}
+                  {skills.find((skill) => skill.name === name)?.mark ?? "◇"}
                 </span>
                 <b>{name}</b>
-                <div>
-                  <i style={{ width: `${value}%` }} />
-                </div>
-                <strong>{value}%</strong>
+                <span>Utilisée dans mon travail</span>
               </div>
             ))}
           </div>
@@ -386,87 +369,20 @@ function MasterySection() {
               <div>
                 <b>Mon évolution</b>
                 <small>
-                  Une progression continue pour rester à jour et toujours plus
-                  polyvalent.
+                  Un parcours construit entre formation, développement et
+                  accompagnement des utilisateurs.
                 </small>
               </div>
             </div>
-            <div className="evolution-chart">
-              <svg viewBox="0 0 500 190" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient
-                    id="evolutionArea"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="0" stopColor="#00e8df" stopOpacity=".36" />
-                    <stop offset="1" stopColor="#764bea" stopOpacity=".03" />
-                  </linearGradient>
-                  <linearGradient id="evolutionLine">
-                    <stop offset="0" stopColor="#844de9" />
-                    <stop offset=".55" stopColor="#208fff" />
-                    <stop offset="1" stopColor="#00e8df" />
-                  </linearGradient>
-                </defs>
-                <path
-                  className="area"
-                  d="M0 174 70 153 140 160 205 117 280 125 346 89 415 94 500 25V190H0Z"
-                />
-                <path
-                  className="line"
-                  d="M0 174 70 153 140 160 205 117 280 125 346 89 415 94 500 25"
-                />
-              </svg>
-              <div className="evolution-years">
-                <span>2022</span>
-                <span>2023</span>
-                <span>2024</span>
-                <span>2025</span>
-                <span>2026</span>
-              </div>
-              <div className="evolution-badge">
-                +35%<small>Progression</small>
-              </div>
+            <div className="evolution-chart evolution-history">
+              <p><b>2022–2023</b><span>BTS Développeur d'Applications</span></p>
+              <p><b>2023–2024</b><span>Stages en développement web et support</span></p>
+              <p><b>Depuis 2025</b><span>Formation Full Stack, freelance et stage chez CIS Info</span></p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
-
-const projectLinks = [
-  [
-    "analytics-dashboard",
-    "Analytics Dashboard",
-    "React · TypeScript · Chart.js",
-  ],
-  ["shopvista", "ShopVista", "Next.js · Stripe · Tailwind"],
-  ["gestion-stock-erp", "Gestion de stock (ERP)", "Laravel · MySQL · Tailwind"],
-  ["smartcareerpro", "SmartCareerPro", "Figma · Next.js · UI/UX"],
-]
-
-function ProjectMiniVisual({ slug }: { slug: string }) {
-  return (
-    <div className={`skill-project-visual visual-${slug}`}>
-      <div className="mini-window-bar">
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="mini-window-content">
-        <span />
-        <div>
-          <i />
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
-      </div>
-    </div>
   )
 }
 
@@ -480,12 +396,25 @@ function PracticeSection() {
           description="Des compétences mises en œuvre à travers des projets concrets et variés."
         />
         <div className="practice-grid">
-          {projectLinks.map(([slug, title, tech]) => (
-            <Link to={`/projets/${slug}`} className="practice-card" key={slug}>
-              <ProjectMiniVisual slug={slug} />
+          {projects.map((project) => (
+            <Link
+              to={project.href}
+              className="practice-card"
+              key={project.slug}
+            >
+              <div
+                className="skill-project-visual"
+                role="img"
+                aria-label={`Illustration conceptuelle de ${project.title}`}
+              >
+                <ProductArtwork type={project.artwork} />
+                <span className="skill-art-label">Illustration conceptuelle</span>
+              </div>
               <div>
-                <b>{title}</b>
-                <span>{tech}</span>
+                <b>{project.title}</b>
+                <span>
+                  {project.technologies.join(" · ") || project.status}
+                </span>
                 <i>
                   <Icon name="arrow" size={14} />
                 </i>
@@ -522,40 +451,9 @@ function ToolsSection() {
   )
 }
 
-function CertificationsSection() {
-  return (
-    <section className="certifications-section">
-      <div className="shell">
-        <SectionIntro
-          label="APPRENTISSAGE CONTINU"
-          title="Certifications & formations"
-          description="Je continue à me former et à acquérir de nouvelles compétences pour rester à jour."
-        />
-        <div className="certification-grid">
-          {certifications.map((certification) => (
-            <article key={certification.title}>
-              <span className="certification-mark">{certification.mark}</span>
-              <div>
-                <b>{certification.title}</b>
-                <small>
-                  {certification.issuer}
-                  <br />
-                  {certification.detail}
-                </small>
-              </div>
-              <em>{certification.year}</em>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function SkillsCta() {
   return (
     <section className="skills-cta">
-      <img src={ctaPhoto} alt="" loading="lazy" />
       <div className="skills-cta-shade" />
       <div className="shell skills-cta-grid">
         <div>
@@ -566,9 +464,7 @@ function SkillsCta() {
             en <em>commun</em>
           </h2>
           <p>
-            Je suis toujours ouvert à discuter de nouvelles opportunités, que ce
-            soit pour un projet, une collaboration ou simplement échanger des
-            idées.
+            Vous avez une question sur mes compétences ou un projet ? Écrivez-moi.
           </p>
           <div className="hero-actions">
             <Button href="/contact">
@@ -581,10 +477,10 @@ function SkillsCta() {
         </div>
         <div className="skills-cta-list">
           {[
-            "Projets freelance",
-            "Collaborations",
-            "Opportunités professionnelles",
-            "Conseils et échanges",
+            "Présenter un projet",
+            "Poser une question",
+            "Échange professionnel",
+            "Parler d'une collaboration",
           ].map((item) => (
             <span key={item}>✓ {item}</span>
           ))}
@@ -603,7 +499,6 @@ export default function SkillsPage() {
       <MasterySection />
       <PracticeSection />
       <ToolsSection />
-      <CertificationsSection />
       <SkillsCta />
       <Footer />
     </main>

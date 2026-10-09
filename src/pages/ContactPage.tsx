@@ -6,12 +6,8 @@ import {
   contactSubjects,
   faqItems,
 } from "../data/contact"
+import { profile } from "../data/profile"
 import "../contact.css"
-
-const heroPhoto =
-  "https://images.unsplash.com/photo-1788341977051-6af565ebc960?crop=entropy&fit=crop&fm=jpg&q=88&w=1800&h=850"
-const ctaPhoto =
-  "https://images.unsplash.com/photo-1595327656903-2f54e37ce09b?crop=entropy&fit=crop&fm=jpg&q=84&w=1200&h=520"
 
 type FormValues = {
   name: string
@@ -93,12 +89,6 @@ function ContactHero() {
   return (
     <section className="contact-page-hero">
       <Header active="Contact" />
-      <img
-        className="contact-hero-photo"
-        src={heroPhoto}
-        alt="Espace de travail avec ordinateur face à une ville de nuit"
-        fetchPriority="high"
-      />
       <div className="contact-hero-shade" />
       <div className="shell contact-hero-grid">
         <div className="contact-hero-copy">
@@ -111,22 +101,21 @@ function ContactHero() {
             des <em>solutions impactantes</em>
           </h1>
           <p>
-            Je suis toujours ouvert à échanger sur de nouvelles opportunités, un
-            projet, une collaboration ou simplement pour discuter autour de la
-            technologie.
+            Vous pouvez me contacter pour présenter un projet ou poser une
+            question. Mon stage chez CIS Info est actuellement en cours.
           </p>
           <div className="contact-hero-benefits">
             <div>
               <span>ϟ</span>
-              <b>Réponse rapide</b>
-              <small>Généralement sous 24h</small>
+              <b>Me joindre</b>
+              <small>Par e-mail ou téléphone</small>
             </div>
             <div>
               <span>
                 <ContactIcon name="person" />
               </span>
               <b>Échange ouvert</b>
-              <small>Projets, conseils, opportunités</small>
+              <small>Questions, projets, échanges</small>
             </div>
             <div>
               <span>◇</span>
@@ -148,7 +137,7 @@ function ContactHero() {
           <span>↙</span>
         </div>
         <div className="contact-laptop-message">
-          <b>&lt;AR&gt;</b>
+          <b>{profile.initials}</b>
           <span>
             Des idées en
             <br />
@@ -378,12 +367,11 @@ function ContactForm() {
         {status === "error" && (
           <div className="contact-submit-status" role="alert">
             Le service d'envoi n'est pas encore connecté. Écrivez directement à{" "}
-            <a href="mailto:alex.rivera@example.com">alex.rivera@example.com</a>
-            .
+            <a href={`mailto:${profile.email}`}>{profile.email}</a>.
           </div>
         )}
         <div className="contact-security">
-          ▣ Vos informations sont en sécurité et ne seront jamais partagées.
+          ▣ Le formulaire n'envoie pas encore les informations saisies.
         </div>
       </form>
     </section>
@@ -466,7 +454,7 @@ function WorldMap() {
         <div>
           <b>Abidjan, Côte d'Ivoire</b>
           <small>GMT (UTC+0)</small>
-          <p>Disponible pour des projets locaux et internationaux.</p>
+          <p>Échanges autour de projets locaux et internationaux.</p>
         </div>
       </div>
     </div>
@@ -542,7 +530,6 @@ function FAQ() {
 function ContactCTA() {
   return (
     <section className="contact-page-cta">
-      <img src={ctaPhoto} alt="" loading="lazy" />
       <div className="contact-cta-shade" />
       <div>
         <h2>
@@ -551,19 +538,18 @@ function ContactCTA() {
           <em>Discutons-en !</em>
         </h2>
         <p>
-          Que ce soit pour un projet, une collaboration ou simplement un
-          échange, je suis à l'écoute.
+          Contactez-moi pour présenter votre projet ou poser une question.
         </p>
-        <Button href="mailto:alex.rivera@example.com">
+        <Button href={`mailto:${profile.email}`}>
           Me contacter <Icon name="arrow" />
         </Button>
       </div>
       <aside>
         {[
-          "Projets freelance",
-          "Collaborations",
-          "Opportunités professionnelles",
-          "Conseils et échanges",
+          "Présenter un projet",
+          "Poser une question",
+          "Échange professionnel",
+          "Parler d'une collaboration",
         ].map((item) => (
           <span key={item}>✓ {item}</span>
         ))}

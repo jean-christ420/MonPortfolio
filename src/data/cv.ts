@@ -1,136 +1,134 @@
-export const cvStats = [
-  ["▧", "3+", "Années d'expérience"],
-  ["⌁", "15+", "Projets réalisés"],
-  ["◎", "10+", "Technologies maîtrisées"],
-  ["✣", "100%", "Motivé à apprendre"],
-]
+import { profile } from "./profile"
+
+export const cvStats: string[][] = []
 
 export const cvContact = [
-  ["⌖", "Abidjan, Côte d'Ivoire", null],
-  ["◉", "Disponible pour de nouvelles opportunités", null],
-  ["▣", "Freelance / CDD (pas de CDI)", null],
-  ["in", "LinkedIn", "https://www.linkedin.com"],
-  ["gh", "GitHub", "https://github.com"],
-  ["✉", "alex.rivera@example.com", "mailto:alex.rivera@example.com"],
+  ["⌖", profile.location, null],
+  ["✉", profile.email, `mailto:${profile.email}`],
+  ["☎", profile.phone, profile.phoneLink],
+  ["in", "LinkedIn", profile.linkedin],
+  ["gh", "GitHub", profile.github],
 ] as const
 
 export const cvExpertise = [
-  ["▧", "Développement", "Web & Mobile"],
-  ["◇", "Design", "d'interfaces"],
-  ["▥", "Analyse de données", "& IA"],
-  ["◎", "Gestion de projet", "& Collaboration"],
+  ["▧", "Développement web", "Front-end & back-end"],
+  ["◇", "Applications métier", "Conception & évolution"],
+  ["◎", "Support technique", "Analyse & résolution d'incidents"],
+  ["⌁", "Outils de travail", "Git, hébergement & prototypage"],
 ]
 
 export const experiences = [
   {
-    period: "2025 – Aujourd'hui",
-    role: "Développeur Full-Stack (Stage)",
-    organization: "Entreprise / Projet : Clinique Plus",
-    technology: "WinDev 24",
+    period: "En cours · début à confirmer",
+    role: "Développeur web (stage)",
+    organization: "CIS Info",
+    technology: "Nuxt · NestJS · Figma",
     tasks: [
-      "Développement du module de consultation",
-      "Gestion des patients, rendez-vous et dossiers médicaux",
-      "Collaboration avec l'équipe pour l'analyse et les améliorations",
+      "Contribuer au développement frontend d'Archi_Smart, dont le frontend Nuxt consomme une API backend NestJS.",
+      "Participer à la modernisation du site existant Smart_Courriel.",
+      "Utiliser Figma pour le prototypage et Claude et Cursor comme assistants de développement.",
     ],
   },
   {
-    period: "2024 – 2025",
-    role: "Développeur Web (Stage)",
-    organization: "Assemblée Nationale de Côte d'Ivoire",
-    technology: "Laravel · MySQL · Bootstrap",
+    period: "Septembre 2025 – Aujourd'hui",
+    role: "Développeur web freelance",
+    organization: "Activité indépendante",
+    technology: "PHP · Laravel · JavaScript · MySQL · Git",
     tasks: [
-      "Conception d'un logiciel de gestion de parc informatique et mobilier",
-      "Analyse des besoins et modélisation MERISE",
-      "Développement et tests des modules principaux",
+      "Concevoir et développer des solutions web selon les besoins des projets.",
+      "Développer des fonctionnalités front-end et back-end avec PHP, Laravel, JavaScript et MySQL.",
+      "Versionner le code avec Git et GitHub et utiliser des assistants IA pour la recherche, la compréhension et le débogage.",
     ],
   },
   {
-    period: "2023 – 2024",
-    role: "Développeur WordPress",
+    period: "Juin – décembre 2024",
+    role: "Développeur logiciel et technicien support (stage)",
+    organization: "Assemblée nationale de Côte d'Ivoire",
+    technology: "Développement d'applications internes · Support",
+    tasks: [
+      "Développer et maintenir des fonctionnalités d'applications internes.",
+      "Participer à l'amélioration des outils numériques des services administratifs.",
+      "Analyser et résoudre des incidents techniques, puis accompagner les utilisateurs.",
+      "Collaborer avec les utilisateurs pour comprendre leurs besoins techniques.",
+    ],
+  },
+  {
+    period: "Novembre 2023 – février 2024",
+    role: "Développeur web (stage)",
     organization: "HL IMPEX",
-    technology: "WordPress · Elementor · PHP",
+    technology: "Laravel · WordPress · cPanel",
     tasks: [
-      "Création et personnalisation du site web de l'entreprise",
-      "Intégration de maquettes et optimisation SEO",
-      "Maintenance et support technique",
+      "Développer des fonctionnalités d'applications web avec Laravel.",
+      "Créer et administrer le site WordPress, son contenu et ses pages.",
+      "Administrer les utilisateurs et les services d'hébergement via cPanel, et contribuer à la maintenance et au support.",
     ],
   },
 ]
 
 export const education = [
   {
-    period: "2023 – 2025",
-    title: "BTS Informatique",
+    period: "2022 – 2023",
+    title: "BTS Développeur d'Applications",
     detail: "Développeur d'Applications",
-    place: "Lycée / École (Côte d'Ivoire)",
-    level: "Bac+2",
+    place: "Groupe CSI Pôle Polytechnique",
+    level: "",
     icon: "study",
   },
   {
-    period: "2025 – 2026",
-    title: "WeCodes Fullstack & Data/IA",
-    detail: "EPITECH X-M Studio",
-    place: "Invest for Jobs / FORPRODE",
-    level: "Web · Data / IA · Soft Skills",
-    icon: "diploma",
-  },
-  {
-    period: "2025 – 2025",
-    title: "Baccalauréat scientifique (D)",
-    detail: "Lycée",
-    place: "Mention : Assez Bien",
+    period: "Juin – décembre 2025",
+    title: "Formation Développement Web Full Stack",
+    detail: "Développement Web Full Stack",
+    place: "Coding Academy by Epitech, Abidjan",
     level: "",
-    icon: "book",
+    icon: "diploma",
   },
 ]
 
 export const cvSkills = [
-  ["HTML / CSS", 95],
-  ["JavaScript", 90],
-  ["React / Next.js", 85],
-  ["Vue.js", 80],
-  ["Laravel", 85],
-  ["PHP", 80],
-  ["Bases de données", 85],
-  ["UI/UX (Figma)", 80],
-  ["WinDev", 75],
-  ["Data & IA", 70],
-] as const
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+  "PHP",
+  "SQL",
+  "Laravel",
+  "Vue.js",
+  "Nuxt",
+  "NestJS",
+  "MySQL",
+  "REST API",
+  "MVC",
+  "WordPress",
+  "Git",
+  "GitHub",
+  "Composer",
+  "cPanel",
+  "Figma",
+]
 
 export const cvTechnologies = [
-  ["React", "⚛"],
-  ["Next.js", "N"],
-  ["Vue.js", "V"],
-  ["Laravel", "◇"],
+  ["HTML5", "5"],
+  ["CSS3", "#"],
+  ["JavaScript", "JS"],
   ["PHP", "PHP"],
+  ["Laravel", "◇"],
+  ["Vue.js", "V"],
+  ["Nuxt", "N"],
   ["MySQL", "my"],
-  ["PostgreSQL", "PG"],
-  ["Tailwind CSS", "≈"],
-  ["Figma", "F"],
-  ["Docker", "▦"],
+  ["NestJS", "N"],
   ["Git", "◆"],
-  ["WinDev", "WD"],
-  ["Python", "Py"],
-  ["Power BI", "PI"],
-  ["Node.js", "JS"],
-  ["TypeScript", "TS"],
+  ["GitHub", "GH"],
+  ["WordPress", "W"],
+  ["Figma", "F"],
+  ["Composer", "C"],
+  ["cPanel", "cP"],
 ] as const
 
-export const cvCertifications = [
-  ["∞", "Meta Front-End Developer", "Certification (exemple)", "2024"],
-  ["G", "Google UX Design", "Certification (exemple)", "2023"],
-  ["aws", "AWS Cloud Practitioner", "Certification (exemple)", "2023"],
-] as const
+export const cvCertifications: string[][] = []
 
-export const languages = [
-  ["Français", "Natif", 100],
-  ["Anglais", "Intermédiaire", 70],
-] as const
+export const languages = [["Français", "Langue utilisée sur ce portfolio"]] as const
 
 export const softSkills = [
-  ["◎", "Résolution de problèmes"],
-  ["▧", "Rigueur"],
-  ["♙", "Travail en équipe"],
-  ["✦", "Adaptabilité"],
-  ["⌁", "Communication"],
-] as const
+  ["◎", "Résolution d'incidents"],
+  ["▧", "Accompagnement des utilisateurs"],
+  ["♙", "Collaboration avec les utilisateurs"],
+]

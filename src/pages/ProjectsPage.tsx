@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import { Button, Footer, Header, Icon, Wave } from "../App"
+import { DashboardScreen, ProductArtwork } from "../components/ProjectArtwork"
 import TechBadge from "../components/TechBadge"
 import {
   projectCategories,
@@ -8,242 +9,16 @@ import {
 } from "../data/projects"
 import "../projects.css"
 
-const ctaPhoto =
-  "https://images.unsplash.com/photo-1671417722838-3fbaa7f66203?crop=entropy&fit=crop&fm=jpg&q=84&w=1500&h=600"
-
-function DashboardScreen({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={`dashboard-ui ${compact ? "dashboard-ui-compact" : ""}`}>
-      <div className="dashboard-side">
-        <b>A</b>
-        <i />
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="dashboard-main">
-        <div className="dashboard-top">
-          <div>
-            <small>Total revenue</small>
-            <b>€84,254</b>
-          </div>
-          <div>
-            <small>Conversion</small>
-            <b>+23.5%</b>
-          </div>
-          <span className="dashboard-donut" />
-        </div>
-        <div className="dashboard-chart">
-          <svg
-            viewBox="0 0 300 90"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="chartArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#02e7df" stopOpacity=".32" />
-                <stop offset="1" stopColor="#02e7df" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              className="chart-area"
-              d="M0 78 32 66 55 70 88 40 116 55 146 25 178 42 211 17 240 32 272 12 300 22V90H0Z"
-            />
-            <path
-              className="chart-line"
-              d="M0 78 32 66 55 70 88 40 116 55 146 25 178 42 211 17 240 32 272 12 300 22"
-            />
-          </svg>
-        </div>
-        <div className="dashboard-bars">
-          {[42, 70, 56, 88, 64, 79, 48, 93, 68, 82].map((height, index) => (
-            <i style={{ height: `${height}%` }} key={index} />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ProductArtwork({
-  type,
-  large = false,
-}: {
-  type: string
-  large?: boolean
-}) {
-  if (type === "analytics" || type === "data") {
-    return (
-      <div className={`product-art art-${type} ${large ? "art-large" : ""}`}>
-        <DashboardScreen compact={!large} />
-        {type === "data" && <div className="world-map">•• ••• • ••</div>}
-      </div>
-    )
-  }
-
-  if (type === "taskflow") {
-    return (
-      <div className="product-art art-taskflow">
-        <div className="task-panel">
-          <b>TaskFlow</b>
-          <small>Votre espace de travail</small>
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="task-phone">
-          <span />
-          <b>My tasks</b>
-          <i />
-          <i />
-          <i />
-        </div>
-      </div>
-    )
-  }
-
-  if (type === "shop") {
-    return (
-      <div className="product-art art-shop">
-        <div className="store-nav">
-          <b>forma.</b>
-          <span>Collection &nbsp; Journal &nbsp; À propos</span>
-        </div>
-        <div className="store-copy">
-          <small>NOUVELLE COLLECTION</small>
-          <b>
-            Des intérieurs
-            <br />
-            qui vous ressemblent.
-          </b>
-          <i />
-        </div>
-        <div className="store-sofa">
-          <i />
-          <i />
-          <i />
-        </div>
-      </div>
-    )
-  }
-
-  if (type === "erp") {
-    return (
-      <div className="product-art art-erp">
-        <div className="erp-side">
-          <b>ERP</b>
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="erp-content">
-          <b>Inventaire du matériel</b>
-          <div className="erp-stats">
-            <i />
-            <i />
-            <i />
-          </div>
-          <div className="erp-table">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (type === "clinic") {
-    return (
-      <div className="product-art art-clinic">
-        <div className="clinic-side">
-          <b>+</b>
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="clinic-content">
-          <b>Bienvenue, Dr. Martin</b>
-          <div>
-            <span className="clinic-chart" />
-            <i />
-            <i />
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (type === "portfolio") {
-    return (
-      <div className="product-art art-portfolio">
-        <div>
-          <small>FULL-STACK DEVELOPER</small>
-          <b>
-            Transforming
-            <br />
-            Ideas into
-            <br />
-            <em>Digital Solutions.</em>
-          </b>
-          <i />
-        </div>
-        <span className="portfolio-person">AR</span>
-      </div>
-    )
-  }
-
-  if (type === "career" || type === "futurpro") {
-    return (
-      <div className={`product-art art-illustration art-${type}`}>
-        <div>
-          <small>
-            {type === "career"
-              ? "VOTRE AVENIR COMMENCE ICI"
-              : "ENSEMBLE POUR L'AVENIR"}
-          </small>
-          <b>
-            {type === "career"
-              ? "Trouvez votre voie professionnelle"
-              : "Construisons ensemble ton avenir"}
-          </b>
-          <i />
-        </div>
-        <span className="illustration-person">
-          <i />
-          <i />
-          <b />
-        </span>
-      </div>
-    )
-  }
-
-  return (
-    <div className="product-art art-impex">
-      <div className="cargo-lines" />
-      <div>
-        <small>HL IMPEX</small>
-        <b>
-          Votre partenaire
-          <br />
-          en import-export
-        </b>
-        <i />
-      </div>
-    </div>
-  )
-}
-
 function ProjectLaptop() {
   return (
     <div
       className="project-laptop"
-      aria-label="Interface du tableau de bord Analytics Dashboard"
+      role="img"
+      aria-label="Illustration conceptuelle de développement web, pas une capture d'écran d'un projet"
     >
       <div className="laptop-screen">
         <DashboardScreen />
+        <span className="concept-art-label">Illustration conceptuelle</span>
       </div>
       <div className="laptop-base">
         <i />
@@ -273,34 +48,34 @@ function ProjectHero() {
           <div className="projects-stats">
             <div>
               <span>✦</span>
-              <b>10+</b>
-              <small>Projets réalisés</small>
+              <b>{projects.length}</b>
+              <small>Projets présentés</small>
             </div>
             <div>
               <span>◇</span>
-              <b>5</b>
-              <small>Domaines d'expertise</small>
+              <b>{projects.filter((project) => project.status === "Terminé").length}</b>
+              <small>Projets terminés</small>
             </div>
             <div>
               <span>✓</span>
-              <b>100%</b>
-              <small>Passion &amp; Engagement</small>
+              <b>{projects.filter((project) => project.status === "Prototype").length}</b>
+              <small>Prototypes</small>
             </div>
             <div>
               <span>★</span>
-              <b>4.9/5</b>
-              <small>Satisfaction clients</small>
+              <b>{projects.filter((project) => project.status === "En cours").length}</b>
+              <small>Projets en cours</small>
             </div>
           </div>
         </div>
         <div className="projects-hero-visual">
           <ProjectLaptop />
           <span className="hero-note">
-            Turning
+            Des idées
             <br />
-            Ideas into
+            aux projets
             <br />
-            <b>Real Solutions</b>
+            <b>utiles</b>
           </span>
         </div>
       </div>
@@ -358,25 +133,19 @@ function FeaturedProject({ project }: { project: Project }) {
   return (
     <article className="featured-project shell">
       <div className="featured-visual">
-        <ProductArtwork type={project.artwork} large />
-        <div className="growth-pill">
-          <span>⌁</span>
-          <b>+23.5%</b>
-          <small>Croissance</small>
+        <div
+          className="concept-art-frame"
+          role="img"
+          aria-label={`Illustration conceptuelle de ${project.title}, pas une capture d'écran du projet`}
+        >
+          <ProductArtwork type={project.artwork} large />
         </div>
-        <div className="featured-thumbs">
-          <i />
-          <i />
-          <i />
-        </div>
+        <div className="growth-pill">{project.status}</div>
       </div>
       <div className="featured-copy">
         <div className="featured-label">★ Projet en vedette</div>
         <h2>{project.title}</h2>
-        <p>
-          {project.description} Conçu pour aider les entreprises à prendre des
-          décisions basées sur les données.
-        </p>
+        <p>{project.description}</p>
         <div className="tech-list">
           {project.technologies.map((technology) => (
             <TechBadge key={technology}>{technology}</TechBadge>
@@ -410,9 +179,11 @@ function ProjectCard({ project }: { project: Project }) {
       <a
         className="card-art-link"
         href={project.href}
-        aria-label={`Voir ${project.title}`}
+        aria-label={`Voir ${project.title} — illustration conceptuelle, pas une capture d'écran`}
       >
-        <ProductArtwork type={project.artwork} />
+        <div className="concept-art-frame">
+          <ProductArtwork type={project.artwork} />
+        </div>
       </a>
       <div className="projects-card-body">
         <span
@@ -422,6 +193,7 @@ function ProjectCard({ project }: { project: Project }) {
         >
           {project.category}
         </span>
+        <span className="project-status">{project.status}</span>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
         <div className="tech-list">
@@ -433,9 +205,6 @@ function ProjectCard({ project }: { project: Project }) {
           <a href={project.href}>
             Voir le projet <Icon name="arrow" size={14} />
           </a>
-          <span>
-            Details &nbsp; <Icon name="github" size={15} />
-          </span>
         </div>
       </div>
     </article>
@@ -482,7 +251,6 @@ function ProjectApproach() {
 function ProjectsCta() {
   return (
     <section className="projects-cta">
-      <img src={ctaPhoto} alt="" loading="lazy" />
       <div className="projects-cta-shade" />
       <div className="shell projects-cta-inner">
         <div className="projects-cta-copy">
@@ -493,25 +261,23 @@ function ProjectsCta() {
             en solutions <em>concrètes</em>
           </h2>
           <p>
-            Je suis toujours ouvert à discuter de nouvelles opportunités, que ce
-            soit pour un projet, une collaboration ou simplement échanger des
-            idées.
+            Vous avez un projet ou une question ? Écrivez-moi pour en discuter.
           </p>
           <div className="hero-actions">
             <Button href="/contact">
               Me contacter <Icon name="arrow" />
             </Button>
-            <Button href="/#accueil" secondary>
-              Voir mon CV <Icon name="download" />
+            <Button href="/cv" secondary>
+              Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
         </div>
         <div className="projects-cta-list">
           {[
-            "Projets freelance",
-            "Collaborations",
-            "Opportunités professionnelles",
-            "Conseils et échanges",
+            "Présenter un projet",
+            "Poser une question",
+            "Échange professionnel",
+            "Parler d'une collaboration",
           ].map((item) => (
             <span key={item}>✓ {item}</span>
           ))}
@@ -616,8 +382,15 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
       <section className="project-detail shell">
         <div className="eyebrow">{project.category}</div>
         <h1>{project.title}</h1>
+        <p className="project-status">{project.status}</p>
         <p>{project.description}</p>
-        <ProductArtwork type={project.artwork} large />
+        <div
+          className="concept-art-frame"
+          role="img"
+          aria-label={`Illustration conceptuelle de ${project.title}, pas une capture d'écran du projet`}
+        >
+          <ProductArtwork type={project.artwork} large />
+        </div>
         <div className="tech-list">
           {project.technologies.map((technology) => (
             <TechBadge key={technology}>{technology}</TechBadge>

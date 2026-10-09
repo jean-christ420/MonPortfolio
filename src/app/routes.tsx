@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react"
-import { createBrowserRouter, Link, useParams } from "react-router"
+import { createBrowserRouter, Link, Navigate, useParams } from "react-router"
 import HomePage from "../App"
 import { projects } from "../data/projects"
 
@@ -9,7 +9,6 @@ const ProjectDetailPage = lazy(() =>
     default: module.ProjectDetailPage,
   })),
 )
-const AnalyticsCaseStudy = lazy(() => import("../pages/AnalyticsCaseStudy"))
 const SkillsPage = lazy(() => import("../pages/SkillsPage"))
 const AboutPage = lazy(() => import("../pages/AboutPage"))
 const CVPage = lazy(() => import("../pages/CVPage"))
@@ -53,6 +52,9 @@ function CVRoute() {
 
 function ProjectRoute() {
   const { slug = "" } = useParams()
+  if (slug === "analytics-dashboard") {
+    return <Navigate to="/projets/myshop" replace />
+  }
   const exists = projects.some((project) => project.slug === slug)
   if (!exists) {
     return (
@@ -60,13 +62,6 @@ function ProjectRoute() {
         <h1>Projet introuvable</h1>
         <Link to="/projets">Retour aux projets</Link>
       </main>
-    )
-  }
-  if (slug === "analytics-dashboard") {
-    return (
-      <Suspense fallback={<RouteLoading />}>
-        <AnalyticsCaseStudy />
-      </Suspense>
     )
   }
   return (

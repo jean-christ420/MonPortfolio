@@ -1,84 +1,39 @@
 import { useState } from "react"
 import { Link, NavLink } from "react-router"
 import ThemeToggle from "./components/ThemeToggle"
+import { ProductArtwork } from "./components/ProjectArtwork"
+import { profile } from "./data/profile"
+import { projects as portfolioProjects } from "./data/projects"
+import { skills as portfolioSkills } from "./data/skills"
 
 interface IconProps {
   name: string
   size?: number
 }
 
-const photos = {
-  portrait:
-    "https://images.unsplash.com/photo-1610289307640-e5d7c5e8d9f5?crop=faces&fit=crop&fm=jpg&q=90&w=900&h=1100",
-  workspace:
-    "https://images.unsplash.com/photo-1520583457224-aee11bad5112?crop=entropy&fit=crop&fm=jpg&q=88&w=1200&h=900",
-  landscape:
-    "https://images.unsplash.com/photo-1778401207104-3dabce1c314a?crop=entropy&fit=crop&fm=jpg&q=88&w=1800&h=700",
-}
+const featuredProjectSlugs = ["myshop", "post-it", "archi-smart"]
+const projects = featuredProjectSlugs.map((slug) => {
+  const project = portfolioProjects.find((item) => item.slug === slug)
+  if (!project) throw new Error(`Projet vedette introuvable : ${slug}`)
+  return project
+})
 
-const projects = [
-  {
-    title: "Analytics Dashboard",
-    type: "Web App",
-    description:
-      "Un tableau de bord d'analytique en temps réel avec des graphiques interactifs et des rapports détaillés.",
-    tags: ["Next.js", "TypeScript", "Tailwind"],
-    visual: "analytics",
-  },
-  {
-    title: "TaskFlow Mobile",
-    type: "Mobile",
-    description:
-      "Une application de gestion de tâches multi-plateformes avec collaboration en équipe.",
-    tags: ["React Native", "TypeScript", "Node.js"],
-    visual: "mobile",
-  },
-  {
-    title: "ShopVista",
-    type: "Web App",
-    description:
-      "Une plateforme e-commerce moderne avec une expérience d'achat fluide et intuitive.",
-    tags: ["Next.js", "TypeScript", "Stripe"],
-    visual: "shop",
-  },
+const featuredSkillNames = [
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+  "PHP",
+  "Laravel",
+  "Vue.js",
+  "Nuxt",
+  "MySQL",
+  "Git",
+  "Figma",
 ]
-
-const skills = [
-  ["⚛", "React", "cyan"],
-  ["TS", "TypeScript", "blue"],
-  ["JS", "Node.js", "yellow"],
-  ["N", "Next.js", "white"],
-  ["≈", "Tailwind CSS", "cyan"],
-  ["●", "MongoDB", "green"],
-  ["my", "MySQL", "blue"],
-  ["S", "Stripe", "violet"],
-  ["F", "Figma", "pink"],
-  ["◆", "Git", "orange"],
-]
-
-const testimonials = [
-  {
-    quote:
-      "Un travail de qualité, une excellente communication et un réel sens du détail. Je recommande sans hésitation !",
-    name: "Sophie Martin",
-    role: "CEO, TechStart",
-    initials: "SM",
-  },
-  {
-    quote:
-      "Très professionnel et à l'écoute. Le projet a été livré dans les délais avec une qualité remarquable.",
-    name: "Thomas Dubois",
-    role: "Product Manager, InnovLab",
-    initials: "TD",
-  },
-  {
-    quote:
-      "Une collaboration fluide et agréable. Alex a su comprendre nos besoins et proposer des solutions efficaces.",
-    name: "Marie Lambert",
-    role: "Founder, ShopVista",
-    initials: "ML",
-  },
-]
+const skills = featuredSkillNames.flatMap((name) => {
+  const skill = portfolioSkills.find((item) => item.name === name)
+  return skill ? [skill] : []
+})
 
 export function Icon({ name, size = 18 }: IconProps) {
   const paths: Record<string, React.ReactNode> = {
@@ -144,7 +99,7 @@ export function Icon({ name, size = 18 }: IconProps) {
 export function Logo() {
   return (
     <Link className="logo" to="/" aria-label="Retour à l'accueil">
-      <span>&lt;</span>AR<span>&gt;</span>
+      <span>&lt;</span>JCO<span>&gt;</span>
     </Link>
   )
 }
@@ -187,7 +142,7 @@ export function Header({ active = "Accueil" }: { active?: string }) {
         className="menu-button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        aria-label="Ouvrir la navigation"
+        aria-label={open ? "Fermer la navigation" : "Ouvrir la navigation"}
       >
         <span />
         <span />
@@ -211,6 +166,7 @@ export function Header({ active = "Accueil" }: { active?: string }) {
             }
             to={href}
             key={label}
+            onClick={() => setOpen(false)}
           >
             {label}
           </NavLink>
@@ -285,75 +241,64 @@ function Hero() {
           <Eyebrow>
             Bonjour, je suis <i />
           </Eyebrow>
-          <h1>Alex Rivera</h1>
+          <h1>{profile.name}</h1>
           <div className="hero-role">
-            Développeur Full-Stack &amp; UI Designer
+            {profile.title}
           </div>
           <p>
-            Je conçois et développe des applications web performantes et des
-            expériences numériques intuitives, en alliant code propre, design
-            centré utilisateur et solutions concrètes aux problèmes réels.
+            Je participe à la conception et au développement d'applications
+            métier et de solutions numériques adaptées aux besoins des
+            organisations.
           </p>
           <div className="hero-actions">
             <Button href="/projets">
               Voir mes projets <Icon name="arrow" />
             </Button>
             <Button href="/cv" secondary>
-              Télécharger mon CV <Icon name="download" />
+              Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
           <div className="socials">
-            <a href="#github" aria-label="GitHub">
+            <a href={profile.github} aria-label="GitHub">
               <Icon name="github" />
             </a>
-            <a href="#linkedin" aria-label="LinkedIn">
+            <a href={profile.linkedin} aria-label="LinkedIn">
               <Icon name="linkedin" />
             </a>
-            <a href="#dribbble" aria-label="Dribbble">
-              ◎
-            </a>
-            <a href="mailto:hello@alexrivera.dev" aria-label="E-mail">
+            <a href={`mailto:${profile.email}`} aria-label="E-mail">
               <Icon name="mail" />
             </a>
           </div>
         </div>
         <div className="hero-visual">
           <div className="portrait-halo" />
-          <img
-            src={photos.portrait}
-            alt="Alex Rivera, développeur et designer"
-          />
+          <div
+            className="hero-portfolio-window"
+            role="img"
+            aria-label="Illustration conceptuelle d'une interface numérique"
+          >
+            <div className="hero-window-top">
+              <span />
+              <span />
+              <span />
+              <b>JCO · Développement web</b>
+            </div>
+            <div className="hero-window-content">
+              <span>APPLICATIONS MÉTIER</span>
+              <b>Des outils adaptés aux besoins</b>
+              <div>
+                <i>Interfaces web</i>
+                <i>API REST</i>
+                <i>Gestion de données</i>
+              </div>
+            </div>
+          </div>
           <div className="availability">
             <i />
             <span>
-              <b>Disponible</b>Pour de nouveaux projets
+              <b>Stage en cours</b>
+              CIS Info · {profile.location}
             </span>
-          </div>
-          <div className="stats-card">
-            <div>
-              <b>2+</b>
-              <span>
-                Années
-                <br />
-                d'expérience
-              </span>
-            </div>
-            <div>
-              <b>10+</b>
-              <span>
-                Projets
-                <br />
-                réalisés
-              </span>
-            </div>
-            <div>
-              <b>100%</b>
-              <span>
-                Passion
-                <br />
-                &amp; Engagement
-              </span>
-            </div>
           </div>
         </div>
       </div>
@@ -389,17 +334,11 @@ function About() {
     <section className="about section shell" id="apropos">
       <div className="about-copy">
         <Eyebrow>À propos de moi</Eyebrow>
-        <h2>
-          Transformer des idées
-          <br />
-          en solutions digitales
-        </h2>
+        <h2>Des applications métier au service des organisations</h2>
         <p>
-          Je suis un développeur passionné par la création d'applications web et
-          mobiles qui ont un impact réel. J'aime travailler sur des projets
-          variés, de la conception à la mise en production, en mettant l'accent
-          sur la qualité du code, l'expérience utilisateur et la résolution de
-          vrais problèmes.
+          Je m'appelle {profile.name} et je contribue au développement de
+          solutions numériques, de la compréhension du besoin à la réalisation
+          d'interfaces et de fonctionnalités utiles.
         </p>
         <Button href="/a-propos" secondary>
           En savoir plus sur moi <Icon name="arrow" />
@@ -417,111 +356,6 @@ function About() {
         ))}
       </div>
     </section>
-  )
-}
-
-function ProjectVisual({ type }: { type: string }) {
-  if (type === "shop") {
-    return (
-      <div className="project-mock shop-mock">
-        <div className="shop-nav">
-          <b>forma.</b>
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="shop-layout">
-          <div className="sofa">
-            <i className="sofa-back" />
-            <i className="sofa-seat" />
-            <i className="sofa-arm sofa-arm-left" />
-            <i className="sofa-arm sofa-arm-right" />
-            <i className="sofa-leg sofa-leg-left" />
-            <i className="sofa-leg sofa-leg-right" />
-          </div>
-          <div className="shop-copy">
-            <small>Nouvelle collection</small>
-            <b>Élevez votre intérieur avec style</b>
-            <p>Des pièces pensées pour durer.</p>
-            <span>Découvrir</span>
-          </div>
-        </div>
-      </div>
-    )
-  }
-  if (type === "mobile") {
-    return (
-      <div className="project-mock mobile-mock">
-        <div className="phone">
-          <span className="phone-notch" />
-          <b>TaskFlow</b>
-          <small>Aujourd'hui</small>
-          <i>
-            <em />
-          </i>
-          <i>
-            <em />
-          </i>
-          <i>
-            <em />
-          </i>
-        </div>
-        <div className="phone second">
-          <span className="phone-notch" />
-          <b>My tasks</b>
-          <small>8 tâches</small>
-          <i>
-            <em />
-          </i>
-          <i>
-            <em />
-          </i>
-          <i>
-            <em />
-          </i>
-        </div>
-        <div className="mobile-glow" />
-      </div>
-    )
-  }
-  return (
-    <div className="project-mock analytics-mock">
-      <div className="mock-toolbar">
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="side-lines">
-        <b>A</b>
-        <i />
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="analytics-body">
-        <div className="analytics-summary">
-          <span>
-            <b>24.8K</b>
-            <small>Visiteurs</small>
-          </span>
-          <span>
-            <b>+18%</b>
-            <small>Conversion</small>
-          </span>
-          <span className="donut" />
-        </div>
-        <div className="mini-bars">
-          <i />
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
-        <svg viewBox="0 0 160 55">
-          <path d="M0 45 25 38 45 42 70 18 88 31 113 7 135 20 160 5" />
-        </svg>
-      </div>
-    </div>
   )
 }
 
@@ -545,18 +379,26 @@ function Projects() {
         <div className="project-grid">
           {projects.map((project) => (
             <article className="project-card" key={project.title}>
-              <ProjectVisual type={project.visual} />
+              <div className="project-mock project-home-preview" aria-hidden="true">
+                <ProductArtwork type={project.artwork} />
+                <span className="home-preview-caption">
+                  Illustration conceptuelle · {project.status}
+                </span>
+              </div>
               <div className="project-content">
-                <span className="badge">{project.type}</span>
+                <span className="badge">{project.category}</span>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <div className="project-footer">
                   <div className="tags">
-                    {project.tags.map((tag) => (
+                    {project.technologies.map((tag) => (
                       <span key={tag}>{tag}</span>
                     ))}
                   </div>
-                  <Link to="/#contact" aria-label={`Voir ${project.title}`}>
+                  <Link
+                    to={project.href}
+                    aria-label={`Voir le projet ${project.title}`}
+                  >
                     <Icon name="arrow" />
                   </Link>
                 </div>
@@ -589,10 +431,15 @@ function Skills() {
           </Link>
         </div>
         <div className="skill-grid">
-          {skills.map(([mark, name, color]) => (
-            <div className="skill" key={name}>
-              <div className={`skill-icon skill-${color}`}>{mark}</div>
-              <span>{name}</span>
+          {skills.map((skill) => (
+            <div className="skill" key={skill.name}>
+              <div className={`skill-icon skill-${skill.color}`}>
+                <Icon
+                  name={skill.category === "Conception" ? "palette" : "code"}
+                  size={27}
+                />
+              </div>
+              <span>{skill.name}</span>
             </div>
           ))}
         </div>
@@ -611,11 +458,21 @@ const steps = [
 function Process() {
   return (
     <section className="process-section" id="methode">
-      <div className="process-image">
-        <img
-          src={photos.workspace}
-          alt="Un ordinateur affichant du code dans un espace de travail"
-        />
+      <div className="process-image" aria-hidden="true">
+        <div className="process-workspace">
+          <span>ÉTAPES DU PROJET</span>
+          <b>Comprendre</b>
+          <i />
+          <b>Concevoir</b>
+          <i />
+          <b>Développer</b>
+          <i />
+          <b>Améliorer</b>
+        </div>
+        <div className="process-code-card">
+          <span>&lt;/&gt;</span>
+          <b>Une solution adaptée</b>
+        </div>
       </div>
       <div className="process-content">
         <Eyebrow>Ma démarche</Eyebrow>
@@ -646,51 +503,95 @@ function Process() {
   )
 }
 
+const testimonialExamples = [
+  {
+    quote:
+      "Exemple de retour : une interface claire aide à comprendre rapidement les étapes d'un projet.",
+    initials: "D1",
+  },
+  {
+    quote:
+      "Exemple de retour : des échanges réguliers facilitent le suivi et les ajustements d'une solution.",
+    initials: "D2",
+  },
+  {
+    quote:
+      "Exemple de retour : une présentation structurée rend les fonctionnalités plus faciles à parcourir.",
+    initials: "D3",
+  },
+]
+
 function Testimonials() {
-  const [active, setActive] = useState(1)
-  const move = (direction: number) =>
-    setActive((active + direction + testimonials.length) % testimonials.length)
+  const [activeTestimonial, setActiveTestimonial] = useState(0)
+  const changeTestimonial = (offset: number) => {
+    setActiveTestimonial(
+      (current) =>
+        (current + offset + testimonialExamples.length) %
+        testimonialExamples.length,
+    )
+  }
+
   return (
     <section className="testimonials section shell" id="temoignages">
       <div className="section-heading">
         <div>
           <Eyebrow>Témoignages</Eyebrow>
-          <h2>Ils m'ont fait confiance</h2>
+          <h2>Retours d'expérience</h2>
         </div>
-        <div className="carousel-buttons">
-          <button onClick={() => move(-1)} aria-label="Témoignage précédent">
-            ←
-          </button>
-          <button onClick={() => move(1)} aria-label="Témoignage suivant">
-            →
-          </button>
-        </div>
-      </div>
-      <div className="testimonial-grid">
-        {testimonials.map((testimonial, index) => (
-          <article
-            className={`testimonial-card ${active === index ? "active" : ""}`}
-            key={testimonial.name}
-          >
-            <span className="quote-mark">“</span>
-            <p>{testimonial.quote}</p>
-            <div className="person">
-              <div className="avatar">{testimonial.initials}</div>
-              <div>
-                <b>{testimonial.name}</b>
-                <span>{testimonial.role}</span>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-      <div className="dots">
-        {testimonials.map((item, index) => (
+        <div className="carousel-buttons" aria-label="Navigation des témoignages">
           <button
-            className={active === index ? "active" : ""}
-            aria-label={`Afficher le témoignage ${index + 1}`}
-            key={item.name}
-            onClick={() => setActive(index)}
+            aria-label="Exemple précédent"
+            onClick={() => changeTestimonial(-1)}
+            type="button"
+          >
+            <Icon name="arrow" />
+          </button>
+          <button
+            aria-label="Exemple suivant"
+            onClick={() => changeTestimonial(1)}
+            type="button"
+          >
+            <Icon name="arrow" />
+          </button>
+        </div>
+      </div>
+      <p className="testimonial-demo-note">
+        Exemples fictifs de mise en page, sans lien avec des clients ou
+        collaborateurs réels.
+      </p>
+      <div className="testimonial-grid" aria-live="polite">
+        <article
+          aria-label={`Témoignage fictif de démonstration ${activeTestimonial + 1}`}
+          className="testimonial-card active"
+          key={testimonialExamples[activeTestimonial].initials}
+        >
+          <span className="quote-mark" aria-hidden="true">
+            “
+          </span>
+          <p>{testimonialExamples[activeTestimonial].quote}</p>
+          <div className="person">
+            <span className="avatar" aria-hidden="true">
+              {testimonialExamples[activeTestimonial].initials}
+            </span>
+            <div>
+              <b>
+                Persona de démonstration{" "}
+                {String(activeTestimonial + 1).padStart(2, "0")}
+              </b>
+              <span>Profil fictif</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div className="dots" aria-label="Sélectionner un exemple">
+        {testimonialExamples.map((example, index) => (
+          <button
+            aria-label={`Afficher l'exemple ${index + 1}`}
+            aria-pressed={activeTestimonial === index}
+            className={activeTestimonial === index ? "active" : ""}
+            key={example.initials}
+            onClick={() => setActiveTestimonial(index)}
+            type="button"
           />
         ))}
       </div>
@@ -701,24 +602,20 @@ function Testimonials() {
 function Contact() {
   return (
     <section className="contact-section" id="contact">
-      <img
-        src={photos.landscape}
-        alt="Route sinueuse dans un paysage montagneux nocturne"
-      />
       <div className="contact-overlay" />
       <div className="shell contact-content">
         <Eyebrow>Un projet en tête ?</Eyebrow>
         <h2>Travaillons ensemble</h2>
         <p>
-          Vous avez une idée, un projet ou une opportunité ?<br />
-          Je suis toujours ouvert à discuter de nouvelles collaborations.
+          Vous avez une idée ou un projet ?<br />
+          Écrivez-moi pour en discuter.
         </p>
         <div className="hero-actions">
-          <Button href="mailto:hello@alexrivera.dev">
+          <Button href={`mailto:${profile.email}`}>
             Me contacter <Icon name="arrow" />
           </Button>
           <Button href="/cv" secondary>
-            Voir mon CV <Icon name="download" />
+            Voir mon parcours <Icon name="arrow" />
           </Button>
         </div>
       </div>
@@ -732,10 +629,10 @@ export function Footer() {
       <div className="shell footer-main">
         <Logo />
         <p>
-          Développeur Full-Stack &amp; UI Designer
+          {profile.title}
           <br />
           <span>
-            Passionné par la création de solutions digitales impactantes.
+            {profile.location} · {profile.phone}
           </span>
         </p>
         <nav>
@@ -747,22 +644,21 @@ export function Footer() {
           <NavLink to="/contact">Contact</NavLink>
         </nav>
         <div className="footer-socials">
-          <a href="#github" aria-label="GitHub">
+          <a href={profile.github} aria-label="GitHub">
             <Icon name="github" />
           </a>
-          <a href="#linkedin" aria-label="LinkedIn">
+          <a href={profile.linkedin} aria-label="LinkedIn">
             <Icon name="linkedin" />
           </a>
-          <a href="#dribbble" aria-label="Dribbble">
-            ◎
-          </a>
-          <a href="mailto:hello@alexrivera.dev" aria-label="E-mail">
+          <a href={`mailto:${profile.email}`} aria-label="E-mail">
             <Icon name="mail" />
           </a>
         </div>
       </div>
       <div className="shell footer-bottom">
-        <span>© 2026 Alex Rivera. Tous droits réservés.</span>
+        <span>
+          © {new Date().getFullYear()} {profile.name}. Tous droits réservés.
+        </span>
         <div>
           <a href="#mentions">Mentions légales</a>
           <a href="#confidentialite">Politique de confidentialité</a>

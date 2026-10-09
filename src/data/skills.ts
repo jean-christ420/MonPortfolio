@@ -1,4 +1,9 @@
-export type SkillCategory = "Frontend" | "Backend" | "Mobile" | "Data / IA" | "Outils" | "Design" | "DevOps"
+export type SkillCategory =
+  | "Frontend"
+  | "Backend"
+  | "Bases de données"
+  | "Outils"
+  | "Conception"
 
 export type Skill = {
   name: string
@@ -10,53 +15,39 @@ export type Skill = {
 
 export const skills: Skill[] = [
   {
-    name: "React",
-    mark: "react",
+    name: "HTML5",
+    mark: "5",
     category: "Frontend",
-    description: "Interfaces web composables et interactives.",
-    color: "cyan",
+    description: "Structure de pages et d'interfaces web.",
+    color: "orange",
   },
   {
-    name: "Next.js",
-    mark: "N",
+    name: "CSS3",
+    mark: "#",
     category: "Frontend",
-    description: "Applications React performantes côté client et serveur.",
-    color: "white",
-  },
-  {
-    name: "Vue.js",
-    mark: "vue",
-    category: "Frontend",
-    description: "Interfaces progressives et réactives.",
-    color: "green",
-  },
-  {
-    name: "TypeScript",
-    mark: "TS",
-    category: "Frontend",
-    description: "JavaScript typé pour des applications robustes.",
+    description: "Mise en forme et adaptation responsive des interfaces.",
     color: "blue",
   },
   {
     name: "JavaScript",
     mark: "JS",
     category: "Frontend",
-    description: "Fondation du développement web interactif.",
+    description: "Développement de comportements interactifs côté web.",
     color: "yellow",
   },
   {
-    name: "Node.js",
-    mark: "node",
-    category: "Backend",
-    description: "Services et API JavaScript côté serveur.",
-    color: "lime",
+    name: "Vue.js",
+    mark: "vue",
+    category: "Frontend",
+    description: "Développement d'interfaces web, notamment pour Post It.",
+    color: "green",
   },
   {
-    name: "Laravel",
-    mark: "laravel",
-    category: "Backend",
-    description: "Applications métier et API PHP structurées.",
-    color: "red",
+    name: "Nuxt",
+    mark: "N",
+    category: "Frontend",
+    description: "Frontend utilisé dans la contribution à Archi_Smart.",
+    color: "lime",
   },
   {
     name: "PHP",
@@ -66,144 +57,139 @@ export const skills: Skill[] = [
     color: "violet",
   },
   {
-    name: "Tailwind CSS",
-    mark: "tailwind",
-    category: "Frontend",
-    description: "Systèmes d'interfaces cohérents et rapides.",
+    name: "Laravel",
+    mark: "laravel",
+    category: "Backend",
+    description: "Développement d'applications web et de fonctionnalités métier.",
+    color: "red",
+  },
+  {
+    name: "NestJS",
+    mark: "N",
+    category: "Backend",
+    description: "API backend consommée par le frontend d'Archi_Smart.",
+    color: "red",
+  },
+  {
+    name: "REST API",
+    mark: "API",
+    category: "Backend",
+    description: "Intégration d'API dans des applications web.",
     color: "cyan",
   },
   {
-    name: "Sass",
-    mark: "Sass",
-    category: "Frontend",
-    description: "Styles modulaires et maintenables.",
-    color: "pink",
+    name: "SQL",
+    mark: "SQL",
+    category: "Bases de données",
+    description: "Requêtes et manipulation de données relationnelles.",
+    color: "blue",
   },
   {
     name: "MySQL",
     mark: "mysql",
-    category: "Data / IA",
-    description: "Bases de données relationnelles.",
+    category: "Bases de données",
+    description: "Base de données utilisée notamment dans MyShop.",
     color: "blue",
   },
   {
-    name: "PostgreSQL",
-    mark: "PG",
-    category: "Data / IA",
-    description: "Stockage relationnel robuste et avancé.",
-    color: "blue",
-  },
-  {
-    name: "MongoDB",
-    mark: "mongo",
-    category: "Data / IA",
-    description: "Données documentaires flexibles.",
-    color: "green",
-  },
-  {
-    name: "Docker",
-    mark: "docker",
-    category: "DevOps",
-    description: "Environnements reproductibles et déploiements.",
+    name: "WordPress",
+    mark: "W",
+    category: "Outils",
+    description: "Création et administration de sites et de contenus.",
     color: "blue",
   },
   {
     name: "Git",
     mark: "git",
     category: "Outils",
-    description: "Versionnement et collaboration.",
+    description: "Versionnement du code.",
     color: "red",
+  },
+  {
+    name: "GitHub",
+    mark: "github",
+    category: "Outils",
+    description: "Hébergement et suivi de dépôts de code.",
+    color: "white",
   },
   {
     name: "Figma",
     mark: "figma",
-    category: "Design",
-    description: "Conception d'interfaces et prototypage.",
+    category: "Conception",
+    description: "Prototypage d'interfaces avant leur implémentation.",
     color: "pink",
   },
 ]
 
 export const expertise = [
   {
-    title: "Développement",
+    title: "Développement web",
     icon: "</>",
     description:
-      "Applications web et mobiles modernes, performantes et évolutives.",
+      "Développement front-end et back-end de solutions web adaptées aux besoins.",
     color: "blue",
   },
   {
-    title: "Design UI/UX",
+    title: "Applications métier",
     icon: "◉",
-    description: "Interfaces intuitives et expériences utilisateur mémorables.",
+    description:
+      "Fonctionnalités de gestion, organisation des données et suivi d'activité.",
     color: "violet",
   },
   {
-    title: "Data & IA",
+    title: "Intégration d'API",
     icon: "database",
     description:
-      "Analyse de données, intégration d'outils d'IA et visualisation d'insights.",
+      "Connexion d'interfaces web aux services et données d'une API.",
     color: "cyan",
   },
   {
-    title: "Systèmes & Outils",
+    title: "Outils de développement",
     icon: "cube",
     description:
-      "Automatisation, déploiement et gestion d'infrastructures modernes.",
+      "Versionnement, gestion de contenu, hébergement et assistants de développement.",
     color: "orange",
   },
   {
-    title: "Gestion de projet",
+    title: "Prototypage & collaboration",
     icon: "team",
     description:
-      "Organisation, collaboration et livraison de solutions de qualité.",
+      "Prototypage d'interfaces et échanges avec les utilisateurs et les équipes.",
     color: "cyan",
   },
 ]
 
 export const mastery = [
-  ["React / Next.js", 90],
-  ["TypeScript", 85],
-  ["Node.js", 80],
-  ["Laravel", 80],
-  ["Bases de données", 85],
-  ["UI/UX (Figma)", 75],
-  ["Docker & DevOps", 70],
-  ["Data & IA", 65],
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+  "PHP",
+  "Laravel",
+  "Vue.js",
+  "Nuxt",
+  "NestJS",
+  "MySQL",
+  "SQL",
+  "REST API",
+  "Git & GitHub",
 ] as const
 
 export const tools = [
   ["VS Code", "⌁"],
   ["GitHub", "github"],
-  ["Postman", "◒"],
-  ["Notion", "N"],
-  ["Trello", "▦"],
-  ["Discord", "◉"],
+  ["Composer", "C"],
+  ["cPanel", "CP"],
+  ["Obambu", "O"],
   ["Figma", "figma"],
-  ["Slack", "✣"],
-  ["Docker", "docker"],
-  ["Ubuntu", "◉"],
+  ["GitHub Copilot", "GH"],
+  ["Claude", "C"],
+  ["Cursor", "Cu"],
 ] as const
 
-export const certifications = [
-  {
-    issuer: "Meta",
-    title: "Meta Front-End Developer",
-    detail: "Certification (en cours)",
-    year: "2024",
-    mark: "∞",
-  },
-  {
-    issuer: "Google",
-    title: "Google UX Design",
-    detail: "Certification (en cours)",
-    year: "2023",
-    mark: "G",
-  },
-  {
-    issuer: "AWS",
-    title: "AWS Cloud Practitioner",
-    detail: "Autoformation (en cours)",
-    year: "2023",
-    mark: "aws",
-  },
-]
+export const certifications: {
+  issuer: string
+  title: string
+  detail: string
+  year: string
+  mark: string
+}[] = []

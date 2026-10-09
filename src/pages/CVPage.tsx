@@ -1,35 +1,22 @@
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import {
-  cvCertifications,
   cvContact,
   cvExpertise,
   cvSkills,
-  cvStats,
   cvTechnologies,
   education,
   experiences,
   languages,
   softSkills,
 } from "../data/cv"
+import { profile } from "../data/profile"
 import "../cv.css"
 
-const portrait =
-  "https://images.unsplash.com/photo-1771443208338-26a0ad4cf43c?crop=faces&fit=crop&fm=jpg&q=88&w=700&h=900"
-const laptopPhoto =
-  "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?crop=entropy&fit=crop&fm=jpg&q=86&w=1500&h=760"
-
 function CVDownloadButton({ secondary = false }: { secondary?: boolean }) {
-  const printCv = () => window.print()
   return (
-    <button
-      className={`button cv-download-button ${
-        secondary ? "button-secondary" : ""
-      }`}
-      onClick={printCv}
-      type="button"
-    >
-      Télécharger mon CV <Icon name="download" />
-    </button>
+    <Button href="/contact" secondary={secondary}>
+      Demander mon CV <Icon name="mail" />
+    </Button>
   )
 }
 
@@ -52,10 +39,9 @@ function CVSectionTitle({
 function CVHeroVisual() {
   return (
     <div className="cv-hero-visual">
-      <img src={laptopPhoto} alt="" fetchPriority="high" />
       <div className="cv-laptop-resume">
         <div className="resume-side">
-          <span>AR</span>
+          <span>JCO</span>
           <i />
           <i />
           <i />
@@ -63,10 +49,10 @@ function CVHeroVisual() {
         </div>
         <div className="resume-page">
           <div className="resume-head">
-            <img src={portrait} alt="" />
+            <span className="resume-initials">{profile.initials}</span>
             <div>
-              <b>Alex Rivera</b>
-              <span>Full-Stack Developer &amp; UI Designer</span>
+              <b>{profile.name}</b>
+              <span>{profile.title}</span>
             </div>
           </div>
           <div className="resume-columns">
@@ -119,7 +105,8 @@ function CVHero() {
           </h1>
           <p>
             Vous trouverez ici un résumé de mon parcours, mes expériences, mes
-            compétences et mon CV complet à télécharger.
+            compétences, avec une chronologie mise à jour et des coordonnées
+            vérifiées.
           </p>
           <div className="hero-actions">
             <CVDownloadButton />
@@ -138,11 +125,11 @@ function CVHero() {
 function CVStats() {
   return (
     <section className="cv-stats shell">
-      {cvStats.map(([icon, value, label]) => (
-        <div key={label}>
+      {cvExpertise.map(([icon, title, detail]) => (
+        <div key={title}>
           <span>{icon}</span>
-          <b>{value}</b>
-          <small>{label}</small>
+          <b>{title}</b>
+          <small>{detail}</small>
         </div>
       ))}
     </section>
@@ -153,23 +140,12 @@ function ProfileCard() {
   return (
     <aside className="cv-profile-card">
       <div className="cv-profile-photo">
-        <img
-          src={portrait}
-          alt="Alex Rivera, développeur Full-Stack et UI Designer"
-        />
+        <span className="cv-profile-initials">{profile.initials}</span>
         <div>
-          <h2>Alex Rivera</h2>
-          <p>
-            Développeur Full-Stack
-            <br />
-            &amp; UI Designer
-          </p>
+          <h2>{profile.name}</h2>
+          <p>{profile.title}</p>
         </div>
       </div>
-      <blockquote>
-        « Transformer des idées en solutions digitales utiles, performantes et
-        accessibles. »
-      </blockquote>
       <div className="cv-contact-list">
         {cvContact.map(([icon, label, href]) =>
           href ? (
@@ -198,8 +174,8 @@ function ProfileSummary() {
       <div className="cv-summary-heading">
         <CVSectionTitle number="01">Mon profil</CVSectionTitle>
         <p>
-          Développeur passionné par la technologie, l'analyse de problèmes et la
-          création de solutions digitales qui ont un vrai impact sur les
+          Développeur web basé à {profile.location}, avec un parcours en
+          applications métier, développement web et accompagnement des
           utilisateurs.
         </p>
       </div>
@@ -286,14 +262,8 @@ function SkillsSection() {
       <CVSectionTitle number="04">Compétences clés</CVSectionTitle>
       <div className="cv-skills-grid">
         <div className="cv-skill-bars">
-          {cvSkills.map(([name, value]) => (
-            <div key={name}>
-              <span>{name}</span>
-              <i>
-                <b style={{ width: `${value}%` }} />
-              </i>
-              <strong>{value}%</strong>
-            </div>
+          {cvSkills.map((skill) => (
+            <span key={skill}>{skill}</span>
           ))}
         </div>
         <div className="cv-technologies-card">
@@ -315,49 +285,16 @@ function SkillsSection() {
   )
 }
 
-function CertificationsSection() {
-  return (
-    <section className="cv-certifications shell">
-      <CVSectionTitle number="05">
-        Certifications &amp; formations
-      </CVSectionTitle>
-      <div>
-        {cvCertifications.map(([mark, title, detail, year]) => (
-          <article key={title}>
-            <span>{mark}</span>
-            <div>
-              <b>{title}</b>
-              <small>
-                {detail}
-                <br />
-                {year}
-              </small>
-            </div>
-            <em>{year}</em>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function LanguagesAndSoftSkills() {
   return (
     <section className="cv-bottom-skills shell">
       <div className="cv-languages">
-        <CVSectionTitle number="06">Langues</CVSectionTitle>
+        <CVSectionTitle number="05">Langues</CVSectionTitle>
         <div>
-          {languages.map(([language, level, value]) => (
+          {languages.map(([language, level]) => (
             <article key={language}>
-              <div
-                className="language-ring"
-                style={
-                  {
-                    "--language-value": `${value * 3.6}deg`,
-                  } as React.CSSProperties
-                }
-              >
-                <span>{value}%</span>
+              <div className="language-ring">
+                <span>{language.slice(0, 2).toUpperCase()}</span>
               </div>
               <b>{language}</b>
               <small>{level}</small>
@@ -366,7 +303,7 @@ function LanguagesAndSoftSkills() {
         </div>
       </div>
       <div className="cv-soft-skills">
-        <CVSectionTitle number="07">Soft skills</CVSectionTitle>
+        <CVSectionTitle number="06">Soft skills</CVSectionTitle>
         <div>
           {softSkills.map(([mark, skill]) => (
             <article key={skill}>
@@ -380,17 +317,16 @@ function LanguagesAndSoftSkills() {
   )
 }
 
-function CVDownloadSection() {
+function CVRequestSection() {
   return (
     <section className="cv-download shell">
-      <img src={laptopPhoto} alt="" loading="lazy" />
       <div className="cv-download-shade" />
       <div className="cv-download-grid">
         <div>
-          <h2>Mon CV complet</h2>
+          <h2>Mon parcours</h2>
           <p>
-            Téléchargez mon CV au format PDF pour découvrir tous les détails de
-            mon parcours, mes compétences et mes réalisations.
+            Cette page présente mes expériences, ma formation et mes
+            compétences. Pour obtenir un document récapitulatif, contactez-moi.
           </p>
           <div className="hero-actions">
             <CVDownloadButton />
@@ -401,11 +337,10 @@ function CVDownloadSection() {
         </div>
         <div className="cv-download-list">
           {[
-            "Version PDF optimisée",
-            "Mise à jour régulièrement",
-            "Parcours détaillé",
-            "Projets et compétences",
-            "Disponible sur demande",
+            "Expériences professionnelles",
+            "Parcours académique",
+            "Compétences et outils",
+            "Coordonnées de contact",
           ].map((item) => (
             <span key={item}>✓ {item}</span>
           ))}
@@ -423,9 +358,8 @@ export default function CVPage() {
       <MainCVContent />
       <EducationSection />
       <SkillsSection />
-      <CertificationsSection />
       <LanguagesAndSoftSkills />
-      <CVDownloadSection />
+      <CVRequestSection />
       <Footer />
     </main>
   )

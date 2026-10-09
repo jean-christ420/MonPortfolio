@@ -860,6 +860,23 @@
   font-size: 0.55rem;
 }
 
+.contact-page-hero {
+  background:
+    radial-gradient(circle at 79% 25%, rgba(74, 58, 185, 0.19), transparent 29%),
+    radial-gradient(circle at 82% 76%, rgba(0, 133, 155, 0.13), transparent 27%),
+    #020f19;
+}
+
+.contact-page-cta {
+  background:
+    radial-gradient(circle at 76% 50%, rgba(36, 93, 171, 0.17), transparent 30%),
+    linear-gradient(120deg, #03101b, #09172c 62%, #111332);
+}
+
+.contact-cta-shade {
+  background: linear-gradient(90deg, rgba(3, 16, 27, 0.73), rgba(3, 16, 27, 0.45) 67%, rgba(3, 16, 27, 0.3));
+}
+
 @media (max-width: 1000px) {
   .contact-hero-grid {
     grid-template-columns: 62% 38%;

@@ -951,6 +951,18 @@
   font-size: 0.63rem;
 }
 
+.cv-hero-visual {
+  background:
+    radial-gradient(ellipse at 52% 52%, rgba(30, 120, 177, 0.22), transparent 53%),
+    radial-gradient(ellipse at 70% 20%, rgba(109, 76, 219, 0.15), transparent 34%);
+}
+
+.cv-download {
+  background:
+    radial-gradient(circle at 72% 52%, rgba(35, 97, 170, 0.18), transparent 29%),
+    linear-gradient(115deg, #03111d, #07162a 58%, #121433);
+}
+
 @media (max-width: 1050px) {
   .cv-hero-grid {
     grid-template-columns: 52% 48%;

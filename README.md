@@ -1,4 +1,4 @@
-# Alex Rivera — Portfolio professionnel
+# Jean Christ Ouali — Portfolio professionnel
 
 Portfolio professionnel construit avec React + TypeScript + Vite, pensé pour rester simple à maintenir et prêt au déploiement sur Vercel.
 

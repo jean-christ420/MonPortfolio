@@ -1,98 +1,106 @@
+import { profile } from "./profile"
+
 export const aboutStats = [
-  { icon: "▧", value: "3+", label: "Années d'expérience" },
-  { icon: "⌁", value: "15+", label: "Projets réalisés" },
-  { icon: "◎", value: "8+", label: "Technologies maîtrisées" },
-  { icon: "✣", value: "100%", label: "Passion & Engagement" },
+  { icon: "⌖", value: profile.location, label: "Localisation" },
+  { icon: "◇", value: "Applications métier", label: "Positionnement" },
+  { icon: "⌁", value: "Développement web", label: "Front-end & back-end" },
 ]
 
 export const timeline = [
   {
-    period: "2019 – 2021",
-    title: "Découverte & bases",
+    period: "2022 – 2023",
+    title: "BTS Développeur d'Applications",
     description:
-      "Premiers pas dans l'informatique, apprentissage des bases en développement web.",
-    icon: "book",
-  },
-  {
-    period: "2021 – 2023",
-    title: "Formation & spécialisation",
-    description:
-      "BTS Informatique – Développeur d'Applications. Approfondissement des compétences techniques.",
+      "Formation au Groupe CSI Pôle Polytechnique, avec une orientation vers la réalisation d'applications.",
     icon: "study",
   },
   {
-    period: "2023 – 2024",
-    title: "Premiers projets réels",
+    period: "Novembre 2023 – février 2024",
+    title: "Stage chez HL IMPEX",
     description:
-      "Réalisation de projets concrets : sites web, applications de gestion.",
+      "Développement web avec Laravel, administration d'un site WordPress, maintenance et support.",
     icon: "code",
   },
   {
-    period: "2024 – Aujourd'hui",
-    title: "Vers un impact plus grand",
+    period: "Juin – décembre 2024",
+    title: "Stage à l'Assemblée nationale",
     description:
-      "Approfondissement en Data/IA, architecture de solutions et gestion de projets.",
-    icon: "chart",
+      "Contribution aux applications internes, amélioration des outils numériques et accompagnement des utilisateurs.",
+    icon: "team",
+  },
+  {
+    period: "Juin – décembre 2025",
+    title: "Formation Full Stack",
+    description:
+      "Formation en développement web Full Stack à la Coding Academy by Epitech, à Abidjan.",
+    icon: "study",
+  },
+  {
+    period: "Depuis septembre 2025",
+    title: "Développeur web freelance",
+    description:
+      "Activité indépendante de conception et de développement de solutions web.",
+    icon: "code",
+  },
+  {
+    period: "En cours · début à confirmer",
+    title: "Stage développeur web chez CIS Info",
+    description:
+      "Contribution frontend à Archi_Smart et participation à la modernisation de Smart_Courriel.",
+    icon: "code",
   },
 ]
 
 export const values = [
   {
-    title: "Curiosité",
+    title: "Comprendre le besoin",
     icon: "bulb",
     description:
-      "Toujours apprendre, explorer et rester ouvert aux nouvelles idées.",
+      "Échanger avec les utilisateurs pour clarifier leurs besoins techniques.",
     color: "yellow",
   },
   {
     title: "Rigueur",
     icon: "target",
-    description: "Un travail sérieux, organisé et orienté qualité.",
+    description:
+      "Aborder le développement, la maintenance et le support avec méthode.",
     color: "violet",
   },
   {
     title: "Collaboration",
     icon: "team",
     description:
-      "Échanger, partager et avancer ensemble vers un meilleur résultat.",
+      "Travailler avec les équipes et les utilisateurs sur l'évolution des outils.",
     color: "cyan",
   },
   {
-    title: "Impact",
+    title: "Utilité",
     icon: "rocket",
     description:
-      "Créer des solutions utiles qui apportent une vraie valeur aux utilisateurs.",
+      "Contribuer à des solutions web et des applications adaptées aux besoins.",
     color: "pink",
   },
 ]
 
 export const interests = [
   {
-    title: "Lecture",
-    description: "Romans, bandes dessinées et découvertes",
-    icon: "book",
-    image:
-      "https://images.unsplash.com/photo-1502979932800-33d311b7ce56?crop=entropy&fit=crop&fm=jpg&q=82&w=700&h=430",
+    title: "Arts martiaux et sport",
+    description: "Activités sportives et arts martiaux.",
+    icon: "sports",
   },
   {
     title: "Musique",
-    description: "Gospel, découvertes et inspiration",
+    description: "Écoute musicale.",
     icon: "music",
-    image:
-      "https://images.unsplash.com/photo-1761005654036-ffe7410d5d2a?crop=entropy&fit=crop&fm=jpg&q=82&w=700&h=430",
   },
   {
-    title: "Films & Animés",
-    description: "Des univers inspirants et créatifs",
+    title: "Romans et bandes dessinées",
+    description: "Lecture de romans et de bandes dessinées.",
+    icon: "book",
+  },
+  {
+    title: "Films et anime",
+    description: "Films et séries d'animation japonaise.",
     icon: "film",
-    image:
-      "https://images.unsplash.com/photo-1604223190546-a43e4c7f29d7?crop=entropy&fit=crop&fm=jpg&q=82&w=700&h=430",
-  },
-  {
-    title: "Technologie",
-    description: "Toujours à la recherche de nouvelles tendances",
-    icon: "tech",
-    image:
-      "https://images.unsplash.com/photo-1594155187705-bd33d893961c?crop=entropy&fit=crop&fm=jpg&q=82&w=700&h=430",
   },
 ]

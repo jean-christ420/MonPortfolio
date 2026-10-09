@@ -1,15 +1,7 @@
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import { aboutStats, interests, timeline, values } from "../data/about"
+import { profile } from "../data/profile"
 import "../about.css"
-
-const heroPhoto =
-  "https://images.unsplash.com/photo-1536293302099-954c8c6d05e6?crop=entropy&fit=crop&fm=jpg&q=88&w=1700&h=850"
-const timelinePhoto =
-  "https://images.unsplash.com/photo-1675787995181-65b258d592ec?crop=entropy&fit=crop&fm=jpg&q=84&w=1900&h=1000"
-const quotePhoto =
-  "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?crop=entropy&fit=crop&fm=jpg&q=84&w=1900&h=580"
-const ctaPhoto =
-  "https://images.unsplash.com/photo-1599634815922-783837212337?crop=entropy&fit=crop&fm=jpg&q=84&w=1700&h=650"
 
 function AboutIcon({ name }: { name: string }) {
   const paths: Record<string, React.ReactNode> = {
@@ -56,6 +48,12 @@ function AboutIcon({ name }: { name: string }) {
     music: (
       <path d="M9 18V6l10-2v12M9 18c0 2-2 3-4 3s-3-1-3-2 1-3 4-3c1 0 2 0 3 1m10-1c0 2-2 3-4 3s-3-1-3-2 1-3 4-3c1 0 2 0 3 1" />
     ),
+    sports: (
+      <>
+        <circle cx="12" cy="5" r="2" />
+        <path d="m10 9 3 2 3-1m-5-1-3 4 3 2-1 5m4-8 3 3-1 5M5 10l3-2m9 1 3 2" />
+      </>
+    ),
     film: (
       <>
         <rect x="3" y="6" width="18" height="13" rx="2" />
@@ -88,37 +86,29 @@ function AboutHero() {
   return (
     <section className="about-hero">
       <Header active="À propos" />
-      <img
-        className="about-hero-photo"
-        src={heroPhoto}
-        alt="Alex contemplant la ville au coucher du soleil"
-        fetchPriority="high"
-      />
       <div className="about-hero-shade" />
       <div className="shell about-hero-grid">
         <div className="about-hero-copy">
           <div className="eyebrow">À PROPOS</div>
           <h1>
-            Un parcours guidé
+            Développer des outils
             <br />
-            par la curiosité
+            adaptés aux besoins
             <br />
-            et l'envie de construire
-            <br />
-            un <em>impact réel</em>
+            des <em>utilisateurs</em>
           </h1>
           <p>
-            Je suis un passionné de technologie, de résolution de problèmes et
-            de création de solutions qui simplifient la vie des utilisateurs.
-            Mon objectif est de concevoir des produits digitaux utiles,
-            performants et durables.
+            Je travaille sur le développement web, les applications métier et
+            l'évolution d'outils numériques. Mon parcours comprend des
+            expériences en entreprise, dans le support aux utilisateurs et des
+            projets réalisés avec Laravel, Vue.js et Nuxt.
           </p>
           <div className="hero-actions">
             <Button href="/projets">
               Voir mes projets <Icon name="arrow" />
             </Button>
             <Button href="/cv" secondary>
-              Télécharger mon CV <Icon name="download" />
+              Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
         </div>
@@ -134,13 +124,13 @@ function AboutHero() {
         </div>
         <div className="about-identity-card">
           <span>
-            ⌖ <b>Abidjan, Côte d'Ivoire</b>
+            ⌖ <b>{profile.location}</b>
           </span>
           <span>
-            ▣ <b>Développeur &amp; UI Designer</b>
+            ▣ <b>{profile.title}</b>
           </span>
           <span>
-            ● <b>Ouvert aux opportunités</b>
+            ● <b>Stage chez CIS Info · début à confirmer</b>
           </span>
         </div>
       </div>
@@ -174,7 +164,6 @@ function TimelineIcon({ name }: { name: string }) {
 function AboutTimeline() {
   return (
     <section className="about-timeline">
-      <img src={timelinePhoto} alt="" loading="lazy" />
       <div className="timeline-shade" />
       <div className="shell timeline-inner">
         <div className="about-section-heading">
@@ -187,10 +176,10 @@ function AboutTimeline() {
             </h2>
           </div>
           <p>
-            Mon parcours est le résultat d'une curiosité constante, d'une envie
-            d'apprendre et de relever des défis. Chaque étape m'a apporté de
-            nouvelles compétences et une vision plus large de la conviction que
-            la technologie peut avoir un réel impact.
+            Mon parcours s'est construit autour du développement web, des
+            applications métier et de l'accompagnement des utilisateurs.
+            Chaque expérience m'a permis de contribuer à des outils numériques
+            dans des contextes variés.
           </p>
         </div>
         <div className="timeline-scene">
@@ -219,9 +208,6 @@ function AboutTimeline() {
               <h3>{event.title}</h3>
               <p>{event.description}</p>
             </article>
-          ))}
-          {[1, 2, 3, 4, 5, 6].map((dot) => (
-            <i className={`timeline-dot timeline-dot-${dot}`} key={dot} />
           ))}
         </div>
       </div>
@@ -270,11 +256,11 @@ function InterestsSection() {
         <div className="about-section-heading">
           <div>
             <span>MES CENTRES D'INTÉRÊT</span>
-            <h2>En dehors du code</h2>
+            <h2>Mes domaines d'intérêt</h2>
           </div>
           <p>
-            Ces centres d'intérêt m'aident à rester créatif, équilibré et motivé
-            au quotidien.
+            En dehors du développement, je m'intéresse au sport, à la musique,
+            à la lecture, aux films et aux anime.
           </p>
         </div>
         <div className="interests-row">
@@ -283,8 +269,14 @@ function InterestsSection() {
               className={`interest-card interest-${index + 1}`}
               key={interest.title}
             >
-              <img src={interest.image} alt="" loading="lazy" />
-              <div>
+              <div className={`interest-art interest-art-${index + 1}`} aria-hidden="true">
+                <span className="interest-art-label">Illustration conceptuelle</span>
+                <AboutIcon name={interest.icon} />
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="interest-copy">
                 <span>
                   <AboutIcon name={interest.icon} />
                 </span>
@@ -302,15 +294,13 @@ function InterestsSection() {
 function AboutQuote() {
   return (
     <section className="about-quote">
-      <img src={quotePhoto} alt="" loading="lazy" />
       <div className="quote-shade" />
       <div className="shell">
-        <span>“</span>
-        <blockquote>
-          « Je crois en une technologie <em>humaine</em>,
-          <br />
-          au service des personnes et des <em>communautés</em>. »
-        </blockquote>
+        <span>◇</span>
+        <p className="about-quote-statement">
+          Concevoir des outils numériques utiles commence par comprendre les
+          besoins des personnes qui les utilisent.
+        </p>
       </div>
       <Wave />
     </section>
@@ -320,7 +310,6 @@ function AboutQuote() {
 function AboutCta() {
   return (
     <section className="about-cta">
-      <img src={ctaPhoto} alt="" loading="lazy" />
       <div className="about-cta-shade" />
       <div className="shell about-cta-grid">
         <div>
@@ -331,9 +320,7 @@ function AboutCta() {
             une collaboration ?
           </h2>
           <p>
-            Je suis toujours ouvert à discuter de nouvelles opportunités, que ce
-            soit pour un projet, une collaboration ou simplement un échange
-            d'idées.
+            Écrivez-moi pour présenter votre projet ou poser une question.
           </p>
           <div className="hero-actions">
             <Button href="/contact">
@@ -346,10 +333,10 @@ function AboutCta() {
         </div>
         <div className="about-cta-list">
           {[
-            "Projets freelance",
-            "Collaborations",
-            "Opportunités professionnelles",
-            "Conseils et échanges",
+            "Présenter un projet",
+            "Poser une question",
+            "Échange professionnel",
+            "Parler d'une collaboration",
           ].map((item) => (
             <span key={item}>✓ {item}</span>
           ))}
