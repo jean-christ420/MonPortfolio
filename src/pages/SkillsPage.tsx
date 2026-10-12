@@ -303,6 +303,15 @@ function TechnologySection() {
     if (category === "Tous") return skills
     return skills.filter((skill) => skill.category === category)
   }, [category])
+
+  const selectCategory = (item: (typeof categories)[number]) => {
+    setCategory(item)
+    if (item !== "Tous") {
+      const firstSkill = skills.find((skill) => skill.category === item)
+      if (firstSkill) setSelected(firstSkill)
+    }
+  }
+
   return (
     <section className="technology-section" id="technologies">
       <div className="shell">
@@ -316,7 +325,7 @@ function TechnologySection() {
             <button
               className={category === item ? "active" : ""}
               key={item}
-              onClick={() => setCategory(item)}
+              onClick={() => selectCategory(item)}
               type="button"
             >
               {item}
@@ -348,36 +357,29 @@ function MasterySection() {
     <section className="mastery-section">
       <div className="shell">
         <SectionIntro
-          label="COMPÉTENCES TECHNIQUES"
-          title="Technologies utilisées"
+          label="REPÈRES"
+          title="Technologies et parcours"
         />
         <div className="mastery-grid">
-          <div className="mastery-list">
+          <div className="mastery-list" aria-label="Technologies et langages">
             {mastery.map((name) => (
-              <div className="mastery-row" key={name}>
-                <span className="mastery-mark">
-                  {skills.find((skill) => skill.name === name)?.mark ?? "◇"}
-                </span>
-                <b>{name}</b>
-                <span>Utilisée dans mon travail</span>
-              </div>
+              <span className="mastery-chip" key={name}>{name}</span>
             ))}
           </div>
           <div className="evolution-card">
             <div className="evolution-title">
               <span>▥</span>
               <div>
-                <b>Mon évolution</b>
+                <b>Parcours</b>
                 <small>
-                  Un parcours construit entre formation, développement et
-                  accompagnement des utilisateurs.
+                  Formation et expériences professionnelles.
                 </small>
               </div>
             </div>
             <div className="evolution-chart evolution-history">
               <p><b>2022–2023</b><span>BTS Développeur d'Applications</span></p>
               <p><b>2023–2024</b><span>Stages en développement web et support</span></p>
-              <p><b>Depuis 2025</b><span>Formation Full Stack, freelance et stage chez CIS Info</span></p>
+              <p><b>2025</b><span>Formation Full Stack, activité freelance et stage chez CIS Info</span></p>
             </div>
           </div>
         </div>
@@ -405,10 +407,9 @@ function PracticeSection() {
               <div
                 className="skill-project-visual"
                 role="img"
-                aria-label={`Illustration conceptuelle de ${project.title}`}
+                aria-label={`Aperçu visuel de ${project.title}`}
               >
                 <ProductArtwork type={project.artwork} />
-                <span className="skill-art-label">Illustration conceptuelle</span>
               </div>
               <div>
                 <b>{project.title}</b>

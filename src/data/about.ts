@@ -43,7 +43,7 @@ export const timeline = [
     icon: "code",
   },
   {
-    period: "En cours · début à confirmer",
+    period: "Stage en cours",
     title: "Stage développeur web chez CIS Info",
     description:
       "Contribution frontend à Archi_Smart et participation à la modernisation de Smart_Courriel.",

@@ -161,19 +161,6 @@
     0 0 65px rgba(27, 79, 220, 0.25);
 }
 
-.concept-art-label {
-  position: absolute;
-  z-index: 2;
-  top: 18px;
-  right: 18px;
-  padding: 5px 8px;
-  color: #e8f6f8;
-  border: 1px solid rgba(146, 192, 205, 0.4);
-  border-radius: 4px;
-  background: rgba(5, 14, 25, 0.88);
-  font-size: 0.62rem;
-}
-
 .laptop-base {
   width: 610px;
   height: 28px;
@@ -784,21 +771,6 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-}
-
-.product-art::before {
-  content: "Illustration conceptuelle";
-  position: absolute;
-  z-index: 10;
-  top: 10px;
-  left: 10px;
-  padding: 5px 8px;
-  color: #e8f6f8;
-  border: 1px solid rgba(146, 192, 205, 0.4);
-  border-radius: 4px;
-  background: rgba(5, 14, 25, 0.88);
-  font-size: 0.62rem;
-  line-height: 1.2;
 }
 
 .art-analytics,

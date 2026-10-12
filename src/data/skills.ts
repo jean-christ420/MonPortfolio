@@ -181,9 +181,6 @@ export const tools = [
   ["cPanel", "CP"],
   ["Obambu", "O"],
   ["Figma", "figma"],
-  ["GitHub Copilot", "GH"],
-  ["Claude", "C"],
-  ["Cursor", "Cu"],
 ] as const
 
 export const certifications: {

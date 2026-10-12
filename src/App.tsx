@@ -114,6 +114,7 @@ export function Button({
   secondary?: boolean
 }) {
   const isInternalLink = href.startsWith("/") || href.startsWith("#")
+  const isDownloadLink = href.toLowerCase().endsWith(".pdf")
 
   if (isInternalLink) {
     return (
@@ -127,7 +128,13 @@ export function Button({
   }
 
   return (
-    <a className={`button ${secondary ? "button-secondary" : ""}`} href={href}>
+    <a
+      className={`button ${secondary ? "button-secondary" : ""}`}
+      href={href}
+      target={isDownloadLink ? "_blank" : undefined}
+      rel={isDownloadLink ? "noreferrer" : undefined}
+      download={isDownloadLink ? true : undefined}
+    >
       {children}
     </a>
   )
@@ -246,9 +253,9 @@ function Hero() {
             {profile.title}
           </div>
           <p>
-            Je participe à la conception et au développement d'applications
-            métier et de solutions numériques adaptées aux besoins des
-            organisations.
+            Je conçois et développe des interfaces et applications métier qui
+            aident les organisations à structurer leurs processus, améliorer leur
+            usage quotidien et livrer des outils plus lisibles et plus utiles.
           </p>
           <div className="hero-actions">
             <Button href="/projets">
@@ -275,13 +282,13 @@ function Hero() {
           <div
             className="hero-portfolio-window"
             role="img"
-            aria-label="Illustration conceptuelle d'une interface numérique"
+            aria-label="Aperçu visuel d'une interface numérique"
           >
             <div className="hero-window-top">
               <span />
               <span />
               <span />
-              <b>JCO · Développement web</b>
+              <b>Jean Christ Ouali · Développement web</b>
             </div>
             <div className="hero-window-content">
               <span>APPLICATIONS MÉTIER</span>
@@ -381,9 +388,7 @@ function Projects() {
             <article className="project-card" key={project.title}>
               <div className="project-mock project-home-preview" aria-hidden="true">
                 <ProductArtwork type={project.artwork} />
-                <span className="home-preview-caption">
-                  Illustration conceptuelle · {project.status}
-                </span>
+                <span className="home-preview-caption">{project.status}</span>
               </div>
               <div className="project-content">
                 <span className="badge">{project.category}</span>
@@ -503,102 +508,6 @@ function Process() {
   )
 }
 
-const testimonialExamples = [
-  {
-    quote:
-      "Exemple de retour : une interface claire aide à comprendre rapidement les étapes d'un projet.",
-    initials: "D1",
-  },
-  {
-    quote:
-      "Exemple de retour : des échanges réguliers facilitent le suivi et les ajustements d'une solution.",
-    initials: "D2",
-  },
-  {
-    quote:
-      "Exemple de retour : une présentation structurée rend les fonctionnalités plus faciles à parcourir.",
-    initials: "D3",
-  },
-]
-
-function Testimonials() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const changeTestimonial = (offset: number) => {
-    setActiveTestimonial(
-      (current) =>
-        (current + offset + testimonialExamples.length) %
-        testimonialExamples.length,
-    )
-  }
-
-  return (
-    <section className="testimonials section shell" id="temoignages">
-      <div className="section-heading">
-        <div>
-          <Eyebrow>Témoignages</Eyebrow>
-          <h2>Retours d'expérience</h2>
-        </div>
-        <div className="carousel-buttons" aria-label="Navigation des témoignages">
-          <button
-            aria-label="Exemple précédent"
-            onClick={() => changeTestimonial(-1)}
-            type="button"
-          >
-            <Icon name="arrow" />
-          </button>
-          <button
-            aria-label="Exemple suivant"
-            onClick={() => changeTestimonial(1)}
-            type="button"
-          >
-            <Icon name="arrow" />
-          </button>
-        </div>
-      </div>
-      <p className="testimonial-demo-note">
-        Exemples fictifs de mise en page, sans lien avec des clients ou
-        collaborateurs réels.
-      </p>
-      <div className="testimonial-grid" aria-live="polite">
-        <article
-          aria-label={`Témoignage fictif de démonstration ${activeTestimonial + 1}`}
-          className="testimonial-card active"
-          key={testimonialExamples[activeTestimonial].initials}
-        >
-          <span className="quote-mark" aria-hidden="true">
-            “
-          </span>
-          <p>{testimonialExamples[activeTestimonial].quote}</p>
-          <div className="person">
-            <span className="avatar" aria-hidden="true">
-              {testimonialExamples[activeTestimonial].initials}
-            </span>
-            <div>
-              <b>
-                Persona de démonstration{" "}
-                {String(activeTestimonial + 1).padStart(2, "0")}
-              </b>
-              <span>Profil fictif</span>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div className="dots" aria-label="Sélectionner un exemple">
-        {testimonialExamples.map((example, index) => (
-          <button
-            aria-label={`Afficher l'exemple ${index + 1}`}
-            aria-pressed={activeTestimonial === index}
-            className={activeTestimonial === index ? "active" : ""}
-            key={example.initials}
-            onClick={() => setActiveTestimonial(index)}
-            type="button"
-          />
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function Contact() {
   return (
     <section className="contact-section" id="contact">
@@ -676,7 +585,6 @@ export default function App() {
       <Projects />
       <Skills />
       <Process />
-      <Testimonials />
       <Contact />
       <Footer />
     </main>

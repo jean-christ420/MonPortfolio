@@ -14,11 +14,10 @@ function ProjectLaptop() {
     <div
       className="project-laptop"
       role="img"
-      aria-label="Illustration conceptuelle de développement web, pas une capture d'écran d'un projet"
+      aria-label="Aperçu visuel d'une interface de développement web"
     >
       <div className="laptop-screen">
         <DashboardScreen />
-        <span className="concept-art-label">Illustration conceptuelle</span>
       </div>
       <div className="laptop-base">
         <i />
@@ -136,7 +135,7 @@ function FeaturedProject({ project }: { project: Project }) {
         <div
           className="concept-art-frame"
           role="img"
-          aria-label={`Illustration conceptuelle de ${project.title}, pas une capture d'écran du projet`}
+          aria-label={`Aperçu visuel de ${project.title}`}
         >
           <ProductArtwork type={project.artwork} large />
         </div>
@@ -179,7 +178,7 @@ function ProjectCard({ project }: { project: Project }) {
       <a
         className="card-art-link"
         href={project.href}
-        aria-label={`Voir ${project.title} — illustration conceptuelle, pas une capture d'écran`}
+        aria-label={`Voir le projet ${project.title}`}
       >
         <div className="concept-art-frame">
           <ProductArtwork type={project.artwork} />
@@ -387,7 +386,7 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <div
           className="concept-art-frame"
           role="img"
-          aria-label={`Illustration conceptuelle de ${project.title}, pas une capture d'écran du projet`}
+          aria-label={`Aperçu graphique du projet ${project.title}`}
         >
           <ProductArtwork type={project.artwork} large />
         </div>

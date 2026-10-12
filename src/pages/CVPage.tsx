@@ -1,4 +1,4 @@
-import { Button, Footer, Header, Icon, Wave } from "../App"
+import { Button, Footer, Header, Icon, Wave } from "../App";
 import {
   cvContact,
   cvExpertise,
@@ -8,24 +8,24 @@ import {
   experiences,
   languages,
   softSkills,
-} from "../data/cv"
-import { profile } from "../data/profile"
-import "../cv.css"
+} from "../data/cv";
+import { profile } from "../data/profile";
+import "../cv.css";
 
 function CVDownloadButton({ secondary = false }: { secondary?: boolean }) {
   return (
-    <Button href="/contact" secondary={secondary}>
-      Demander mon CV <Icon name="mail" />
+    <Button href={profile.cvFile} secondary={secondary}>
+      Télécharger mon CV <Icon name="download" />
     </Button>
-  )
+  );
 }
 
 function CVSectionTitle({
   number,
   children,
 }: {
-  number: string
-  children: React.ReactNode
+  number: string;
+  children: React.ReactNode;
 }) {
   return (
     <div className="cv-section-title">
@@ -33,7 +33,7 @@ function CVSectionTitle({
       <i />
       <h2>{children}</h2>
     </div>
-  )
+  );
 }
 
 function CVHeroVisual() {
@@ -86,7 +86,7 @@ function CVHeroVisual() {
         <span>↘</span>
       </div>
     </div>
-  )
+  );
 }
 
 function CVHero() {
@@ -119,7 +119,7 @@ function CVHero() {
       </div>
       <Wave />
     </section>
-  )
+  );
 }
 
 function CVStats() {
@@ -133,7 +133,7 @@ function CVStats() {
         </div>
       ))}
     </section>
-  )
+  );
 }
 
 function ProfileCard() {
@@ -165,7 +165,7 @@ function ProfileCard() {
         Me contacter <Icon name="arrow" />
       </Button>
     </aside>
-  )
+  );
 }
 
 function ProfileSummary() {
@@ -189,7 +189,7 @@ function ProfileSummary() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function ExperienceSection() {
@@ -217,7 +217,7 @@ function ExperienceSection() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function MainCVContent() {
@@ -229,7 +229,7 @@ function MainCVContent() {
         <ExperienceSection />
       </div>
     </section>
-  )
+  );
 }
 
 function EducationSection() {
@@ -253,7 +253,7 @@ function EducationSection() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function SkillsSection() {
@@ -282,7 +282,7 @@ function SkillsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function LanguagesAndSoftSkills() {
@@ -314,7 +314,7 @@ function LanguagesAndSoftSkills() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function CVRequestSection() {
@@ -325,8 +325,8 @@ function CVRequestSection() {
         <div>
           <h2>Mon parcours</h2>
           <p>
-            Cette page présente mes expériences, ma formation et mes
-            compétences. Pour obtenir un document récapitulatif, contactez-moi.
+            Retrouvez mes expériences, ma formation et mes compétences dans le
+            CV au format PDF.
           </p>
           <div className="hero-actions">
             <CVDownloadButton />
@@ -347,7 +347,7 @@ function CVRequestSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default function CVPage() {
@@ -362,5 +362,5 @@ export default function CVPage() {
       <CVRequestSection />
       <Footer />
     </main>
-  )
+  );
 }

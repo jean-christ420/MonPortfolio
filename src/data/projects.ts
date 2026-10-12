@@ -44,7 +44,7 @@ export const projects: Project[] = [
     category: "Web App",
     status: "Prototype",
     description:
-      "Prototype de plateforme de gestion des achats. Les choix techniques et les fonctionnalités restent à confirmer avant publication de détails supplémentaires.",
+      "Prototype de plateforme de gestion des achats, pensé pour visualiser les étapes clés d'un processus d'approvisionnement.",
     technologies: [],
     featured: false,
     href: "/projets/procureflow",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     category: "Web App",
     status: "En cours",
     description:
-      "Contribution en cours à la modernisation d'un site existant chez CIS Info. Présentation générale, sans capture ni détail interne.",
+      "Contribution à la modernisation du site Smart_Courriel au sein de CIS Info.",
     technologies: [],
     featured: false,
     href: "/projets/smart-courriel",

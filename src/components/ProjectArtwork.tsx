@@ -60,7 +60,6 @@ export function ProductArtwork({
     return (
       <div className="product-art art-taskflow">
         <div className="task-panel">
-          <b>Illustration conceptuelle</b>
           <small>Notes organisées</small>
           <i />
           <i />
@@ -144,7 +143,7 @@ export function ProductArtwork({
               <i aria-hidden="true" />
             </div>
             <div className="email-site-copy">
-              <small>ILLUSTRATION CONCEPTUELLE · REFONTE</small>
+              <small>SMART_COURRIEL</small>
               <b>Un site repensé, simplement.</b>
               <i aria-hidden="true" />
               <span>Découvrir le site</span>
@@ -166,7 +165,6 @@ export function ProductArtwork({
             <i />
           </div>
           <div className="architecture-content">
-            <small>ILLUSTRATION CONCEPTUELLE</small>
             <b>Espace de travail</b>
             <div className="architecture-cards">
               <div><i /><span>Projet</span></div>

@@ -130,7 +130,7 @@ function AboutHero() {
             ▣ <b>{profile.title}</b>
           </span>
           <span>
-            ● <b>Stage chez CIS Info · début à confirmer</b>
+            ● <b>Stage chez CIS Info · contribution actuelle</b>
           </span>
         </div>
       </div>
@@ -270,7 +270,6 @@ function InterestsSection() {
               key={interest.title}
             >
               <div className={`interest-art interest-art-${index + 1}`} aria-hidden="true">
-                <span className="interest-art-label">Illustration conceptuelle</span>
                 <AboutIcon name={interest.icon} />
                 <i />
                 <i />

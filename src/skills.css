@@ -41,13 +41,15 @@
 .skills-hero-grid {
   min-height: 475px;
   display: grid;
-  grid-template-columns: 48% 52%;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: center;
   position: relative;
   z-index: 5;
 }
 
 .skills-hero-copy {
+  width: 100%;
+  min-width: 0;
   padding-bottom: 13px;
 }
 
@@ -389,7 +391,7 @@
 .skills-hero-stats small {
   margin-top: 5px;
   color: #9bb0b9;
-  font-size: 0.57rem;
+  font-size: 0.65rem;
 }
 
 .skills-hero .wave {
@@ -411,7 +413,7 @@
   align-items: center;
   gap: 9px;
   color: #52cde7;
-  font-size: 0.61rem;
+  font-size: 0.68rem;
   font-weight: 600;
 }
 
@@ -429,7 +431,7 @@
 
 .skills-section-intro > p {
   max-width: 480px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   line-height: 1.55;
 }
 
@@ -658,7 +660,7 @@
   border: 1px solid rgba(62, 125, 148, 0.18);
   border-radius: 6px;
   background: rgba(5, 26, 38, 0.58);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   cursor: pointer;
 }
 
@@ -751,7 +753,7 @@
 }
 
 .skill-matrix-card span {
-  font-size: 0.59rem;
+  font-size: 0.68rem;
 }
 
 .skill-color-yellow > div { color: #f0d534; }
@@ -768,7 +770,7 @@
   z-index: 4;
   margin-top: 5px;
   text-align: center;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
 }
 
 .technology-detail b {
@@ -776,7 +778,7 @@
 }
 
 .mastery-section {
-  min-height: 500px;
+  min-height: 0;
   padding: 65px 0;
   background:
     radial-gradient(circle at 77% 60%, rgba(31, 93, 159, 0.1), transparent 24%),
@@ -785,56 +787,33 @@
 
 .mastery-grid {
   display: grid;
-  grid-template-columns: 53% 47%;
-  gap: 68px;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 30px;
+  align-items: stretch;
 }
 
-.mastery-row {
-  min-height: 41px;
-  display: grid;
-  grid-template-columns: 28px 150px 1fr 40px;
-  align-items: center;
+.mastery-list {
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  padding: 24px;
+  border: 1px solid rgba(60, 143, 174, 0.24);
+  border-radius: 11px;
+  background: linear-gradient(145deg, rgba(8, 39, 56, 0.82), rgba(4, 22, 34, 0.75));
 }
 
-.mastery-mark {
-  width: 24px;
-  height: 24px;
-  display: grid;
-  place-items: center;
-  color: var(--cyan-400);
-  border: 1px solid rgba(0, 232, 223, 0.28);
-  border-radius: 50%;
-  font-size: 0.55rem;
-}
-
-.mastery-row > b {
-  font-size: 0.67rem;
-}
-
-.mastery-row > div {
-  height: 9px;
-  overflow: hidden;
-  border-radius: 7px;
-  background: #10293a;
-}
-
-.mastery-row > div > i {
-  height: 100%;
-  display: block;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #158dff, #00e8df);
-  box-shadow: 0 0 10px rgba(0, 232, 223, 0.35);
-}
-
-.mastery-row strong {
-  color: #d5e2e7;
-  font-size: 0.63rem;
+.mastery-chip {
+  padding: 9px 12px;
+  color: #d4e2e7;
+  border: 1px solid rgba(70, 150, 176, 0.25);
+  border-radius: 999px;
+  background: rgba(5, 29, 42, 0.76);
+  font-size: 0.72rem;
 }
 
 .evolution-card {
-  min-height: 330px;
+  min-height: 0;
   padding: 25px 25px 18px;
   border: 1px solid rgba(60, 143, 174, 0.24);
   border-radius: 11px;
@@ -872,56 +851,44 @@
   max-width: 270px;
   margin-top: 5px;
   color: #899fa9;
-  font-size: 0.56rem;
+  font-size: 0.68rem;
   line-height: 1.5;
 }
 
 .evolution-chart {
-  height: 210px;
+  height: auto;
   position: relative;
-  margin-top: 17px;
+  margin-top: 20px;
 }
 
-.evolution-chart svg {
-  width: 100%;
-  height: 175px;
+.evolution-history {
+  display: grid;
+  gap: 11px;
 }
 
-.evolution-chart .area {
-  fill: url(#evolutionArea);
+.evolution-history p {
+  min-width: 0;
+  margin: 0;
+  padding: 11px 13px;
+  display: grid;
+  grid-template-columns: minmax(76px, auto) minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  border: 1px solid rgba(67, 139, 165, 0.2);
+  border-radius: 7px;
+  background: rgba(3, 24, 37, 0.58);
 }
 
-.evolution-chart .line {
-  fill: none;
-  stroke: url(#evolutionLine);
-  stroke-width: 3;
-  filter: drop-shadow(0 0 5px rgba(71, 108, 231, 0.65));
-}
-
-.evolution-years {
-  display: flex;
-  justify-content: space-between;
-  color: #6e8793;
-  font-size: 0.49rem;
-}
-
-.evolution-badge {
-  position: absolute;
-  top: 17px;
-  right: 34px;
-  padding: 7px 10px;
+.evolution-history b {
   color: var(--cyan-400);
-  border: 1px solid rgba(0, 232, 223, 0.25);
-  border-radius: 5px;
-  background: rgba(4, 23, 35, 0.86);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  line-height: 1.45;
 }
 
-.evolution-badge small {
-  display: block;
-  color: #718994;
-  font-size: 0.42rem;
+.evolution-history span {
+  color: #c2d0d5;
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .practice-section {
@@ -1046,7 +1013,7 @@
 .practice-card span {
   margin-top: 5px;
   color: #8198a3;
-  font-size: 0.49rem;
+  font-size: 0.65rem;
 }
 
 .practice-card div:last-child > i {
@@ -1106,7 +1073,7 @@
   display: block;
   margin-top: 8px;
   color: #b9c9cf;
-  font-size: 0.55rem;
+  font-size: 0.65rem;
 }
 
 .certifications-section {
@@ -1156,7 +1123,7 @@
 .certification-grid small {
   margin-top: 6px;
   color: #7d949e;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   line-height: 1.35;
 }
 
@@ -1165,7 +1132,7 @@
   right: 13px;
   bottom: 10px;
   color: var(--cyan-400);
-  font-size: 0.54rem;
+  font-size: 0.65rem;
 }
 
 .skills-cta {
@@ -1301,7 +1268,7 @@
 
 @media (max-width: 1050px) {
   .skills-hero-grid {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .skills-globe-scene {
@@ -1333,11 +1300,11 @@
 
 @media (max-width: 780px) {
   .skills-hero {
-    min-height: 1050px;
+    min-height: 0;
   }
 
   .skills-hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding-top: 55px;
   }
 
@@ -1402,6 +1369,7 @@
 
   .mastery-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .practice-grid {
@@ -1420,7 +1388,7 @@
 
 @media (max-width: 520px) {
   .skills-hero {
-    min-height: 1110px;
+    min-height: 0;
   }
 
   .skills-hero h1 {
@@ -1459,9 +1427,18 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .mastery-row {
-    grid-template-columns: 25px 105px 1fr 33px;
-    gap: 6px;
+  .mastery-section {
+    padding-block: 45px;
+  }
+
+  .mastery-list {
+    padding: 17px;
+    gap: 8px;
+  }
+
+  .mastery-chip {
+    padding: 8px 10px;
+    font-size: 0.68rem;
   }
 
   .practice-grid {
@@ -1495,19 +1472,6 @@
 .skill-project-visual {
   position: relative;
   padding: 0;
-}
-
-.skill-art-label {
-  position: absolute;
-  z-index: 5;
-  top: 4px;
-  right: 4px;
-  padding: 3px 5px;
-  color: #e8f6f8;
-  border: 1px solid rgba(146, 192, 205, 0.4);
-  border-radius: 3px;
-  background: rgba(5, 14, 25, 0.88);
-  font-size: 0.42rem;
 }
 
 .skill-project-visual .product-art {

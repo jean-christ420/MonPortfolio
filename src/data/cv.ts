@@ -19,14 +19,14 @@ export const cvExpertise = [
 
 export const experiences = [
   {
-    period: "En cours · début à confirmer",
+    period: "Stage en cours",
     role: "Développeur web (stage)",
     organization: "CIS Info",
     technology: "Nuxt · NestJS · Figma",
     tasks: [
       "Contribuer au développement frontend d'Archi_Smart, dont le frontend Nuxt consomme une API backend NestJS.",
       "Participer à la modernisation du site existant Smart_Courriel.",
-      "Utiliser Figma pour le prototypage et Claude et Cursor comme assistants de développement.",
+      "Utiliser Figma pour le prototypage et les échanges autour des interfaces.",
     ],
   },
   {
@@ -37,7 +37,7 @@ export const experiences = [
     tasks: [
       "Concevoir et développer des solutions web selon les besoins des projets.",
       "Développer des fonctionnalités front-end et back-end avec PHP, Laravel, JavaScript et MySQL.",
-      "Versionner le code avec Git et GitHub et utiliser des assistants IA pour la recherche, la compréhension et le débogage.",
+      "Versionner le code avec Git et GitHub.",
     ],
   },
   {
@@ -125,7 +125,7 @@ export const cvTechnologies = [
 
 export const cvCertifications: string[][] = []
 
-export const languages = [["Français", "Langue utilisée sur ce portfolio"]] as const
+export const languages = [["Français", "Langue de ce portfolio"]] as const
 
 export const softSkills = [
   ["◎", "Résolution d'incidents"],
