@@ -137,12 +137,24 @@ function ContactHero() {
           <span>↙</span>
         </div>
         <div className="contact-laptop-message">
-          <b>{profile.initials}</b>
-          <span>
-            Des idées en
-            <br />
-            solutions
-          </span>
+          <div className="contact-message-heading">
+            <span className="contact-message-avatar">{profile.initials}</span>
+            <div>
+              <small>DISCUSSION DIRECTE</small>
+              <b>Parlons de votre projet</b>
+            </div>
+          </div>
+          <p>
+            Présentez votre besoin, vos objectifs ou une question : nous
+            pouvons en discuter simplement.
+          </p>
+          <a href={`mailto:${profile.email}`}>
+            Écrire un message <span aria-hidden="true">↗</span>
+          </a>
+          <div className="contact-message-foot">
+            <i />
+            E-mail · Abidjan, Côte d’Ivoire
+          </div>
         </div>
       </div>
       <Wave />

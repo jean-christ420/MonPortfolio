@@ -1,4 +1,4 @@
-import type { Project } from "../data/projects"
+import { myshopScreenshots, type Project } from "../data/projects"
 import "../projects.css"
 
 export function DashboardScreen({ compact = false }: { compact?: boolean }) {
@@ -56,6 +56,14 @@ export function ProductArtwork({
   type: Project["artwork"]
   large?: boolean
 }) {
+  if (type === "myshop") {
+    return (
+      <div className={`product-art art-myshop ${large ? "art-large" : ""}`}>
+        <img src={myshopScreenshots[0].src} alt="" />
+      </div>
+    )
+  }
+
   if (type === "taskflow") {
     return (
       <div className="product-art art-taskflow">

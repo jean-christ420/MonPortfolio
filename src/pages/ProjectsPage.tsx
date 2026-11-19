@@ -286,6 +286,110 @@ function ProjectsCta() {
   )
 }
 
+function MyShopProjectDetail({ project }: { project: Project }) {
+  const screenshots = project.screenshots ?? []
+  const [cover, ...galleryScreenshots] = screenshots
+
+  return (
+    <main className="projects-page myshop-project-page">
+      <Header active="Projets" />
+      <section className="myshop-detail shell">
+        <a className="myshop-back-link" href="/projets">
+          ← Tous les projets
+        </a>
+        <div className="myshop-detail-hero">
+          <div className="myshop-detail-intro">
+            <div className="eyebrow">{project.category}</div>
+            <h1>{project.title}</h1>
+            <p>{project.description}</p>
+            <div className="myshop-project-meta">
+              <div>
+                <span>Rôle</span>
+                <b>{project.role}</b>
+              </div>
+              <div>
+                <span>État</span>
+                <b>{project.status}</b>
+              </div>
+            </div>
+            <div className="tech-list">
+              {project.technologies.map((technology) => (
+                <TechBadge key={technology}>{technology}</TechBadge>
+              ))}
+            </div>
+          </div>
+          {cover && (
+            <figure className="myshop-detail-visual">
+              <img src={cover.src} alt="Accueil de la boutique MyShop" />
+              <figcaption>Boutique en ligne · Mobilier & décoration</figcaption>
+            </figure>
+          )}
+        </div>
+
+        <section
+          className="myshop-features"
+          aria-labelledby="myshop-features-title"
+        >
+          <div className="eyebrow">Une expérience complète</div>
+          <h2 id="myshop-features-title">Boutique et administration</h2>
+          <ul>
+            {project.features?.map((feature) => (
+              <li key={feature}>{feature}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          className="myshop-gallery"
+          aria-labelledby="myshop-gallery-title"
+        >
+          <div className="myshop-gallery-heading">
+            <div>
+              <div className="eyebrow">En images</div>
+              <h2 id="myshop-gallery-title">Aperçu du projet</h2>
+            </div>
+            <p>
+              Découvrez les principaux écrans de la boutique et de son espace
+              d’administration.
+            </p>
+          </div>
+          <div className="myshop-gallery-grid">
+            {galleryScreenshots.map((screenshot, index) => (
+              <figure
+                className={`myshop-gallery-item${
+                  index === 0 ? " myshop-gallery-cover" : ""
+                }`}
+                key={screenshot.title}
+              >
+                <a
+                  href={screenshot.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Ouvrir la capture « ${screenshot.title} » en taille réelle`}
+                >
+                  <img
+                    src={screenshot.src}
+                    alt={`${screenshot.title} de MyShop`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </a>
+                <figcaption>
+                  <b>{screenshot.title}</b>
+                  <span>{screenshot.description}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+        <Button href="/projets" secondary>
+          Retour aux projets
+        </Button>
+      </section>
+      <Footer />
+    </main>
+  )
+}
+
 export default function ProjectsPage() {
   const [category, setCategory] = useState<string>("Tous")
   const [query, setQuery] = useState("")
@@ -359,7 +463,7 @@ export default function ProjectsPage() {
               <ProjectCard project={project} key={project.slug} />
             ))}
           </div>
-        ) : (
+        ) : showFeatured ? null : (
           <div className="empty-projects">
             Aucun projet ne correspond à votre recherche.
           </div>
@@ -375,6 +479,7 @@ export default function ProjectsPage() {
 export function ProjectDetailPage({ slug }: { slug: string }) {
   const project = projects.find((item) => item.slug === slug)
   if (!project) return null
+  if (project.screenshots) return <MyShopProjectDetail project={project} />
   return (
     <main className="projects-page">
       <Header active="Projets" />

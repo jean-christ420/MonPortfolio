@@ -1,4 +1,24 @@
-export type ProjectCategory = "Web App" | "Mobile" | "UI/UX" | "Systèmes" | "Autres"
+import myshopStorefront from "../imports/myshop/01-boutique.png"
+import myshopCatalog from "../imports/myshop/02-catalogue.png"
+import myshopProduct from "../imports/myshop/03-produit.png"
+import myshopCart from "../imports/myshop/04-panier.png"
+import myshopAdministration from "../imports/myshop/05-administration.png"
+import myshopProducts from "../imports/myshop/06-gestion-produits.png"
+import myshopStock from "../imports/myshop/07-gestion-stocks.png"
+
+export type ProjectCategory =
+  | "Application e-commerce"
+  | "Web App"
+  | "Mobile"
+  | "UI/UX"
+  | "Systèmes"
+  | "Autres"
+
+export type ProjectScreenshot = {
+  src: string
+  title: string
+  description: string
+}
 
 export type Project = {
   slug: string
@@ -6,25 +26,88 @@ export type Project = {
   category: ProjectCategory
   status: "Terminé" | "Prototype" | "En cours"
   description: string
+  role?: string
+  features?: string[]
   technologies: string[]
+  screenshots?: ProjectScreenshot[]
   featured: boolean
   href: string
   codeHref?: string
-  artwork: "erp" | "taskflow" | "procurement" | "futurpro" | "email" | "architecture"
+  artwork:
+    | "myshop"
+    | "erp"
+    | "taskflow"
+    | "procurement"
+    | "futurpro"
+    | "email"
+    | "architecture"
 }
+
+export const myshopScreenshots: ProjectScreenshot[] = [
+  {
+    src: myshopStorefront,
+    title: "Boutique",
+    description: "Page d’accueil et sélection de mobilier et décoration.",
+  },
+  {
+    src: myshopCatalog,
+    title: "Catalogue",
+    description: "Catalogue des produits avec catégories et prix.",
+  },
+  {
+    src: myshopProduct,
+    title: "Fiche produit",
+    description: "Fiche détaillée avec variante, stock et ajout au panier.",
+  },
+  {
+    src: myshopCart,
+    title: "Panier",
+    description: "Panier latéral avec gestion des quantités et commande.",
+  },
+  {
+    src: myshopAdministration,
+    title: "Administration",
+    description: "Tableau de bord des ventes et indicateurs de la boutique.",
+  },
+  {
+    src: myshopProducts,
+    title: "Gestion des produits",
+    description: "Administration du catalogue, des tarifs et des variantes.",
+  },
+  {
+    src: myshopStock,
+    title: "Gestion des stocks",
+    description: "Suivi de l’inventaire et des quantités disponibles.",
+  },
+]
 
 export const projects: Project[] = [
   {
     slug: "myshop",
     title: "MyShop",
-    category: "Web App",
+    category: "Application e-commerce",
     status: "Terminé",
     description:
-      "Application de gestion de boutique : administration des accès, des produits, des catégories et suivi du stock.",
-    technologies: ["Laravel", "MySQL"],
+      "Plateforme e-commerce dédiée à la vente de meubles et d’articles de décoration. Elle associe une boutique en ligne à un espace d’administration pour gérer les produits, les variantes, les stocks et les commandes.",
+    role: "Développeur Full-Stack",
+    features: [
+      "Catalogue de produits et fiches détaillées.",
+      "Panier et gestion des comptes clients.",
+      "Tableau de bord d’administration.",
+      "Gestion des produits, variantes et stocks.",
+      "Suivi des commandes et des opérations commerciales.",
+    ],
+    technologies: [
+      "Laravel 12",
+      "React 19",
+      "TypeScript",
+      "Inertia.js",
+      "Tailwind CSS",
+    ],
+    screenshots: myshopScreenshots,
     featured: true,
     href: "/projets/myshop",
-    artwork: "erp",
+    artwork: "myshop",
   },
   {
     slug: "post-it",
@@ -90,6 +173,7 @@ export const projects: Project[] = [
 
 export const projectCategories = [
   "Tous",
+  "Application e-commerce",
   "Web App",
   "Mobile",
   "UI/UX",

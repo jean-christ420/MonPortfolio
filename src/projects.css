@@ -1783,6 +1783,246 @@
     linear-gradient(110deg, #020f18, #071728 61%, #10112e);
 }
 
+.art-myshop {
+  display: grid;
+  place-items: center;
+  background: #f8f6f1;
+}
+
+.art-myshop.art-large {
+  padding: 0;
+}
+
+.art-myshop img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.myshop-detail {
+  padding: 48px 0 90px;
+}
+
+.myshop-back-link {
+  display: inline-flex;
+  margin-bottom: 36px;
+  color: var(--cyan-400);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.myshop-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: clamp(30px, 4vw, 68px);
+}
+
+.myshop-detail-intro {
+  max-width: none;
+}
+
+.myshop-detail-intro h1 {
+  margin-top: 12px;
+}
+
+.myshop-detail-intro > p {
+  max-width: 780px;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.myshop-project-meta {
+  max-width: 620px;
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.myshop-project-meta > div {
+  padding-left: 13px;
+  border-left: 1px solid rgba(0, 232, 223, 0.38);
+}
+
+.myshop-project-meta span,
+.myshop-project-meta b {
+  display: block;
+}
+
+.myshop-project-meta span {
+  color: var(--text-muted);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.myshop-project-meta b {
+  margin-top: 5px;
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.myshop-detail .tech-list {
+  margin-top: 22px;
+}
+
+.myshop-detail-visual {
+  min-width: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--projects-line);
+  border-radius: var(--radius-lg);
+  background: #f8f6f1;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+}
+
+.myshop-detail-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.myshop-detail-visual figcaption {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  padding: 10px 14px;
+  color: #f7fbfd;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(3, 18, 27, 0.8);
+  backdrop-filter: blur(12px);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.myshop-features {
+  margin-top: 52px;
+  padding: 30px;
+  border: 1px solid var(--projects-line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgba(7, 35, 49, 0.92), rgba(3, 22, 34, 0.9));
+}
+
+.myshop-features h2,
+.myshop-gallery h2 {
+  margin-top: 8px;
+  font-size: clamp(1.55rem, 3vw, 2.3rem);
+}
+
+.myshop-features ul {
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 28px;
+  list-style: none;
+}
+
+.myshop-features li {
+  position: relative;
+  padding-left: 23px;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.myshop-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--cyan-400);
+  font-weight: 700;
+}
+
+.myshop-gallery {
+  margin-top: 72px;
+}
+
+.myshop-gallery-heading {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.myshop-gallery-heading > p {
+  max-width: 460px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.myshop-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+}
+
+.myshop-gallery-item {
+  overflow: hidden;
+  border: 1px solid var(--projects-line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, rgba(7, 35, 49, 0.96), rgba(3, 22, 34, 0.94));
+}
+
+.myshop-gallery-cover {
+  grid-column: span 2;
+}
+
+.myshop-gallery-item a {
+  display: block;
+  overflow: hidden;
+  background: #f8f6f1;
+}
+
+.myshop-gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 240ms ease;
+}
+
+.myshop-gallery-item a:hover img,
+.myshop-gallery-item a:focus-visible img {
+  transform: scale(1.02);
+}
+
+.myshop-gallery-item figcaption {
+  padding: 14px 16px 16px;
+}
+
+.myshop-gallery-item figcaption b,
+.myshop-gallery-item figcaption span {
+  display: block;
+}
+
+.myshop-gallery-item figcaption b {
+  font-size: 0.82rem;
+}
+
+.myshop-gallery-item figcaption span {
+  margin-top: 5px;
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.myshop-detail > .button {
+  margin-top: 35px;
+}
+
+@media (min-width: 1600px) {
+  .myshop-gallery-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .project-detail {
   min-height: calc(100vh - 290px);
   padding: 90px 0;
@@ -1904,6 +2144,18 @@
 
   .approach-step:nth-child(2) .approach-connector {
     display: none;
+  }
+
+  .myshop-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .myshop-detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .myshop-detail-visual {
+    max-width: 900px;
   }
 }
 
@@ -2067,6 +2319,42 @@
 
   .project-detail > .concept-art-frame {
     height: 300px;
+  }
+
+  .myshop-detail {
+    padding-top: 32px;
+  }
+
+  .myshop-back-link {
+    margin-bottom: 28px;
+  }
+
+  .myshop-project-meta,
+  .myshop-features ul,
+  .myshop-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .myshop-features {
+    margin-top: 38px;
+    padding: 22px;
+  }
+
+  .myshop-gallery {
+    margin-top: 52px;
+  }
+
+  .myshop-gallery-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .myshop-gallery-cover {
+    grid-column: auto;
+  }
+
+  .myshop-gallery-item figcaption {
+    padding: 12px 14px 14px;
   }
 }
 
