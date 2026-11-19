@@ -56,7 +56,7 @@
 
 .contact-hero-copy .eyebrow {
   margin-bottom: 14px;
-  font-size: 0.64rem;
+  font-size: 0.7rem;
 }
 
 .contact-page-hero h1 {
@@ -69,7 +69,7 @@
 .contact-hero-copy > p {
   max-width: 625px;
   margin-top: 18px;
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
@@ -118,13 +118,13 @@
 }
 
 .contact-hero-benefits b {
-  font-size: 0.72rem;
+  font-size: 0.79rem;
 }
 
 .contact-hero-benefits small {
   margin-top: 7px;
   color: #8ba1aa;
-  font-size: 0.59rem;
+  font-size: 0.65rem;
   line-height: 1.4;
 }
 
@@ -134,7 +134,7 @@
   right: 270px;
   color: #f0dfe9;
   font-family: "Comic Sans MS", cursive;
-  font-size: 0.88rem;
+  font-size: 0.97rem;
   line-height: 1.4;
   transform: rotate(-7deg);
 }
@@ -179,14 +179,14 @@
   border: 1px solid rgba(0, 232, 223, 0.4);
   border-radius: 13px;
   background: rgba(0, 232, 223, 0.08);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 750;
 }
 
 .contact-message-heading small {
   display: block;
   color: var(--cyan-400);
-  font-size: 0.58rem;
+  font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -195,11 +195,11 @@
   display: block;
   margin-top: 5px;
   color: var(--text);
-  font-size: 0.98rem;
+  font-size: 1.08rem;
 }
 
 .contact-laptop-message > p {
-  font-size: 0.76rem;
+  font-size: 0.84rem;
   line-height: 1.55;
 }
 
@@ -212,7 +212,7 @@
   color: #00171c;
   border-radius: 7px;
   background: var(--cyan-400);
-  font-size: 0.72rem;
+  font-size: 0.79rem;
   font-weight: 700;
 }
 
@@ -225,7 +225,7 @@
   align-items: center;
   gap: 8px;
   color: var(--text-muted);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
 }
 
 .contact-message-foot i {
@@ -295,7 +295,7 @@
   align-items: center;
   gap: 10px;
   color: #55d5ed;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   font-weight: 600;
 }
 
@@ -316,7 +316,7 @@
 .contact-info-card > p,
 .contact-form-card > p {
   margin-top: 8px;
-  font-size: 0.72rem;
+  font-size: 0.79rem;
 }
 
 .contact-info-list {
@@ -390,14 +390,14 @@
 
 .contact-info-list b {
   color: var(--cyan-400);
-  font-size: 0.67rem;
+  font-size: 0.74rem;
 }
 
 .contact-info-list a,
 .contact-info-list article > div:nth-child(2) > span {
   margin-top: 5px;
   color: #d2dee2;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
 }
 
 .contact-copy {
@@ -439,7 +439,7 @@
 .contact-form-card label > span {
   display: block;
   margin-bottom: 8px;
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 
@@ -485,7 +485,7 @@
   outline: 0;
   background: transparent;
   font: inherit;
-  font-size: 0.64rem;
+  font-size: 0.7rem;
 }
 
 .contact-form-card select {
@@ -515,7 +515,7 @@
   display: block;
   margin-top: 4px;
   color: #ed7891;
-  font-size: 0.49rem;
+  font-size: 0.54rem;
 }
 
 .contact-submit {
@@ -554,7 +554,7 @@
   border: 1px solid rgba(237, 102, 134, 0.3);
   border-radius: 5px;
   background: rgba(112, 33, 56, 0.15);
-  font-size: 0.52rem;
+  font-size: 0.57rem;
   line-height: 1.45;
 }
 
@@ -566,7 +566,7 @@
   margin-top: 14px;
   color: #697f89;
   text-align: center;
-  font-size: 0.51rem;
+  font-size: 0.56rem;
 }
 
 .contact-location {
@@ -589,7 +589,7 @@
   align-items: center;
   gap: 9px;
   color: #53d0e8;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   font-weight: 600;
 }
 
@@ -607,7 +607,7 @@
 
 .contact-section-heading > p {
   max-width: 525px;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   line-height: 1.55;
 }
 
@@ -707,18 +707,18 @@
 }
 
 .map-location-card b {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .map-location-card small {
   margin-top: 4px;
   color: #a4b5bc;
-  font-size: 0.55rem;
+  font-size: 0.61rem;
 }
 
 .map-location-card p {
   margin-top: 11px;
-  font-size: 0.54rem;
+  font-size: 0.59rem;
   line-height: 1.45;
 }
 
@@ -733,7 +733,7 @@
 }
 
 .collaboration-card h3 {
-  font-size: 0.81rem;
+  font-size: 0.89rem;
 }
 
 .collaboration-card > div {
@@ -782,13 +782,13 @@
 }
 
 .collaboration-card b {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .collaboration-card small {
   margin-top: 5px;
   color: #8299a3;
-  font-size: 0.51rem;
+  font-size: 0.56rem;
   line-height: 1.35;
 }
 
@@ -837,7 +837,7 @@
   color: #d9e4e8;
   border: 0;
   background: transparent;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   text-align: left;
   cursor: pointer;
 }
@@ -853,7 +853,7 @@
 
 .faq-list article > p {
   padding: 0 14px 14px;
-  font-size: 0.55rem;
+  font-size: 0.61rem;
   line-height: 1.5;
 }
 
@@ -865,7 +865,7 @@
 
   .contact-hero-copy > p {
     max-width: 760px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .contact-hero-benefits {
@@ -919,7 +919,7 @@
 
 .contact-page-cta p {
   margin-top: 11px;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   line-height: 1.5;
 }
 
@@ -945,7 +945,7 @@
 
 .contact-page-cta > aside span {
   color: #c2d2d8;
-  font-size: 0.55rem;
+  font-size: 0.61rem;
 }
 
 .contact-page-hero {

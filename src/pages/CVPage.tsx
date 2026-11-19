@@ -1,8 +1,8 @@
 import { Button, Footer, Header, Icon, Wave } from "../App";
 import {
   cvContact,
+  cvDomains,
   cvExpertise,
-  cvSkills,
   cvTechnologies,
   education,
   experiences,
@@ -261,10 +261,16 @@ function SkillsSection() {
     <section className="cv-skills shell">
       <CVSectionTitle number="04">Compétences clés</CVSectionTitle>
       <div className="cv-skills-grid">
-        <div className="cv-skill-bars">
-          {cvSkills.map((skill) => (
-            <span key={skill}>{skill}</span>
-          ))}
+        <div className="cv-skill-domains">
+          <h3>
+            <span>◇</span>
+            Domaines de compétences
+          </h3>
+          <div className="cv-skill-bars">
+            {cvDomains.map((domain) => (
+              <span key={domain}>{domain}</span>
+            ))}
+          </div>
         </div>
         <div className="cv-technologies-card">
           <h3>
@@ -297,7 +303,7 @@ function LanguagesAndSoftSkills() {
                 <span>{language.slice(0, 2).toUpperCase()}</span>
               </div>
               <b>{language}</b>
-              <small>{level}</small>
+              {level && <small>{level}</small>}
             </article>
           ))}
         </div>

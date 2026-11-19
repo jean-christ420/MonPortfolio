@@ -1,4 +1,9 @@
-import { erpScreenshots, myshopScreenshots, type Project } from "../data/projects"
+import {
+  archiSmartScreenshots,
+  erpScreenshots,
+  myshopScreenshots,
+  type Project,
+} from "../data/projects"
 import "../projects.css"
 
 export function DashboardScreen({ compact = false }: { compact?: boolean }) {
@@ -144,29 +149,8 @@ export function ProductArtwork({
 
   if (type === "architecture") {
     return (
-      <div className="product-art art-architecture">
-        <div className="architecture-window">
-          <div className="architecture-side">
-            <b>Archi_Smart</b>
-            <i />
-            <i />
-            <i />
-          </div>
-          <div className="architecture-content">
-            <b>Espace de travail</b>
-            <div className="architecture-cards">
-              <div><i /><span>Projet</span></div>
-              <div><i /><span>Plan</span></div>
-              <div><i /><span>Dossier</span></div>
-            </div>
-            <div className="architecture-plan" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-        </div>
+      <div className={`product-art art-architecture ${large ? "art-large" : ""}`}>
+        <img src={archiSmartScreenshots[0].src} alt="" />
       </div>
     )
   }

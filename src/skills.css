@@ -55,7 +55,7 @@
 
 .skills-hero-copy .eyebrow {
   margin-bottom: 15px;
-  font-size: 0.66rem;
+  font-size: 0.73rem;
 }
 
 .skills-hero h1 {
@@ -68,7 +68,7 @@
 .skills-hero-copy > p {
   max-width: 560px;
   margin-top: 17px;
-  font-size: 0.85rem;
+  font-size: 0.94rem;
   line-height: 1.62;
 }
 
@@ -317,7 +317,7 @@
   border-radius: 6px;
   background: rgba(4, 22, 34, 0.72);
   font-family: "Comic Sans MS", cursive;
-  font-size: 0.67rem;
+  font-size: 0.74rem;
   line-height: 1.45;
   transform: rotate(-6deg);
 }
@@ -391,7 +391,7 @@
 .skills-hero-stats small {
   margin-top: 5px;
   color: #9bb0b9;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .skills-hero .wave {
@@ -413,7 +413,7 @@
   align-items: center;
   gap: 9px;
   color: #52cde7;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
@@ -431,7 +431,7 @@
 
 .skills-section-intro > p {
   max-width: 480px;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   line-height: 1.55;
 }
 
@@ -535,7 +535,7 @@
 .core-surface span {
   margin-top: 8px;
   color: #c4d8df;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   line-height: 1.45;
 }
 
@@ -596,12 +596,12 @@
 }
 
 .expertise-card h3 {
-  font-size: 0.84rem;
+  font-size: 0.92rem;
 }
 
 .expertise-card p {
   margin-top: 7px;
-  font-size: 0.63rem;
+  font-size: 0.69rem;
   line-height: 1.48;
 }
 
@@ -660,7 +660,7 @@
   border: 1px solid rgba(62, 125, 148, 0.18);
   border-radius: 6px;
   background: rgba(5, 26, 38, 0.58);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   cursor: pointer;
 }
 
@@ -753,7 +753,7 @@
 }
 
 .skill-matrix-card span {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .skill-color-yellow > div { color: #f0d534; }
@@ -770,7 +770,7 @@
   z-index: 4;
   margin-top: 5px;
   text-align: center;
-  font-size: 0.72rem;
+  font-size: 0.79rem;
 }
 
 .technology-detail b {
@@ -809,7 +809,7 @@
   border: 1px solid rgba(70, 150, 176, 0.25);
   border-radius: 999px;
   background: rgba(5, 29, 42, 0.76);
-  font-size: 0.72rem;
+  font-size: 0.79rem;
 }
 
 .evolution-card {
@@ -844,14 +844,14 @@
 }
 
 .evolution-title b {
-  font-size: 0.75rem;
+  font-size: 0.83rem;
 }
 
 .evolution-title small {
   max-width: 270px;
   margin-top: 5px;
   color: #899fa9;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -881,13 +881,13 @@
 
 .evolution-history b {
   color: var(--cyan-400);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   line-height: 1.45;
 }
 
 .evolution-history span {
   color: #c2d0d5;
-  font-size: 0.72rem;
+  font-size: 0.79rem;
   line-height: 1.45;
 }
 
@@ -1007,13 +1007,13 @@
 }
 
 .practice-card b {
-  font-size: 0.67rem;
+  font-size: 0.74rem;
 }
 
 .practice-card span {
   margin-top: 5px;
   color: #8198a3;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .practice-card div:last-child > i {
@@ -1073,7 +1073,7 @@
   display: block;
   margin-top: 8px;
   color: #b9c9cf;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .certifications-section {
@@ -1117,13 +1117,13 @@
 }
 
 .certification-grid b {
-  font-size: 0.66rem;
+  font-size: 0.73rem;
 }
 
 .certification-grid small {
   margin-top: 6px;
   color: #7d949e;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   line-height: 1.35;
 }
 
@@ -1132,7 +1132,7 @@
   right: 13px;
   bottom: 10px;
   color: var(--cyan-400);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .skills-cta {
@@ -1208,7 +1208,7 @@
 .skills-cta p {
   max-width: 560px;
   margin-top: 13px;
-  font-size: 0.75rem;
+  font-size: 0.83rem;
 }
 
 .skills-cta .hero-actions {
@@ -1229,7 +1229,7 @@
 
 .skills-cta-list span {
   color: #c6d7dd;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 @keyframes corePulse {
@@ -1438,7 +1438,7 @@
 
   .mastery-chip {
     padding: 8px 10px;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
   }
 
   .practice-grid {

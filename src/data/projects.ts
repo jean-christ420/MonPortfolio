@@ -13,6 +13,11 @@ import erpOrders from "../imports/erp-institutionnel/05-bons-commande.png"
 import erpDocumentTypes from "../imports/erp-institutionnel/06-selection-type-document.png"
 import erpInvoices from "../imports/erp-institutionnel/07-factures-reglements.png"
 import erpAllocations from "../imports/erp-institutionnel/08-dotations-affectations.png"
+import archiDashboard from "../imports/archi-smart/01-tableau-de-bord.png"
+import archiCabinetSettings from "../imports/archi-smart/02-parametres-cabinet.png"
+import archiUsers from "../imports/archi-smart/03-administration-utilisateurs.png"
+import archiThresholds from "../imports/archi-smart/04-seuils-alertes.png"
+import archiWorkflows from "../imports/archi-smart/05-workflows-validation.png"
 
 export type ProjectCategory =
   | "Application e-commerce"
@@ -134,6 +139,39 @@ export const erpScreenshots: ProjectScreenshot[] = [
   },
 ]
 
+export const archiSmartScreenshots: ProjectScreenshot[] = [
+  {
+    src: archiDashboard,
+    title: "Tableau de bord",
+    description:
+      "Vue d’ensemble des projets, tâches, budgets et alertes du cabinet.",
+  },
+  {
+    src: archiCabinetSettings,
+    title: "Paramètres du cabinet",
+    description:
+      "Configuration des informations générales et des paramètres du cabinet.",
+  },
+  {
+    src: archiUsers,
+    title: "Administration des utilisateurs",
+    description:
+      "Gestion des comptes collaborateurs, des rôles et des statuts d’accès.",
+  },
+  {
+    src: archiThresholds,
+    title: "Seuils et alertes",
+    description:
+      "Configuration des seuils et suivi des alertes du cabinet.",
+  },
+  {
+    src: archiWorkflows,
+    title: "Workflows de validation",
+    description:
+      "Configuration et suivi des circuits de validation des documents.",
+  },
+]
+
 export const projects: Project[] = [
   {
     slug: "myshop",
@@ -222,12 +260,31 @@ export const projects: Project[] = [
   },
   {
     slug: "archi-smart",
-    title: "Archi_Smart",
+    title: "Archi_Smart — Plateforme de gestion pour cabinets d'architecture",
     category: "Web App",
     status: "En cours",
     description:
-      "Contribution frontend en cours à une plateforme pour cabinets d'architecture, avec un frontend Nuxt connecté à une API NestJS.",
-    technologies: ["Nuxt", "NestJS", "Figma"],
+      "Archi_Smart est une plateforme de gestion destinée aux cabinets d'architecture. Elle centralise leurs activités administratives et métier à travers différents modules dédiés à la gestion des clients, des collaborateurs, des documents et des processus de validation. Je participe à son développement en collaboration avec d'autres développeurs, au sein de l'équipe Frontend, notamment sur la conception des interfaces utilisateur et leur intégration avec les services Backend.",
+    role: "Développeur Frontend au sein d'une équipe de développement",
+    features: [
+      "Tableau de bord et suivi des activités.",
+      "Gestion des clients et collaborateurs.",
+      "Administration des utilisateurs et permissions.",
+      "Paramétrage du cabinet.",
+      "Gestion documentaire.",
+      "Workflows de validation.",
+      "Seuils, alertes et notifications.",
+    ],
+    technologies: [
+      "Nuxt 4",
+      "Vue 3",
+      "TypeScript",
+      "Pinia",
+      "NestJS",
+      "TypeORM",
+      "PostgreSQL",
+    ],
+    screenshots: archiSmartScreenshots,
     featured: false,
     href: "/projets/archi-smart",
     artwork: "architecture",

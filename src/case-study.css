@@ -51,7 +51,7 @@
   position: relative;
   z-index: 8;
   color: #78929f;
-  font-size: 0.71rem;
+  font-size: 0.78rem;
 }
 
 .cs-breadcrumbs a:first-child {
@@ -83,7 +83,7 @@
   border: 1px solid rgba(74, 179, 206, 0.22);
   border-radius: 5px;
   background: rgba(10, 66, 84, 0.28);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -121,7 +121,7 @@
 
 .cs-hero-meta span {
   color: #628391;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -129,7 +129,7 @@
 .cs-hero-meta b {
   margin-top: 5px;
   color: #d7e5ea;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -179,7 +179,7 @@
   display: block;
   margin-bottom: 29px;
   color: var(--cyan-400);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .cs-screen-sidebar span {
@@ -191,7 +191,7 @@
   gap: 7px;
   color: #60748e;
   border-radius: 4px;
-  font-size: 0.47rem;
+  font-size: 0.52rem;
 }
 
 .cs-screen-sidebar span.active {
@@ -225,12 +225,12 @@
 
 .cs-screen-header small {
   color: #637892;
-  font-size: 0.43rem;
+  font-size: 0.47rem;
 }
 
 .cs-screen-header b {
   margin-top: 3px;
-  font-size: 0.66rem;
+  font-size: 0.73rem;
 }
 
 .cs-screen-header > span {
@@ -263,12 +263,12 @@
 
 .cs-kpis small {
   color: #657890;
-  font-size: 0.39rem;
+  font-size: 0.43rem;
 }
 
 .cs-kpis b {
   margin-top: 8px;
-  font-size: 0.69rem;
+  font-size: 0.76rem;
 }
 
 .cs-kpis i {
@@ -306,7 +306,7 @@
   top: 9px;
   left: 10px;
   color: #8597ad;
-  font-size: 0.41rem;
+  font-size: 0.45rem;
 }
 
 .cs-line-widget {
@@ -362,13 +362,13 @@
   position: absolute;
   top: 44px;
   left: 50%;
-  font-size: 0.57rem;
+  font-size: 0.63rem;
   transform: translateX(-50%);
 }
 
 .cs-donut-widget small {
   color: #61758e;
-  font-size: 0.35rem;
+  font-size: 0.39rem;
 }
 
 .cs-list-widget {
@@ -419,7 +419,7 @@
 }
 
 .cs-table-toolbar b {
-  font-size: 0.55rem;
+  font-size: 0.61rem;
 }
 
 .cs-table-toolbar i {
@@ -502,13 +502,13 @@
 
 .cs-quick-meta small {
   color: #6c8895;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   text-transform: uppercase;
 }
 
 .cs-quick-meta b {
   margin-top: 7px;
-  font-size: 0.74rem;
+  font-size: 0.81rem;
 }
 
 .cs-label {
@@ -517,7 +517,7 @@
   align-items: center;
   gap: 9px;
   color: #58cce6;
-  font-size: 0.66rem;
+  font-size: 0.73rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
@@ -599,7 +599,7 @@
   align-items: center;
   gap: 12px;
   color: #afc1c9;
-  font-size: 0.78rem;
+  font-size: 0.86rem;
 }
 
 .cs-check-list i {
@@ -631,7 +631,7 @@
 
 .cs-section-heading > p {
   max-width: 430px;
-  font-size: 0.81rem;
+  font-size: 0.89rem;
 }
 
 .cs-objective-grid {
@@ -662,7 +662,7 @@
 
 .cs-objective-grid span {
   color: var(--cyan-400);
-  font-size: 0.75rem;
+  font-size: 0.83rem;
   font-weight: 700;
 }
 
@@ -707,12 +707,12 @@
   color: var(--cyan-400);
   border: 1px solid rgba(0, 232, 223, 0.36);
   border-radius: 50%;
-  font-size: 0.59rem;
+  font-size: 0.65rem;
   font-style: normal;
 }
 
 .cs-role-list b {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .cs-solution {
@@ -746,7 +746,7 @@
   align-items: center;
   gap: 10px;
   color: #c0d0d6;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .cs-feature-grid i {
@@ -802,7 +802,7 @@
   right: 24px;
   bottom: 20px;
   color: #91abb6;
-  font-size: 0.69rem;
+  font-size: 0.76rem;
 }
 
 .cs-gallery-strip {
@@ -839,7 +839,7 @@
   left: 17px;
   bottom: 7px;
   color: #9aafb8;
-  font-size: 0.57rem;
+  font-size: 0.63rem;
 }
 
 .cs-lightbox {
@@ -930,12 +930,12 @@
 
 .cs-diagram > div > span {
   color: var(--cyan-400);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .cs-diagram > div > b {
   margin-top: 7px;
-  font-size: 0.77rem;
+  font-size: 0.85rem;
 }
 
 .cs-diagram-sub {
@@ -952,7 +952,7 @@
   border: 1px solid rgba(85, 140, 159, 0.16);
   border-radius: 4px;
   text-align: center;
-  font-size: 0.56rem !important;
+  font-size: 0.62rem !important;
 }
 
 .cs-tech {
@@ -999,7 +999,7 @@
 
 .case-study .tech-badge {
   color: #c9d9de;
-  font-size: 0.58rem;
+  font-size: 0.64rem;
 }
 
 .cs-process {
@@ -1036,17 +1036,17 @@
 
 .cs-process-line span {
   color: var(--cyan-400);
-  font-size: 0.67rem;
+  font-size: 0.74rem;
 }
 
 .cs-process-line h3 {
   margin-top: 38px;
-  font-size: 0.9rem;
+  font-size: 0.99rem;
 }
 
 .cs-process-line p {
   margin-top: 10px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1093,7 +1093,7 @@
 }
 
 .cs-results-grid b {
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .cs-results-visual {
@@ -1162,7 +1162,7 @@
   gap: 12px;
   color: #b9cbd2;
   border-bottom: 1px solid rgba(63, 131, 153, 0.15);
-  font-size: 0.76rem;
+  font-size: 0.84rem;
 }
 
 .cs-learning-list i {
@@ -1194,12 +1194,12 @@
 
 .cs-project-nav span {
   color: #78929e;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
 }
 
 .cs-project-nav b {
   margin-top: 8px;
-  font-size: 0.87rem;
+  font-size: 0.96rem;
 }
 
 .cs-project-nav .all {
@@ -1207,7 +1207,7 @@
   color: var(--cyan-400);
   border: 1px solid rgba(0, 232, 223, 0.35);
   border-radius: var(--radius-sm);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .cs-cta {
@@ -1608,7 +1608,7 @@
 .cs-hero-copy > p {
   max-width: 540px;
   margin-top: 13px;
-  font-size: 0.88rem;
+  font-size: 0.97rem;
 }
 
 .cs-hero-tech {
@@ -1665,7 +1665,7 @@
 .cs-quick-meta small {
   margin-top: 6px;
   color: #91a7b1;
-  font-size: 0.56rem;
+  font-size: 0.62rem;
   text-transform: none;
 }
 
@@ -1743,7 +1743,7 @@
 .cs-role-copy > p,
 .cs-solution-copy > p {
   margin-top: 13px;
-  font-size: 0.76rem;
+  font-size: 0.84rem;
   line-height: 1.62;
 }
 
@@ -1761,7 +1761,7 @@
   display: block;
   margin-bottom: 12px;
   color: var(--cyan-400);
-  font-size: 0.76rem;
+  font-size: 0.84rem;
 }
 
 .cs-objective-panel > span {
@@ -1770,7 +1770,7 @@
   align-items: center;
   gap: 9px;
   color: #c1d0d6;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .cs-objective-panel i {
@@ -1781,7 +1781,7 @@
   color: var(--cyan-400);
   border: 1px solid var(--cyan-500);
   border-radius: 50%;
-  font-size: 0.48rem;
+  font-size: 0.53rem;
   font-style: normal;
 }
 
@@ -1858,7 +1858,7 @@
   align-items: center;
   gap: 10px;
   color: #899aaf;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .cs-code-tree i {
@@ -1935,13 +1935,13 @@
 }
 
 .cs-role-card b {
-  font-size: 0.67rem;
+  font-size: 0.74rem;
 }
 
 .cs-role-card small {
   margin-top: 4px;
   color: #8299a4;
-  font-size: 0.54rem;
+  font-size: 0.59rem;
 }
 
 .cs-solution {
@@ -1962,7 +1962,7 @@
 }
 
 .cs-feature-grid span {
-  font-size: 0.64rem;
+  font-size: 0.7rem;
 }
 
 .cs-feature-grid i {
@@ -1993,7 +1993,7 @@
 
 .cs-gallery-heading p {
   margin-top: 7px;
-  font-size: 0.69rem;
+  font-size: 0.76rem;
 }
 
 .cs-gallery-arrows {
@@ -2037,7 +2037,7 @@
 .cs-tech-copy > p {
   max-width: 470px;
   margin-top: 10px;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .cs-tech-grid {
@@ -2061,11 +2061,11 @@
   border: 1px solid rgba(55, 142, 169, 0.2);
   border-radius: 7px;
   background: rgba(5, 30, 43, 0.72);
-  font-size: 0.94rem;
+  font-size: 1.03rem;
 }
 
 .cs-tech-grid .tech-badge {
-  font-size: 0.49rem;
+  font-size: 0.54rem;
 }
 
 .cs-tech .cs-diagram {
@@ -2091,7 +2091,7 @@
 .cs-results-copy > p {
   max-width: 520px;
   margin-top: 10px;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .cs-results-grid {
@@ -2113,12 +2113,12 @@
 
 .cs-results-grid b {
   color: var(--cyan-400);
-  font-size: 0.93rem;
+  font-size: 1.02rem;
 }
 
 .cs-results-grid small {
   color: #8399a3;
-  font-size: 0.48rem;
+  font-size: 0.53rem;
 }
 
 .cs-results-visual {
@@ -2135,7 +2135,7 @@
   border: 1px solid rgba(0, 232, 223, 0.3);
   border-radius: 6px;
   background: rgba(4, 25, 38, 0.78);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 700;
 }
 
@@ -2143,7 +2143,7 @@
   display: block;
   margin-top: 3px;
   color: #8097a1;
-  font-size: 0.45rem;
+  font-size: 0.5rem;
   font-weight: 400;
 }
 
@@ -2158,7 +2158,7 @@
 .cs-learning-copy > p {
   max-width: 580px;
   margin-top: 10px;
-  font-size: 0.71rem;
+  font-size: 0.78rem;
 }
 
 .cs-learning-list {
@@ -2168,7 +2168,7 @@
 .cs-learning-list span {
   min-height: 28px;
   border: 0;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .cs-learning-quote {
@@ -2191,7 +2191,7 @@
 
 .cs-learning-quote > p {
   margin-top: 5px;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   line-height: 1.55;
 }
 
@@ -2205,13 +2205,13 @@
 }
 
 .cs-learning-quote b {
-  font-size: 0.66rem;
+  font-size: 0.73rem;
 }
 
 .cs-learning-quote small {
   margin-top: 3px;
   color: #8196a0;
-  font-size: 0.5rem;
+  font-size: 0.55rem;
 }
 
 .cs-learning-quote img {

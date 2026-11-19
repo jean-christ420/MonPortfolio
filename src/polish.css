@@ -316,7 +316,7 @@ html[data-theme="arctic"] .faq-list article {
 
 html[data-theme="arctic"] .faq-list button {
   color: var(--text);
-  font-size: 0.76rem;
+  font-size: 0.84rem;
 }
 
 html[data-theme="arctic"] .faq-list button span {
@@ -325,7 +325,7 @@ html[data-theme="arctic"] .faq-list button span {
 
 html[data-theme="arctic"] .faq-list article > p {
   color: var(--text-soft);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 html[data-theme="arctic"] .faq-list article.open {
@@ -342,12 +342,12 @@ html[data-theme="arctic"] .contact-page-cta h2 em {
 
 html[data-theme="arctic"] .contact-page-cta p {
   color: #e0e4f3;
-  font-size: 0.75rem;
+  font-size: 0.83rem;
 }
 
 html[data-theme="arctic"] .contact-page-cta > aside span {
   color: #e0e4f3;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 html[data-theme="arctic"] .world-map-card {
@@ -587,7 +587,7 @@ html.theme-transitioning *::after {
 }
 
 .theme-toggle-label {
-  font-size: 0.57rem;
+  font-size: 0.63rem;
   font-weight: 600;
 }
 
@@ -734,9 +734,7 @@ html.theme-transitioning *::after {
 .card-art-link > *,
 .interest-card img,
 .practice-card .skill-project-visual {
-  transition:
-    transform 280ms ease,
-    filter 280ms ease;
+  transition: transform 280ms ease;
 }
 
 .project-card:hover img,
@@ -745,7 +743,6 @@ html.theme-transitioning *::after {
 .interest-card:hover img,
 .practice-card:hover .skill-project-visual {
   transform: scale(1.025);
-  filter: brightness(1.04);
 }
 
 .footer-main {

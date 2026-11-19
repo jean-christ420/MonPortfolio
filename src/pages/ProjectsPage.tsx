@@ -485,7 +485,7 @@ function ProjectImagePreview({
 
 function ScreenshotProjectDetail({ project }: { project: Project }) {
   const screenshots = project.screenshots ?? []
-  const [cover, ...galleryScreenshots] = screenshots
+  const galleryScreenshots = screenshots.slice(1)
   const [previewIndex, setPreviewIndex] = useState<number | null>(null)
 
   useEffect(() => {
@@ -545,32 +545,13 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
               ))}
             </div>
           </div>
-          {project.slug === "erp-institutionnel" ? (
+          {screenshots.length > 0 ? (
             <ScreenshotSlideshow
               projectTitle={project.title}
-              screenshots={screenshots.slice(0, 4)}
+              screenshots={screenshots}
               isPreviewOpen={previewIndex !== null}
               onPreview={setPreviewIndex}
             />
-          ) : cover ? (
-            <figure className="myshop-detail-visual">
-              <button
-                className="project-image-preview-trigger"
-                type="button"
-                aria-label={`Agrandir « ${cover.title} »`}
-                onClick={() => setPreviewIndex(0)}
-              >
-                <img
-                  src={cover.src}
-                  alt={`${project.title} — ${cover.title}`}
-                />
-              </button>
-              <figcaption>
-                {project.slug === "myshop"
-                  ? "Boutique en ligne · Mobilier & décoration"
-                  : cover.title}
-              </figcaption>
-            </figure>
           ) : null}
         </div>
 

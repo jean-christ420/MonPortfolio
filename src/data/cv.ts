@@ -84,25 +84,15 @@ export const education = [
   },
 ]
 
-export const cvSkills = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "PHP",
-  "SQL",
-  "Laravel",
-  "Vue.js",
-  "Nuxt",
-  "NestJS",
-  "MySQL",
-  "REST API",
-  "MVC",
-  "WordPress",
-  "Git",
-  "GitHub",
-  "Composer",
-  "cPanel",
-  "Figma",
+export const cvDomains = [
+  "Développement Frontend",
+  "Développement Backend",
+  "Développement Fullstack",
+  "Conception d'API REST",
+  "Gestion de bases de données",
+  "Administration de CMS",
+  "Gestion de versions",
+  "Conception UI/UX",
 ]
 
 export const cvTechnologies = [
@@ -125,7 +115,10 @@ export const cvTechnologies = [
 
 export const cvCertifications: string[][] = []
 
-export const languages = [["Français", "Langue de ce portfolio"]] as const
+export const languages: readonly [string, string?][] = [
+  ["Français", "Langue de ce portfolio"],
+  ["Anglais"],
+]
 
 export const softSkills = [
   ["◎", "Résolution d'incidents"],

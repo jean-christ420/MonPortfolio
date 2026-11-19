@@ -57,7 +57,7 @@
 
 .about-hero-copy .eyebrow {
   margin-bottom: 14px;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .about-hero h1 {
@@ -70,7 +70,7 @@
 .about-hero-copy > p {
   max-width: 600px;
   margin-top: 18px;
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   line-height: 1.62;
 }
 
@@ -88,7 +88,7 @@
   right: 110px;
   color: #f3e3dd;
   font-family: "Comic Sans MS", cursive;
-  font-size: 0.9rem;
+  font-size: 0.99rem;
   line-height: 1.4;
   transform: rotate(-8deg);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
@@ -120,7 +120,7 @@
 
 .about-identity-card span {
   color: var(--cyan-400);
-  font-size: 0.69rem;
+  font-size: 0.76rem;
 }
 
 .about-identity-card span:last-child {
@@ -130,7 +130,7 @@
 .about-identity-card b {
   margin-left: 8px;
   color: #d5e2e6;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 500;
 }
 
@@ -199,7 +199,7 @@
 .about-stats small {
   margin-top: 6px;
   color: #8ea4ae;
-  font-size: 0.55rem;
+  font-size: 0.61rem;
 }
 
 .about-timeline {
@@ -248,7 +248,7 @@
   align-items: center;
   gap: 9px;
   color: #53cee8;
-  font-size: 0.61rem;
+  font-size: 0.67rem;
   font-weight: 600;
 }
 
@@ -267,7 +267,7 @@
 
 .about-section-heading > p {
   max-width: 560px;
-  font-size: 0.76rem;
+  font-size: 0.84rem;
   line-height: 1.58;
 }
 
@@ -330,18 +330,18 @@
 
 .timeline-event > span {
   color: var(--cyan-400);
-  font-size: 0.75rem;
+  font-size: 0.83rem;
   font-weight: 700;
 }
 
 .timeline-event h3 {
   margin-top: 7px;
-  font-size: 0.9rem;
+  font-size: 0.99rem;
 }
 
 .timeline-event p {
   margin-top: 8px;
-  font-size: 0.63rem;
+  font-size: 0.69rem;
   line-height: 1.5;
 }
 
@@ -450,12 +450,12 @@
 
 .value-card h3 {
   margin-top: 17px;
-  font-size: 0.83rem;
+  font-size: 0.91rem;
 }
 
 .value-card p {
   margin-top: 8px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -539,13 +539,13 @@
 }
 
 .interest-card b {
-  font-size: 0.7rem;
+  font-size: 0.77rem;
 }
 
 .interest-card small {
   margin-top: 6px;
   color: #8aa0a9;
-  font-size: 0.53rem;
+  font-size: 0.58rem;
   line-height: 1.4;
 }
 
@@ -666,7 +666,7 @@
 .about-cta p {
   max-width: 590px;
   margin-top: 14px;
-  font-size: 0.74rem;
+  font-size: 0.81rem;
 }
 
 .about-cta .hero-actions {
@@ -687,7 +687,7 @@
 
 .about-cta-list span {
   color: #c9d8de;
-  font-size: 0.69rem;
+  font-size: 0.76rem;
 }
 
 @media (max-width: 1000px) {
