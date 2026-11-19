@@ -1789,6 +1789,19 @@
   background: #f8f6f1;
 }
 
+.art-erp {
+  padding: 0;
+  display: block;
+  background: #f4f7fa;
+}
+
+.art-erp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .art-myshop.art-large {
   padding: 0;
 }
@@ -1886,6 +1899,219 @@
   height: auto;
 }
 
+.project-image-preview-trigger {
+  width: 100%;
+  padding: 0;
+  display: block;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  text-align: left;
+}
+
+.project-image-preview-trigger:focus-visible {
+  outline: 2px solid var(--cyan-400);
+  outline-offset: -3px;
+}
+
+.project-screenshot-slideshow .project-slideshow-viewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1600 / 768;
+  background: #f8f6f1;
+}
+
+.project-screenshot-slideshow .project-slideshow-viewport > .project-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: block;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.025);
+  transition:
+    opacity 650ms ease,
+    transform 700ms ease;
+}
+
+.project-screenshot-slideshow .project-slide > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-screenshot-slideshow .project-slideshow-viewport > .project-slide-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.project-slideshow-controls {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(3, 18, 27, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.project-slideshow-controls button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  color: #f7fbfd;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.project-slideshow-controls .project-slideshow-dot {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.project-slideshow-controls .project-slideshow-dot[aria-pressed="true"] {
+  background: var(--cyan-400);
+  box-shadow: 0 0 10px rgba(0, 232, 223, 0.65);
+}
+
+.project-slideshow-controls button:focus-visible {
+  outline: 2px solid var(--cyan-400);
+  outline-offset: 2px;
+}
+
+.myshop-detail-visual.project-screenshot-slideshow figcaption {
+  position: static;
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  color: var(--text);
+  border: 0;
+  border-top: 1px solid var(--projects-line);
+  border-radius: 0;
+  background: rgba(3, 18, 27, 0.92);
+  backdrop-filter: none;
+  font-size: 0.76rem;
+}
+
+.project-screenshot-slideshow figcaption span {
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.project-image-preview {
+  width: min(94vw, 1500px);
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  padding: 0;
+  overflow: hidden;
+  color: var(--text);
+  border: 1px solid var(--projects-line);
+  border-radius: var(--radius-lg);
+  background: #04131f;
+}
+
+.project-image-preview::backdrop {
+  background: rgba(0, 7, 13, 0.86);
+  backdrop-filter: blur(7px);
+}
+
+.project-image-preview-content {
+  max-height: calc(100vh - 24px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.project-image-preview-header,
+.project-image-preview-footer {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.project-image-preview-header {
+  border-bottom: 1px solid var(--projects-line);
+}
+
+.project-image-preview-header h2 {
+  font-size: 1rem;
+}
+
+.project-image-preview-header p,
+.project-image-preview-footer p {
+  margin-top: 4px;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+}
+
+.project-image-preview-header > button,
+.project-image-preview-stage > button {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  border: 1px solid var(--projects-line);
+  border-radius: 50%;
+  background: rgba(7, 35, 49, 0.94);
+  cursor: pointer;
+}
+
+.project-image-preview-stage {
+  min-height: 0;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 12px;
+  background: #020b12;
+}
+
+.project-image-preview-stage > img {
+  width: 100%;
+  height: min(70vh, 900px);
+  object-fit: contain;
+}
+
+.project-image-preview-footer {
+  border-top: 1px solid var(--projects-line);
+}
+
+.project-image-preview-footer > span {
+  flex: 0 0 auto;
+  color: var(--cyan-400);
+  font-size: 0.75rem;
+}
+
+.project-image-preview button:focus-visible {
+  outline: 2px solid var(--cyan-400);
+  outline-offset: 3px;
+}
+
 .myshop-detail-visual figcaption {
   position: absolute;
   left: 18px;
@@ -1975,7 +2201,7 @@
   grid-column: span 2;
 }
 
-.myshop-gallery-item a {
+.myshop-gallery-item .project-image-preview-trigger {
   display: block;
   overflow: hidden;
   background: #f8f6f1;
@@ -1988,8 +2214,8 @@
   transition: transform 240ms ease;
 }
 
-.myshop-gallery-item a:hover img,
-.myshop-gallery-item a:focus-visible img {
+.myshop-gallery-item .project-image-preview-trigger:hover img,
+.myshop-gallery-item .project-image-preview-trigger:focus-visible img {
   transform: scale(1.02);
 }
 
@@ -2365,5 +2591,32 @@
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+
+  .project-screenshot-slideshow .project-slideshow-viewport > .project-slide {
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .project-image-preview-header,
+  .project-image-preview-footer {
+    padding: 12px;
+  }
+
+  .project-image-preview-stage {
+    padding: 8px;
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    gap: 5px;
+  }
+
+  .project-image-preview-stage > button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .project-image-preview-stage > img {
+    height: min(62vh, 700px);
   }
 }

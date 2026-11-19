@@ -27,6 +27,9 @@
 }
 
 .about-hero-photo {
+  inset: 0 0 0 auto;
+  width: min(50%, 900px);
+  height: 100%;
   object-fit: cover;
   object-position: 68% 42%;
   filter: saturate(0.82) contrast(1.07) brightness(0.8);
@@ -717,6 +720,9 @@
   }
 
   .about-hero-photo {
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-position: 62% center;
   }
 

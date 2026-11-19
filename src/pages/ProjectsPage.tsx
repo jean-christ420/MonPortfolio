@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import { DashboardScreen, ProductArtwork } from "../components/ProjectArtwork"
 import TechBadge from "../components/TechBadge"
@@ -6,6 +6,7 @@ import {
   projectCategories,
   projects,
   type Project,
+  type ProjectScreenshot,
 } from "../data/projects"
 import "../projects.css"
 
@@ -286,9 +287,235 @@ function ProjectsCta() {
   )
 }
 
-function MyShopProjectDetail({ project }: { project: Project }) {
+function ScreenshotSlideshow({
+  projectTitle,
+  screenshots,
+  isPreviewOpen,
+  onPreview,
+}: {
+  projectTitle: string
+  screenshots: ProjectScreenshot[]
+  isPreviewOpen: boolean
+  onPreview: (index: number) => void
+}) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const slideCount = screenshots.length
+  const activeScreenshot = screenshots[activeIndex]
+
+  useEffect(() => {
+    if (
+      isPaused ||
+      isPreviewOpen ||
+      slideCount < 2 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % slideCount)
+    }, 5000)
+    return () => window.clearInterval(intervalId)
+  }, [isPaused, isPreviewOpen, slideCount])
+
+  return (
+    <figure
+      className="myshop-detail-visual project-screenshot-slideshow"
+      role="group"
+      aria-label={`Captures du projet ${projectTitle}`}
+      aria-roledescription="diaporama"
+    >
+      <div className="project-slideshow-viewport">
+        {screenshots.map((screenshot, index) => (
+          <button
+            className={`project-slide${
+              index === activeIndex ? " project-slide-active" : ""
+            }`}
+            type="button"
+            aria-label={`Agrandir « ${screenshot.title} »`}
+            aria-hidden={index !== activeIndex}
+            tabIndex={index === activeIndex ? 0 : -1}
+            onClick={() => onPreview(index)}
+            key={screenshot.title}
+          >
+            <img
+              src={screenshot.src}
+              alt={`${projectTitle} — ${screenshot.title}`}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </button>
+        ))}
+        <div className="project-slideshow-controls">
+          <button
+            type="button"
+            aria-label="Capture précédente"
+            onClick={() =>
+              setActiveIndex((index) => (index - 1 + slideCount) % slideCount)
+            }
+          >
+            ‹
+          </button>
+          {screenshots.map((screenshot, index) => (
+            <button
+              type="button"
+              className="project-slideshow-dot"
+              aria-label={`Afficher la capture « ${screenshot.title} »`}
+              aria-pressed={index === activeIndex}
+              onClick={() => setActiveIndex(index)}
+              key={screenshot.title}
+            />
+          ))}
+          <button
+            type="button"
+            aria-label="Capture suivante"
+            onClick={() => setActiveIndex((index) => (index + 1) % slideCount)}
+          >
+            ›
+          </button>
+          <button
+            type="button"
+            aria-label={
+              isPaused ? "Reprendre le diaporama" : "Mettre le diaporama en pause"
+            }
+            aria-pressed={isPaused}
+            onClick={() => setIsPaused((paused) => !paused)}
+          >
+            {isPaused ? "▶" : "Ⅱ"}
+          </button>
+        </div>
+      </div>
+      <figcaption>
+        <b>{activeScreenshot.title}</b>
+        <span>{activeScreenshot.description}</span>
+      </figcaption>
+    </figure>
+  )
+}
+
+function ProjectImagePreview({
+  projectTitle,
+  screenshots,
+  activeIndex,
+  onSelect,
+  onClose,
+}: {
+  projectTitle: string
+  screenshots: ProjectScreenshot[]
+  activeIndex: number | null
+  onSelect: (index: number) => void
+  onClose: () => void
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const screenshot =
+    activeIndex === null ? null : screenshots[activeIndex]
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (activeIndex !== null && !dialog.open) {
+      dialog.showModal()
+    } else if (activeIndex === null && dialog.open) {
+      dialog.close()
+    }
+  }, [activeIndex])
+
+  const screenshotCount = screenshots.length
+
+  return (
+    <dialog
+      className="project-image-preview"
+      ref={dialogRef}
+      aria-labelledby="project-image-preview-title"
+      onCancel={onClose}
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose()
+      }}
+    >
+      {screenshot && activeIndex !== null && (
+        <div className="project-image-preview-content">
+          <header className="project-image-preview-header">
+            <div>
+              <h2 id="project-image-preview-title">{projectTitle}</h2>
+              <p>{screenshot.title}</p>
+            </div>
+            <button
+              type="button"
+              aria-label="Fermer l'aperçu"
+              onClick={onClose}
+            >
+              ×
+            </button>
+          </header>
+          <div className="project-image-preview-stage">
+            <button
+              type="button"
+              aria-label="Capture précédente"
+              onClick={() =>
+                onSelect((activeIndex - 1 + screenshotCount) % screenshotCount)
+              }
+            >
+              ‹
+            </button>
+            <img
+              src={screenshot.src}
+              alt={`${projectTitle} — ${screenshot.title}`}
+            />
+            <button
+              type="button"
+              aria-label="Capture suivante"
+              onClick={() => onSelect((activeIndex + 1) % screenshotCount)}
+            >
+              ›
+            </button>
+          </div>
+          <footer className="project-image-preview-footer">
+            <p>{screenshot.description}</p>
+            <span>
+              {activeIndex + 1} / {screenshotCount}
+            </span>
+          </footer>
+        </div>
+      )}
+    </dialog>
+  )
+}
+
+function ScreenshotProjectDetail({ project }: { project: Project }) {
   const screenshots = project.screenshots ?? []
   const [cover, ...galleryScreenshots] = screenshots
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (previewIndex === null) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setPreviewIndex(null)
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault()
+        setPreviewIndex(
+          (index) =>
+            index === null
+              ? index
+              : (index - 1 + screenshots.length) % screenshots.length,
+        )
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault()
+        setPreviewIndex(
+          (index) =>
+            index === null
+              ? index
+              : (index + 1) % screenshots.length,
+        )
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [previewIndex, screenshots.length])
 
   return (
     <main className="projects-page myshop-project-page">
@@ -318,12 +545,33 @@ function MyShopProjectDetail({ project }: { project: Project }) {
               ))}
             </div>
           </div>
-          {cover && (
+          {project.slug === "erp-institutionnel" ? (
+            <ScreenshotSlideshow
+              projectTitle={project.title}
+              screenshots={screenshots.slice(0, 4)}
+              isPreviewOpen={previewIndex !== null}
+              onPreview={setPreviewIndex}
+            />
+          ) : cover ? (
             <figure className="myshop-detail-visual">
-              <img src={cover.src} alt="Accueil de la boutique MyShop" />
-              <figcaption>Boutique en ligne · Mobilier & décoration</figcaption>
+              <button
+                className="project-image-preview-trigger"
+                type="button"
+                aria-label={`Agrandir « ${cover.title} »`}
+                onClick={() => setPreviewIndex(0)}
+              >
+                <img
+                  src={cover.src}
+                  alt={`${project.title} — ${cover.title}`}
+                />
+              </button>
+              <figcaption>
+                {project.slug === "myshop"
+                  ? "Boutique en ligne · Mobilier & décoration"
+                  : cover.title}
+              </figcaption>
             </figure>
-          )}
+          ) : null}
         </div>
 
         <section
@@ -331,7 +579,11 @@ function MyShopProjectDetail({ project }: { project: Project }) {
           aria-labelledby="myshop-features-title"
         >
           <div className="eyebrow">Une expérience complète</div>
-          <h2 id="myshop-features-title">Boutique et administration</h2>
+          <h2 id="myshop-features-title">
+            {project.slug === "myshop"
+              ? "Boutique et administration"
+              : "Fonctionnalités principales"}
+          </h2>
           <ul>
             {project.features?.map((feature) => (
               <li key={feature}>{feature}</li>
@@ -349,30 +601,33 @@ function MyShopProjectDetail({ project }: { project: Project }) {
               <h2 id="myshop-gallery-title">Aperçu du projet</h2>
             </div>
             <p>
-              Découvrez les principaux écrans de la boutique et de son espace
-              d’administration.
+              {project.slug === "myshop"
+                ? "Découvrez les principaux écrans de la boutique et de son espace d’administration."
+                : "Découvrez les principaux écrans de l’application de gestion."}
             </p>
           </div>
           <div className="myshop-gallery-grid">
             {galleryScreenshots.map((screenshot, index) => (
               <figure
                 className={`myshop-gallery-item${
-                  index === 0 ? " myshop-gallery-cover" : ""
+                  project.slug === "myshop" && index === 0
+                    ? " myshop-gallery-cover"
+                    : ""
                 }`}
                 key={screenshot.title}
               >
-                <a
-                  href={screenshot.src}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Ouvrir la capture « ${screenshot.title} » en taille réelle`}
+                <button
+                  className="project-image-preview-trigger"
+                  type="button"
+                  aria-label={`Agrandir « ${screenshot.title} »`}
+                  onClick={() => setPreviewIndex(index + 1)}
                 >
                   <img
                     src={screenshot.src}
-                    alt={`${screenshot.title} de MyShop`}
+                    alt={`${project.title} — ${screenshot.title}`}
                     loading={index === 0 ? "eager" : "lazy"}
                   />
-                </a>
+                </button>
                 <figcaption>
                   <b>{screenshot.title}</b>
                   <span>{screenshot.description}</span>
@@ -385,6 +640,13 @@ function MyShopProjectDetail({ project }: { project: Project }) {
           Retour aux projets
         </Button>
       </section>
+      <ProjectImagePreview
+        projectTitle={project.title}
+        screenshots={screenshots}
+        activeIndex={previewIndex}
+        onSelect={setPreviewIndex}
+        onClose={() => setPreviewIndex(null)}
+      />
       <Footer />
     </main>
   )
@@ -479,7 +741,7 @@ export default function ProjectsPage() {
 export function ProjectDetailPage({ slug }: { slug: string }) {
   const project = projects.find((item) => item.slug === slug)
   if (!project) return null
-  if (project.screenshots) return <MyShopProjectDetail project={project} />
+  if (project.screenshots) return <ScreenshotProjectDetail project={project} />
   return (
     <main className="projects-page">
       <Header active="Projets" />

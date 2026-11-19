@@ -5,6 +5,14 @@ import myshopCart from "../imports/myshop/04-panier.png"
 import myshopAdministration from "../imports/myshop/05-administration.png"
 import myshopProducts from "../imports/myshop/06-gestion-produits.png"
 import myshopStock from "../imports/myshop/07-gestion-stocks.png"
+import erpDashboard from "../imports/erp-institutionnel/01-tableau-de-bord.png"
+import erpRequests from "../imports/erp-institutionnel/02-besoins-demandes.png"
+import erpAuthorizations from "../imports/erp-institutionnel/03-autorisations-achat.png"
+import erpConsultations from "../imports/erp-institutionnel/04-consultations-offres.png"
+import erpOrders from "../imports/erp-institutionnel/05-bons-commande.png"
+import erpDocumentTypes from "../imports/erp-institutionnel/06-selection-type-document.png"
+import erpInvoices from "../imports/erp-institutionnel/07-factures-reglements.png"
+import erpAllocations from "../imports/erp-institutionnel/08-dotations-affectations.png"
 
 export type ProjectCategory =
   | "Application e-commerce"
@@ -81,6 +89,51 @@ export const myshopScreenshots: ProjectScreenshot[] = [
   },
 ]
 
+export const erpScreenshots: ProjectScreenshot[] = [
+  {
+    src: erpDashboard,
+    title: "Tableau de bord",
+    description:
+      "Vue d’ensemble des demandes, commandes, livraisons et du budget.",
+  },
+  {
+    src: erpRequests,
+    title: "Besoins et demandes d'achat",
+    description: "Suivi des expressions de besoins et des demandes d'achat.",
+  },
+  {
+    src: erpAuthorizations,
+    title: "Autorisations d'achat",
+    description:
+      "Suivi des demandes d'autorisation et des pièces justificatives.",
+  },
+  {
+    src: erpConsultations,
+    title: "Consultations et offres",
+    description: "Comparaison des offres fournisseurs et suivi des consultations.",
+  },
+  {
+    src: erpOrders,
+    title: "Bons de commande",
+    description: "Préparation, émission et suivi des commandes fournisseurs.",
+  },
+  {
+    src: erpDocumentTypes,
+    title: "Sélection du type de document",
+    description: "Choix du document à enregistrer depuis une demande.",
+  },
+  {
+    src: erpInvoices,
+    title: "Factures et règlements",
+    description: "Contrôle des factures et suivi des demandes de règlement.",
+  },
+  {
+    src: erpAllocations,
+    title: "Dotations et affectations",
+    description: "Préparation des dotations et suivi des affectations.",
+  },
+]
+
 export const projects: Project[] = [
   {
     slug: "myshop",
@@ -110,16 +163,26 @@ export const projects: Project[] = [
     artwork: "myshop",
   },
   {
-    slug: "post-it",
-    title: "Post It",
+    slug: "erp-institutionnel",
+    title: "ERP institutionnel — Gestion des achats et des ressources",
     category: "Web App",
-    status: "Terminé",
+    status: "Prototype",
     description:
-      "Application web de prise de notes inspirée des Post-it, développée avec Vue.js.",
-    technologies: ["Vue.js"],
+      "ERP institutionnel est une application de gestion destinée à centraliser et optimiser les processus administratifs, financiers et logistiques d'une institution. Elle propose une interface unifiée pour le suivi du cycle des achats, depuis l'expression des besoins jusqu'au règlement des factures, ainsi que la gestion des dotations et des ressources.",
+    role: "Conception et développement Frontend",
+    features: [
+      "Gestion des besoins et demandes d'achat.",
+      "Autorisations et consultations fournisseurs.",
+      "Suivi des bons de commande.",
+      "Gestion des factures et règlements.",
+      "Dotations et affectations des équipements.",
+      "Tableaux de bord et suivi budgétaire.",
+    ],
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+    screenshots: erpScreenshots,
     featured: false,
-    href: "/projets/post-it",
-    artwork: "taskflow",
+    href: "/projets/erp-institutionnel",
+    artwork: "erp",
   },
   {
     slug: "procureflow",

@@ -1,4 +1,4 @@
-import { myshopScreenshots, type Project } from "../data/projects"
+import { erpScreenshots, myshopScreenshots, type Project } from "../data/projects"
 import "../projects.css"
 
 export function DashboardScreen({ compact = false }: { compact?: boolean }) {
@@ -64,6 +64,14 @@ export function ProductArtwork({
     )
   }
 
+  if (type === "erp") {
+    return (
+      <div className={`product-art art-erp ${large ? "art-large" : ""}`}>
+        <img src={erpScreenshots[0].src} alt="" />
+      </div>
+    )
+  }
+
   if (type === "taskflow") {
     return (
       <div className="product-art art-taskflow">
@@ -101,34 +109,6 @@ export function ProductArtwork({
             <i />
             <i />
             <i />
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (type === "erp") {
-    return (
-      <div className="product-art art-erp">
-        <div className="erp-side">
-          <b>MyShop</b>
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="erp-content">
-          <b>Catalogue et stock</b>
-          <div className="erp-stats">
-            <div><b>Accès</b><i /></div>
-            <div><b>Produits</b><i /></div>
-            <div><b>Stock</b><i /></div>
-          </div>
-          <div className="erp-table">
-            <span />
-            <span />
-            <span />
-            <span />
           </div>
         </div>
       </div>

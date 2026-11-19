@@ -39,7 +39,7 @@ export const skills: Skill[] = [
     name: "Vue.js",
     mark: "vue",
     category: "Frontend",
-    description: "Développement d'interfaces web, notamment pour Post It.",
+    description: "Développement d'interfaces web pour des applications de gestion.",
     color: "green",
   },
   {

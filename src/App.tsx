@@ -11,7 +11,7 @@ interface IconProps {
   size?: number
 }
 
-const featuredProjectSlugs = ["myshop", "post-it", "archi-smart"]
+const featuredProjectSlugs = ["myshop", "erp-institutionnel", "archi-smart"]
 const projects = featuredProjectSlugs.map((slug) => {
   const project = portfolioProjects.find((item) => item.slug === slug)
   if (!project) throw new Error(`Projet vedette introuvable : ${slug}`)

@@ -1,6 +1,7 @@
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import { aboutStats, interests, timeline, values } from "../data/about"
 import { profile } from "../data/profile"
+import aboutHeroImage from "../imports/about/development-infrastructure.jpg"
 import "../about.css"
 
 function AboutIcon({ name }: { name: string }) {
@@ -86,6 +87,12 @@ function AboutHero() {
   return (
     <section className="about-hero">
       <Header active="À propos" />
+      <img
+        className="about-hero-photo"
+        src={aboutHeroImage}
+        alt=""
+        aria-hidden="true"
+      />
       <div className="about-hero-shade" />
       <div className="shell about-hero-grid">
         <div className="about-hero-copy">
