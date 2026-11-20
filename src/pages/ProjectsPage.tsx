@@ -53,8 +53,8 @@ function ProjectHero() {
             </div>
             <div>
               <span>◇</span>
-              <b>{projects.filter((project) => project.status === "Terminé").length}</b>
-              <small>Projets terminés</small>
+              <b>{projects.filter((project) => project.status === "Fonctionnel").length}</b>
+              <small>Projets fonctionnels</small>
             </div>
             <div>
               <span>✓</span>
@@ -86,14 +86,10 @@ function ProjectHero() {
 
 function ProjectFilters({
   active,
-  query,
   onCategory,
-  onQuery,
 }: {
   active: string
-  query: string
   onCategory: (category: string) => void
-  onQuery: (query: string) => void
 }) {
   return (
     <section className="project-controls" aria-label="Filtrer les projets">
@@ -111,19 +107,6 @@ function ProjectFilters({
             </button>
           ))}
         </div>
-        <label className="project-search">
-          <span className="sr-only">Rechercher un projet</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="10.5" cy="10.5" r="6.5" />
-            <path d="m16 16 5 5" />
-          </svg>
-          <input
-            type="search"
-            placeholder="Rechercher un projet..."
-            value={query}
-            onChange={(event) => onQuery(event.target.value)}
-          />
-        </label>
       </div>
     </section>
   )
@@ -287,112 +270,6 @@ function ProjectsCta() {
   )
 }
 
-function ScreenshotSlideshow({
-  projectTitle,
-  screenshots,
-  isPreviewOpen,
-  onPreview,
-}: {
-  projectTitle: string
-  screenshots: ProjectScreenshot[]
-  isPreviewOpen: boolean
-  onPreview: (index: number) => void
-}) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const slideCount = screenshots.length
-  const activeScreenshot = screenshots[activeIndex]
-
-  useEffect(() => {
-    if (
-      isPaused ||
-      isPreviewOpen ||
-      slideCount < 2 ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return
-    }
-
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % slideCount)
-    }, 5000)
-    return () => window.clearInterval(intervalId)
-  }, [isPaused, isPreviewOpen, slideCount])
-
-  return (
-    <figure
-      className="myshop-detail-visual project-screenshot-slideshow"
-      role="group"
-      aria-label={`Captures du projet ${projectTitle}`}
-      aria-roledescription="diaporama"
-    >
-      <div className="project-slideshow-viewport">
-        {screenshots.map((screenshot, index) => (
-          <button
-            className={`project-slide${
-              index === activeIndex ? " project-slide-active" : ""
-            }`}
-            type="button"
-            aria-label={`Agrandir « ${screenshot.title} »`}
-            aria-hidden={index !== activeIndex}
-            tabIndex={index === activeIndex ? 0 : -1}
-            onClick={() => onPreview(index)}
-            key={screenshot.title}
-          >
-            <img
-              src={screenshot.src}
-              alt={`${projectTitle} — ${screenshot.title}`}
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          </button>
-        ))}
-        <div className="project-slideshow-controls">
-          <button
-            type="button"
-            aria-label="Capture précédente"
-            onClick={() =>
-              setActiveIndex((index) => (index - 1 + slideCount) % slideCount)
-            }
-          >
-            ‹
-          </button>
-          {screenshots.map((screenshot, index) => (
-            <button
-              type="button"
-              className="project-slideshow-dot"
-              aria-label={`Afficher la capture « ${screenshot.title} »`}
-              aria-pressed={index === activeIndex}
-              onClick={() => setActiveIndex(index)}
-              key={screenshot.title}
-            />
-          ))}
-          <button
-            type="button"
-            aria-label="Capture suivante"
-            onClick={() => setActiveIndex((index) => (index + 1) % slideCount)}
-          >
-            ›
-          </button>
-          <button
-            type="button"
-            aria-label={
-              isPaused ? "Reprendre le diaporama" : "Mettre le diaporama en pause"
-            }
-            aria-pressed={isPaused}
-            onClick={() => setIsPaused((paused) => !paused)}
-          >
-            {isPaused ? "▶" : "Ⅱ"}
-          </button>
-        </div>
-      </div>
-      <figcaption>
-        <b>{activeScreenshot.title}</b>
-        <span>{activeScreenshot.description}</span>
-      </figcaption>
-    </figure>
-  )
-}
-
 function ProjectImagePreview({
   projectTitle,
   screenshots,
@@ -485,7 +362,7 @@ function ProjectImagePreview({
 
 function ScreenshotProjectDetail({ project }: { project: Project }) {
   const screenshots = project.screenshots ?? []
-  const galleryScreenshots = screenshots.slice(1)
+  const galleryScreenshots = screenshots
   const [previewIndex, setPreviewIndex] = useState<number | null>(null)
 
   useEffect(() => {
@@ -539,20 +416,17 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
                 <b>{project.status}</b>
               </div>
             </div>
+            {project.detailNotes?.map((note) => (
+              <p className="myshop-detail-note" key={note}>
+                {note}
+              </p>
+            ))}
             <div className="tech-list">
               {project.technologies.map((technology) => (
                 <TechBadge key={technology}>{technology}</TechBadge>
               ))}
             </div>
           </div>
-          {screenshots.length > 0 ? (
-            <ScreenshotSlideshow
-              projectTitle={project.title}
-              screenshots={screenshots}
-              isPreviewOpen={previewIndex !== null}
-              onPreview={setPreviewIndex}
-            />
-          ) : null}
         </div>
 
         <section
@@ -562,14 +436,33 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
           <div className="eyebrow">Une expérience complète</div>
           <h2 id="myshop-features-title">
             {project.slug === "myshop"
-              ? "Boutique et administration"
-              : "Fonctionnalités principales"}
+              ? "Fonctionnalités et points techniques"
+              : project.slug === "erp-institutionnel"
+                ? "Fonctionnalités du prototype"
+                : project.slug === "archi-smart"
+                  ? "Modules en cours de développement"
+                  : "Fonctionnalités principales"}
           </h2>
-          <ul>
-            {project.features?.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
+          {project.featureGroups ? (
+            <div className="myshop-feature-groups">
+              {project.featureGroups.map((group) => (
+                <div className="myshop-feature-group" key={group.title}>
+                  <h3>{group.title}</h3>
+                  <ul>
+                    {group.items.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ul>
+              {project.features?.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          )}
         </section>
 
         <section
@@ -591,9 +484,7 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
             {galleryScreenshots.map((screenshot, index) => (
               <figure
                 className={`myshop-gallery-item${
-                  project.slug === "myshop" && index === 0
-                    ? " myshop-gallery-cover"
-                    : ""
+                  index === 0 ? " myshop-gallery-cover" : ""
                 }`}
                 key={screenshot.title}
               >
@@ -635,58 +526,23 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
 
 export default function ProjectsPage() {
   const [category, setCategory] = useState<string>("Tous")
-  const [query, setQuery] = useState("")
   const featured = projects.find((project) => project.featured)!
 
   const visibleProjects = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase("fr")
-
     return projects.filter((project) => {
       if (project.featured) return false
 
-      const matchesCategory =
-        category === "Tous" || project.category === category
-      const haystack = [
-        project.title,
-        project.description,
-        project.category,
-        ...project.technologies,
-      ]
-        .join(" ")
-        .toLocaleLowerCase("fr")
-
-      return (
-        matchesCategory && (!normalizedQuery || haystack.includes(normalizedQuery))
-      )
+      return category === "Tous" || project.category === category
     })
-  }, [category, query])
+  }, [category])
 
-  const showFeatured = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase("fr")
-    const haystack = [
-      featured.title,
-      featured.description,
-      featured.category,
-      ...featured.technologies,
-    ]
-      .join(" ")
-      .toLocaleLowerCase("fr")
-
-    return (
-      (category === "Tous" || featured.category === category) &&
-      (!normalizedQuery || haystack.includes(normalizedQuery))
-    )
-  }, [category, featured, query])
+  const showFeatured =
+    category === "Tous" || featured.category === category
 
   return (
     <main className="projects-page">
       <ProjectHero />
-      <ProjectFilters
-        active={category}
-        query={query}
-        onCategory={setCategory}
-        onQuery={setQuery}
-      />
+      <ProjectFilters active={category} onCategory={setCategory} />
       {showFeatured && <FeaturedProject project={featured} />}
       <section className="all-projects shell">
         <div className="all-projects-heading">
@@ -708,7 +564,7 @@ export default function ProjectsPage() {
           </div>
         ) : showFeatured ? null : (
           <div className="empty-projects">
-            Aucun projet ne correspond à votre recherche.
+            Aucun projet n'est disponible dans cette catégorie.
           </div>
         )}
       </section>

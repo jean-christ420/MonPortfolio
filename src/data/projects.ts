@@ -22,10 +22,6 @@ import archiWorkflows from "../imports/archi-smart/05-workflows-validation.png"
 export type ProjectCategory =
   | "Application e-commerce"
   | "Web App"
-  | "Mobile"
-  | "UI/UX"
-  | "Systèmes"
-  | "Autres"
 
 export type ProjectScreenshot = {
   src: string
@@ -33,14 +29,21 @@ export type ProjectScreenshot = {
   description: string
 }
 
+export type ProjectFeatureGroup = {
+  title: string
+  items: string[]
+}
+
 export type Project = {
   slug: string
   title: string
   category: ProjectCategory
-  status: "Terminé" | "Prototype" | "En cours"
+  status: "Fonctionnel" | "Prototype" | "En cours"
   description: string
   role?: string
   features?: string[]
+  featureGroups?: ProjectFeatureGroup[]
+  detailNotes?: string[]
   technologies: string[]
   screenshots?: ProjectScreenshot[]
   featured: boolean
@@ -78,7 +81,7 @@ export const myshopScreenshots: ProjectScreenshot[] = [
   {
     src: myshopAdministration,
     title: "Administration",
-    description: "Tableau de bord des ventes et indicateurs de la boutique.",
+    description: "Tableau de bord de démonstration avec des indicateurs illustratifs.",
   },
   {
     src: myshopProducts,
@@ -175,16 +178,41 @@ export const projects: Project[] = [
     slug: "myshop",
     title: "MyShop",
     category: "Application e-commerce",
-    status: "Terminé",
+    status: "Fonctionnel",
     description:
       "Plateforme e-commerce dédiée à la vente de meubles et d’articles de décoration. Elle associe une boutique en ligne à un espace d’administration pour gérer les produits, les variantes, les stocks et les commandes.",
     role: "Développeur Full-Stack",
-    features: [
-      "Catalogue de produits et fiches détaillées.",
-      "Panier et gestion des comptes clients.",
-      "Tableau de bord d’administration.",
-      "Gestion des produits, variantes et stocks.",
-      "Suivi des commandes et des opérations commerciales.",
+    featureGroups: [
+      {
+        title: "Boutique et espace client",
+        items: [
+          "Catalogue de produits et navigation par catégories.",
+          "Fiches produits avec variantes, prix et disponibilité.",
+          "Panier avec gestion des quantités.",
+          "Comptes clients et authentification.",
+        ],
+      },
+      {
+        title: "Administration",
+        items: [
+          "Tableau de bord de gestion.",
+          "Gestion des produits, variantes et prix.",
+          "Gestion des stocks et des mouvements.",
+          "Gestion des commandes.",
+        ],
+      },
+      {
+        title: "Points techniques",
+        items: [
+          "Traitement transactionnel des commandes.",
+          "Réservation du stock avec verrouillage en base de données.",
+          "Gestion des rôles et des autorisations.",
+        ],
+      },
+    ],
+    detailNotes: [
+      "Le paiement en ligne n’est pas encore intégré.",
+      "Les indicateurs du tableau de bord sont des données de démonstration et ne représentent pas des résultats commerciaux réels.",
     ],
     technologies: [
       "Laravel 12",
@@ -239,7 +267,7 @@ export const projects: Project[] = [
     status: "En cours",
     description:
       "Archi_Smart est une plateforme de gestion destinée aux cabinets d'architecture. Elle centralise leurs activités administratives et métier à travers différents modules dédiés à la gestion des clients, des collaborateurs, des documents et des processus de validation. Je participe à son développement en collaboration avec d'autres développeurs, au sein de l'équipe Frontend, notamment sur la conception des interfaces utilisateur et leur intégration avec les services Backend.",
-    role: "Développeur Frontend au sein d'une équipe de développement",
+    role: "Développeur Frontend au sein d'une équipe de développement, en collaboration avec d'autres développeurs",
     features: [
       "Tableau de bord et suivi des activités.",
       "Gestion des clients et collaborateurs.",
@@ -248,6 +276,9 @@ export const projects: Project[] = [
       "Gestion documentaire.",
       "Workflows de validation.",
       "Seuils, alertes et notifications.",
+    ],
+    detailNotes: [
+      "Les modules sont en cours de développement ; leur disponibilité et leur connexion aux services Backend varient selon l’avancement du projet.",
     ],
     technologies: [
       "Nuxt 4",
@@ -269,8 +300,4 @@ export const projectCategories = [
   "Tous",
   "Application e-commerce",
   "Web App",
-  "Mobile",
-  "UI/UX",
-  "Systèmes",
-  "Autres",
 ] as const

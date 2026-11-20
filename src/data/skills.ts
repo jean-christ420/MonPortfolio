@@ -36,6 +36,34 @@ export const skills: Skill[] = [
     color: "yellow",
   },
   {
+    name: "React",
+    mark: "react",
+    category: "Frontend",
+    description: "Développement d'interfaces React pour MyShop et le prototype ERP.",
+    color: "cyan",
+  },
+  {
+    name: "TypeScript",
+    mark: "TS",
+    category: "Frontend",
+    description: "Typage des interfaces et fonctionnalités des projets web.",
+    color: "blue",
+  },
+  {
+    name: "Tailwind CSS",
+    mark: "tailwind",
+    category: "Frontend",
+    description: "Mise en forme des interfaces de MyShop et du prototype ERP.",
+    color: "cyan",
+  },
+  {
+    name: "Inertia.js",
+    mark: "I",
+    category: "Frontend",
+    description: "Connexion de l'interface React au backend Laravel de MyShop.",
+    color: "red",
+  },
+  {
     name: "Vue.js",
     mark: "vue",
     category: "Frontend",
@@ -92,6 +120,13 @@ export const skills: Skill[] = [
     color: "blue",
   },
   {
+    name: "PostgreSQL",
+    mark: "PG",
+    category: "Bases de données",
+    description: "Base de données de la stack d'Archi_Smart.",
+    color: "blue",
+  },
+  {
     name: "WordPress",
     mark: "W",
     category: "Outils",
@@ -111,6 +146,13 @@ export const skills: Skill[] = [
     category: "Outils",
     description: "Hébergement et suivi de dépôts de code.",
     color: "white",
+  },
+  {
+    name: "Vite",
+    mark: "V",
+    category: "Outils",
+    description: "Outil de développement et de build utilisé dans le prototype ERP.",
+    color: "violet",
   },
 ]
 

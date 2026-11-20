@@ -18,14 +18,14 @@ export const timeline = [
     period: "Novembre 2023 – février 2024",
     title: "Stage chez HL IMPEX",
     description:
-      "Développement web avec Laravel, administration d'un site WordPress, maintenance et support.",
+      "Développement de fonctionnalités web avec Laravel, administration d'un site WordPress et interventions de maintenance et de support technique.",
     icon: "code",
   },
   {
     period: "Juin – décembre 2024",
     title: "Stage à l'Assemblée nationale",
     description:
-      "Contribution aux applications internes, amélioration des outils numériques et accompagnement des utilisateurs.",
+      "Contribution au développement et à la maintenance d'applications internes, assistance aux utilisateurs et participation à l'amélioration des outils numériques.",
     icon: "team",
   },
   {
@@ -39,14 +39,14 @@ export const timeline = [
     period: "Depuis septembre 2025",
     title: "Développeur web freelance",
     description:
-      "Activité indépendante de conception et de développement de solutions web.",
+      "Conception et développement de solutions web répondant à des besoins spécifiques.",
     icon: "code",
   },
   {
     period: "Stage en cours",
     title: "Stage développeur web chez CIS Info",
     description:
-      "Contribution frontend à Archi_Smart et participation à la modernisation de Smart_Courriel.",
+      "Contribution Frontend au projet Archi_Smart et participation à la modernisation de Smart_Courriel, en collaboration avec l'équipe de développement.",
     icon: "code",
   },
 ]

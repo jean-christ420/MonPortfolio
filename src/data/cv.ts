@@ -99,12 +99,18 @@ export const cvTechnologies = [
   ["HTML5", "5"],
   ["CSS3", "#"],
   ["JavaScript", "JS"],
+  ["React", "R"],
+  ["TypeScript", "TS"],
+  ["Tailwind CSS", "TW"],
   ["PHP", "PHP"],
   ["Laravel", "◇"],
+  ["Inertia.js", "I"],
   ["Vue.js", "V"],
   ["Nuxt", "N"],
   ["MySQL", "my"],
+  ["PostgreSQL", "PG"],
   ["NestJS", "N"],
+  ["Vite", "V"],
   ["Git", "◆"],
   ["GitHub", "GH"],
   ["WordPress", "W"],
@@ -116,7 +122,7 @@ export const cvTechnologies = [
 export const cvCertifications: string[][] = []
 
 export const languages: readonly [string, string?][] = [
-  ["Français", "Langue de ce portfolio"],
+  ["Français"],
   ["Anglais"],
 ]
 

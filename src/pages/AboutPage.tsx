@@ -105,10 +105,11 @@ function AboutHero() {
             des <em>utilisateurs</em>
           </h1>
           <p>
-            Je travaille sur le développement web, les applications métier et
-            l'évolution d'outils numériques. Mon parcours comprend des
-            expériences en entreprise, dans le support aux utilisateurs et des
-            projets réalisés avec Laravel, Vue.js et Nuxt.
+            Je suis développeur web, avec un intérêt particulier pour les
+            applications métier et la digitalisation des processus. Mon
+            parcours m'a amené à contribuer au développement d'applications, à
+            la maintenance informatique et à l'assistance aux utilisateurs dans
+            différents environnements professionnels.
           </p>
           <div className="hero-actions">
             <Button href="/projets">

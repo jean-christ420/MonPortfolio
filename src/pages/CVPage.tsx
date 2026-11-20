@@ -251,6 +251,7 @@ function ComplementaryExperiencesSection() {
   return (
     <section
       className="experience-archive shell"
+      hidden
       aria-labelledby="experience-archive-title"
     >
       <div className="experience-archive-heading">
@@ -344,7 +345,7 @@ function MainCVContent() {
 function EducationSection() {
   return (
     <section className="cv-education shell">
-      <CVSectionTitle number="04">Formation académique</CVSectionTitle>
+      <CVSectionTitle number="03">Formation académique</CVSectionTitle>
       <div className="education-grid">
         {education.map((item) => (
           <article key={`${item.period}-${item.title}`}>
@@ -368,7 +369,7 @@ function EducationSection() {
 function SkillsSection() {
   return (
     <section className="cv-skills shell">
-      <CVSectionTitle number="05">Compétences clés</CVSectionTitle>
+      <CVSectionTitle number="04">Compétences clés</CVSectionTitle>
       <div className="cv-skills-grid">
         <div className="cv-skill-domains">
           <h3>
@@ -404,7 +405,7 @@ function LanguagesAndSoftSkills() {
   return (
     <section className="cv-bottom-skills shell">
       <div className="cv-languages">
-        <CVSectionTitle number="06">Langues</CVSectionTitle>
+        <CVSectionTitle number="05">Langues</CVSectionTitle>
         <div>
           {languages.map(([language, level]) => (
             <article key={language}>
@@ -418,7 +419,7 @@ function LanguagesAndSoftSkills() {
         </div>
       </div>
       <div className="cv-soft-skills">
-        <CVSectionTitle number="07">Soft skills</CVSectionTitle>
+        <CVSectionTitle number="06">Soft skills</CVSectionTitle>
         <div>
           {softSkills.map(([mark, skill]) => (
             <article key={skill}>

@@ -1049,24 +1049,6 @@ html[data-theme="arctic"] .filter-list button:focus-visible {
   border-color: var(--accent-primary);
 }
 
-html[data-theme="arctic"] .project-search {
-  border-color: var(--theme-line);
-  background: rgba(255, 255, 255, 0.88);
-}
-
-html[data-theme="arctic"] .project-search svg {
-  stroke: var(--text-muted);
-}
-
-html[data-theme="arctic"] .project-search input::placeholder {
-  color: var(--text-muted);
-}
-
-html[data-theme="arctic"] .project-search:focus-within {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(85, 70, 232, 0.12);
-}
-
 html[data-theme="arctic"] :is(.code-button, .code-button-disabled) {
   color: var(--text-soft);
   border-color: var(--theme-line);

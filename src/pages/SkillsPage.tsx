@@ -318,7 +318,7 @@ function TechnologySection() {
         <SectionIntro
           label="STACK"
           title="Technologies & outils"
-          description="Les technologies que j'utilise régulièrement pour concevoir, développer et déployer des solutions."
+          description="Les technologies et outils mobilisés dans les projets présentés, regroupés par domaine d'usage."
         />
         <div className="technology-filters">
           {categories.map((item) => (
