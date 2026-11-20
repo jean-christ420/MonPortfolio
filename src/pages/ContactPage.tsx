@@ -1,22 +1,48 @@
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { Button, Footer, Header, Icon, Wave } from "../App"
 import {
   collaborationModes,
+  contactFormFields,
+  contactFormLimits,
   contactInfo,
   contactSubjects,
   faqItems,
+  validateContactField,
+  type ContactFormField,
+  type ContactFormValues,
 } from "../data/contact"
 import { profile } from "../data/profile"
 import "../contact.css"
 
-type FormValues = {
-  name: string
-  email: string
-  subject: string
-  message: string
+type FormErrors = Partial<Record<ContactFormField, string>>
+type ContactApiResponse = {
+  ok: boolean
+  message?: string
+  errors?: FormErrors
 }
 
-type FormErrors = Partial<Record<keyof FormValues, string>>
+function parseContactApiResponse(value: unknown): ContactApiResponse | null {
+  if (typeof value !== "object" || value === null) return null
+
+  const record = value as Record<string, unknown>
+  if (typeof record.ok !== "boolean") return null
+
+  const result: ContactApiResponse = { ok: record.ok }
+  if (typeof record.message === "string") result.message = record.message
+
+  if (typeof record.errors === "object" && record.errors !== null) {
+    const rawErrors = record.errors as Record<string, unknown>
+    const errors: FormErrors = {}
+    for (const field of contactFormFields) {
+      if (typeof rawErrors[field] === "string") {
+        errors[field] = rawErrors[field]
+      }
+    }
+    result.errors = errors
+  }
+
+  return result
+}
 
 function ContactIcon({ name }: { name: string }) {
   const paths: Record<string, React.ReactNode> = {
@@ -163,21 +189,38 @@ function ContactHero() {
 }
 
 function CopyButton({ value }: { value: string }) {
-  const [copied, setCopied] = useState(false)
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
+    "idle",
+  )
   const copy = async () => {
-    await navigator.clipboard.writeText(value)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1500)
+    try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error("Clipboard API unavailable")
+      }
+      await navigator.clipboard.writeText(value)
+      setCopyState("copied")
+    } catch {
+      setCopyState("error")
+    }
+    window.setTimeout(() => setCopyState("idle"), 2000)
   }
+
+  const label =
+    copyState === "copied"
+      ? "Copié"
+      : copyState === "error"
+        ? "Copie impossible"
+        : "Copier"
+
   return (
     <button
       className="contact-copy"
       onClick={copy}
       type="button"
-      aria-label={`Copier ${value}`}
-      title={copied ? "Copié" : "Copier"}
+      aria-label={`${label} ${value}`}
+      title={label}
     >
-      {copied ? "✓" : "▣"}
+      {copyState === "copied" ? "✓" : copyState === "error" ? "!" : "▣"}
     </button>
   )
 }
@@ -214,62 +257,97 @@ function ContactInformation() {
   )
 }
 
-function validateField(name: keyof FormValues, value: string) {
-  if (!value.trim()) {
-    const labels: Record<keyof FormValues, string> = {
-      name: "Le nom est obligatoire.",
-      email: "L'adresse e-mail est obligatoire.",
-      subject: "Choisissez un sujet.",
-      message: "Le message est obligatoire.",
-    }
-    return labels[name]
-  }
-  if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-    return "Saisissez une adresse e-mail valide."
-  }
-  return ""
-}
-
 function ContactForm() {
-  const [values, setValues] = useState<FormValues>({
+  const [values, setValues] = useState<ContactFormValues>({
     name: "",
     email: "",
     subject: "",
     message: "",
   })
   const [errors, setErrors] = useState<FormErrors>({})
-  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle")
+  const [website, setWebsite] = useState("")
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle")
+  const [statusMessage, setStatusMessage] = useState("")
+  const submissionInProgress = useRef(false)
 
-  const update = (name: keyof FormValues, value: string) => {
+  const update = (name: ContactFormField, value: string) => {
     setValues((current) => ({ ...current, [name]: value }))
     if (errors[name]) {
       setErrors((current) => ({
         ...current,
-        [name]: validateField(name, value),
+        [name]: validateContactField(name, value),
       }))
     }
-    if (status === "error") setStatus("idle")
+    if (status === "error" || status === "success") {
+      setStatus("idle")
+      setStatusMessage("")
+    }
   }
 
-  const blur = (name: keyof FormValues) => {
+  const blur = (name: ContactFormField) => {
     setErrors((current) => ({
       ...current,
-      [name]: validateField(name, values[name]),
+      [name]: validateContactField(name, values[name]),
     }))
   }
 
-  const submit = (event: FormEvent) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (submissionInProgress.current) return
+
     const nextErrors = Object.fromEntries(
-      (Object.keys(values) as (keyof FormValues)[])
-        .map((name) => [name, validateField(name, values[name])] as const)
+      contactFormFields
+        .map((name) => [
+          name,
+          validateContactField(name, values[name]),
+        ] as const)
         .filter(([, error]) => Boolean(error)),
     ) as FormErrors
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length) return
 
+    submissionInProgress.current = true
     setStatus("sending")
-    window.setTimeout(() => setStatus("error"), 700)
+    setStatusMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, website }),
+      })
+      const apiResult = parseContactApiResponse(await response.json())
+
+      if (!apiResult) {
+        throw new Error("Réponse inattendue du service de contact.")
+      }
+      if (!response.ok || !apiResult.ok) {
+        setErrors(apiResult.errors ?? {})
+        setStatus("error")
+        setStatusMessage(
+          apiResult.message ??
+            "L'envoi a échoué. Réessayez ou contactez-moi directement.",
+        )
+        return
+      }
+
+      setValues({ name: "", email: "", subject: "", message: "" })
+      setWebsite("")
+      setErrors({})
+      setStatus("success")
+      setStatusMessage(
+        apiResult.message ?? "Votre message a bien été envoyé.",
+      )
+    } catch {
+      setStatus("error")
+      setStatusMessage(
+        "Impossible d'envoyer votre message pour le moment. Réessayez ou contactez-moi directement.",
+      )
+    } finally {
+      submissionInProgress.current = false
+    }
   }
 
   return (
@@ -295,6 +373,8 @@ function ContactForm() {
                 onBlur={() => blur("name")}
                 placeholder="Votre nom"
                 autoComplete="name"
+                maxLength={contactFormLimits.name}
+                required
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby="name-error"
               />
@@ -315,6 +395,8 @@ function ContactForm() {
                 onBlur={() => blur("email")}
                 placeholder="votre@email.com"
                 autoComplete="email"
+                maxLength={contactFormLimits.email}
+                required
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby="email-error"
               />
@@ -332,6 +414,7 @@ function ContactForm() {
               value={values.subject}
               onChange={(event) => update("subject", event.target.value)}
               onBlur={() => blur("subject")}
+              required
               aria-invalid={Boolean(errors.subject)}
               aria-describedby="subject-error"
             >
@@ -360,30 +443,55 @@ function ContactForm() {
               onBlur={() => blur("message")}
               placeholder="Décrivez votre projet, vos besoins ou toute autre question..."
               rows={5}
+              minLength={10}
+              maxLength={contactFormLimits.message}
+              required
               aria-invalid={Boolean(errors.message)}
               aria-describedby="message-error"
             />
           </div>
           <small id="message-error">{errors.message}</small>
         </label>
+        <div className="contact-honeypot" aria-hidden="true">
+          <label htmlFor="contact-website">Site web</label>
+          <input
+            id="contact-website"
+            name="website"
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
         <button
           className="contact-submit"
           type="submit"
           disabled={status === "sending"}
+          aria-busy={status === "sending"}
         >
           <span>
             {status === "sending" ? "Envoi..." : "➤  Envoyer le message"}
           </span>
           <Icon name="arrow" />
         </button>
-        {status === "error" && (
-          <div className="contact-submit-status" role="alert">
-            Le service d'envoi n'est pas encore connecté. Écrivez directement à{" "}
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+        {(status === "success" || status === "error") && (
+          <div
+            className={`contact-submit-status ${status === "success" ? "is-success" : ""}`}
+            role={status === "error" ? "alert" : "status"}
+            aria-live={status === "error" ? "assertive" : "polite"}
+          >
+            {statusMessage}
+            {status === "error" && (
+              <>
+                {" "}
+                Vous pouvez aussi écrire à{" "}
+                <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+              </>
+            )}
           </div>
         )}
         <div className="contact-security">
-          ▣ Le formulaire n'envoie pas encore les informations saisies.
+          ▣ Vos informations servent uniquement à répondre à votre demande.
         </div>
       </form>
     </section>

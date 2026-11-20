@@ -112,13 +112,6 @@ export const skills: Skill[] = [
     description: "Hébergement et suivi de dépôts de code.",
     color: "white",
   },
-  {
-    name: "Figma",
-    mark: "figma",
-    category: "Conception",
-    description: "Prototypage d'interfaces avant leur implémentation.",
-    color: "pink",
-  },
 ]
 
 export const expertise = [

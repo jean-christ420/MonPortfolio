@@ -102,4 +102,65 @@ export const contactSubjects = [
   "Collaboration",
   "Opportunité professionnelle",
   "Conseil ou échange",
-]
+] as const
+
+export const contactFormFields = [
+  "name",
+  "email",
+  "subject",
+  "message",
+] as const
+
+export type ContactFormField = (typeof contactFormFields)[number]
+export type ContactFormValues = Record<ContactFormField, string>
+
+export const contactFormLimits = {
+  name: 100,
+  email: 254,
+  message: 5000,
+} as const
+
+export function validateContactField(
+  field: ContactFormField,
+  value: string,
+): string {
+  const trimmedValue = value.trim()
+
+  if (!trimmedValue) {
+    const requiredMessages: Record<ContactFormField, string> = {
+      name: "Le nom est obligatoire.",
+      email: "L'adresse e-mail est obligatoire.",
+      subject: "Choisissez un sujet.",
+      message: "Le message est obligatoire.",
+    }
+    return requiredMessages[field]
+  }
+
+  if (field === "name" && trimmedValue.length < 2) {
+    return "Le nom doit contenir au moins 2 caractères."
+  }
+  if (field === "name" && value.length > contactFormLimits.name) {
+    return `Le nom ne peut pas dépasser ${contactFormLimits.name} caractères.`
+  }
+  if (
+    field === "email" &&
+    (value.length > contactFormLimits.email ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue))
+  ) {
+    return "Saisissez une adresse e-mail valide."
+  }
+  if (
+    field === "subject" &&
+    !contactSubjects.some((subject) => subject === trimmedValue)
+  ) {
+    return "Choisissez un sujet proposé dans la liste."
+  }
+  if (field === "message" && trimmedValue.length < 10) {
+    return "Le message doit contenir au moins 10 caractères."
+  }
+  if (field === "message" && value.length > contactFormLimits.message) {
+    return `Le message ne peut pas dépasser ${contactFormLimits.message} caractères.`
+  }
+
+  return ""
+}

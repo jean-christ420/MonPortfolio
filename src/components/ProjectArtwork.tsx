@@ -120,54 +120,10 @@ export function ProductArtwork({
     )
   }
 
-  if (type === "email") {
-    return (
-      <div className="product-art art-email">
-        <div className="email-browser">
-          <div className="email-browser-bar" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <span />
-          </div>
-          <div className="email-site">
-            <div className="email-site-nav">
-              <b>Smart_Courriel</b>
-              <i aria-hidden="true" />
-            </div>
-            <div className="email-site-copy">
-              <small>SMART_COURRIEL</small>
-              <b>Un site repensé, simplement.</b>
-              <i aria-hidden="true" />
-              <span>Découvrir le site</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   if (type === "architecture") {
     return (
       <div className={`product-art art-architecture ${large ? "art-large" : ""}`}>
         <img src={archiSmartScreenshots[0].src} alt="" />
-      </div>
-    )
-  }
-
-  if (type === "futurpro") {
-    return (
-      <div className="product-art art-illustration art-futurpro">
-        <div>
-          <small>PROTOTYPE — FUTURPRO CI</small>
-          <b>Orientation scolaire et professionnelle</b>
-          <i />
-        </div>
-        <span className="illustration-person" aria-hidden="true">
-          <i />
-          <i />
-          <b />
-        </span>
       </div>
     )
   }

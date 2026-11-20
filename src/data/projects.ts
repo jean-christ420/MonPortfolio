@@ -51,8 +51,6 @@ export type Project = {
     | "erp"
     | "taskflow"
     | "procurement"
-    | "futurpro"
-    | "email"
     | "architecture"
 }
 
@@ -233,30 +231,6 @@ export const projects: Project[] = [
     featured: false,
     href: "/projets/procureflow",
     artwork: "procurement",
-  },
-  {
-    slug: "futurpro-ci",
-    title: "FuturPro CI",
-    category: "Web App",
-    status: "Prototype",
-    description:
-      "Prototype de plateforme d'orientation scolaire et professionnelle conçu dans le cadre du hackathon WeCodeS.",
-    technologies: [],
-    featured: false,
-    href: "/projets/futurpro-ci",
-    artwork: "futurpro",
-  },
-  {
-    slug: "smart-courriel",
-    title: "Smart_Courriel",
-    category: "Web App",
-    status: "En cours",
-    description:
-      "Contribution à la modernisation du site Smart_Courriel au sein de CIS Info.",
-    technologies: [],
-    featured: false,
-    href: "/projets/smart-courriel",
-    artwork: "email",
   },
   {
     slug: "archi-smart",

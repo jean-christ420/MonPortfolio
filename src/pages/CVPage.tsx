@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Footer, Header, Icon, Wave } from "../App";
 import {
   cvContact,
@@ -220,6 +221,114 @@ function ExperienceSection() {
   );
 }
 
+const complementaryExperienceFolders = [
+  {
+    id: "professional",
+    title: "Expériences professionnelles",
+    detail: "Emplois, missions et activités hors informatique",
+    prompt:
+      "Ajoutez ici le poste ou l’activité, la structure, la période et vos principales responsabilités.",
+  },
+  {
+    id: "engagements",
+    title: "Engagements & responsabilités",
+    detail: "Engagements associatifs, collectifs ou personnels",
+    prompt:
+      "Ajoutez ici le contexte de votre engagement, la période et les responsabilités exercées.",
+  },
+  {
+    id: "activities",
+    title: "Activités complémentaires",
+    detail: "Autres expériences et activités à valoriser",
+    prompt:
+      "Ajoutez ici une activité complémentaire, sa période et les éléments que vous souhaitez mettre en avant.",
+  },
+] as const;
+
+function ComplementaryExperiencesSection() {
+  const [openFolder, setOpenFolder] = useState<string | null>(null);
+
+  return (
+    <section
+      className="experience-archive shell"
+      aria-labelledby="experience-archive-title"
+    >
+      <div className="experience-archive-heading">
+        <div>
+          <CVSectionTitle number="03">
+            <span id="experience-archive-title">Parcours hors numérique</span>
+          </CVSectionTitle>
+          <p>
+            Une archive pour retrouver et présenter les expériences qui
+            complètent mon parcours informatique.
+          </p>
+        </div>
+        <span className="experience-archive-stamp" aria-hidden="true">
+          ARCHIVES
+        </span>
+      </div>
+      <div className="experience-archive-folders">
+        {complementaryExperienceFolders.map((folder, index) => {
+          const isOpen = openFolder === folder.id;
+          const panelId = `experience-folder-${folder.id}`;
+
+          return (
+            <article
+              className={`experience-archive-folder${isOpen ? " is-open" : ""}`}
+              key={folder.id}
+              style={{ "--folder-index": index } as React.CSSProperties}
+            >
+              <button
+                type="button"
+                className="experience-folder-trigger"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() =>
+                  setOpenFolder((current) =>
+                    current === folder.id ? null : folder.id,
+                  )
+                }
+              >
+                <span className="experience-folder-art" aria-hidden="true">
+                  <svg viewBox="0 0 48 40" fill="none">
+                    <path d="M4 10.5A3.5 3.5 0 0 1 7.5 7h11l4 4h18A3.5 3.5 0 0 1 44 14.5v17a3.5 3.5 0 0 1-3.5 3.5h-33A3.5 3.5 0 0 1 4 31.5v-21Z" />
+                    <path d="M5 15h38l-3.7 16.4A3.5 3.5 0 0 1 35.9 34H8.1a3.5 3.5 0 0 1-3.4-4.3L5 15Z" />
+                  </svg>
+                </span>
+                <span className="experience-folder-copy">
+                  <b>{folder.title}</b>
+                  <small>{folder.detail}</small>
+                </span>
+                <span className="experience-folder-action">
+                  {isOpen ? "Refermer" : "Ouvrir le dossier"}
+                </span>
+                <span
+                  className="experience-folder-chevron"
+                  aria-hidden="true"
+                />
+              </button>
+              <div
+                className="experience-folder-panel"
+                id={panelId}
+                aria-hidden={!isOpen}
+                inert={!isOpen}
+              >
+                <div className="experience-folder-panel-inner">
+                  <div className="experience-folder-paper">
+                    <span>FICHE À COMPLÉTER</span>
+                    <p>{folder.prompt}</p>
+                    <small>Aucune expérience renseignée pour le moment.</small>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function MainCVContent() {
   return (
     <section className="cv-main shell">
@@ -235,7 +344,7 @@ function MainCVContent() {
 function EducationSection() {
   return (
     <section className="cv-education shell">
-      <CVSectionTitle number="03">Formation académique</CVSectionTitle>
+      <CVSectionTitle number="04">Formation académique</CVSectionTitle>
       <div className="education-grid">
         {education.map((item) => (
           <article key={`${item.period}-${item.title}`}>
@@ -259,7 +368,7 @@ function EducationSection() {
 function SkillsSection() {
   return (
     <section className="cv-skills shell">
-      <CVSectionTitle number="04">Compétences clés</CVSectionTitle>
+      <CVSectionTitle number="05">Compétences clés</CVSectionTitle>
       <div className="cv-skills-grid">
         <div className="cv-skill-domains">
           <h3>
@@ -295,7 +404,7 @@ function LanguagesAndSoftSkills() {
   return (
     <section className="cv-bottom-skills shell">
       <div className="cv-languages">
-        <CVSectionTitle number="05">Langues</CVSectionTitle>
+        <CVSectionTitle number="06">Langues</CVSectionTitle>
         <div>
           {languages.map(([language, level]) => (
             <article key={language}>
@@ -309,7 +418,7 @@ function LanguagesAndSoftSkills() {
         </div>
       </div>
       <div className="cv-soft-skills">
-        <CVSectionTitle number="06">Soft skills</CVSectionTitle>
+        <CVSectionTitle number="07">Soft skills</CVSectionTitle>
         <div>
           {softSkills.map(([mark, skill]) => (
             <article key={skill}>
@@ -362,6 +471,7 @@ export default function CVPage() {
       <CVHero />
       <CVStats />
       <MainCVContent />
+      <ComplementaryExperiencesSection />
       <EducationSection />
       <SkillsSection />
       <LanguagesAndSoftSkills />

@@ -562,6 +562,21 @@
   color: var(--cyan-400);
 }
 
+.contact-submit-status.is-success {
+  color: #b6f3d0;
+  border-color: rgba(68, 210, 142, 0.34);
+  background: rgba(22, 111, 72, 0.17);
+}
+
+.contact-honeypot {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .contact-security {
   margin-top: 14px;
   color: #697f89;
