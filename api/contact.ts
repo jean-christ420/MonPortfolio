@@ -3,7 +3,7 @@ import {
   validateContactField,
   type ContactFormField,
   type ContactFormValues,
-} from "../src/data/contact"
+} from "../src/data/contact.js"
 
 const maxBodyBytes = 32 * 1024
 const rateLimitWindowMs = 10 * 60 * 1000
