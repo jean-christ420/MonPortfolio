@@ -1948,7 +1948,11 @@
   line-height: 1.5;
 }
 
-.myshop-detail > .button {
+.myshop-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
   margin-top: 35px;
 }
 

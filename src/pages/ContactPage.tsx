@@ -11,7 +11,7 @@ import {
   type ContactFormField,
   type ContactFormValues,
 } from "../data/contact"
-import { profile } from "../data/profile"
+import { gmailComposeUrl, profile } from "../data/profile"
 import "../contact.css"
 
 type FormErrors = Partial<Record<ContactFormField, string>>
@@ -174,7 +174,11 @@ function ContactHero() {
             Présentez votre besoin, vos objectifs ou une question : nous
             pouvons en discuter simplement.
           </p>
-          <a href={`mailto:${profile.email}`}>
+          <a
+            href={gmailComposeUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             Écrire un message <span aria-hidden="true">↗</span>
           </a>
           <div className="contact-message-foot">
@@ -240,7 +244,13 @@ function ContactInformation() {
             <div>
               <b>{item.label}</b>
               {item.href ? (
-                <a href={item.href}>{item.value}</a>
+                <a
+                  href={item.href}
+                  target={item.type === "email" ? "_blank" : undefined}
+                  rel={item.type === "email" ? "noreferrer" : undefined}
+                >
+                  {item.value}
+                </a>
               ) : (
                 <span>{item.value}</span>
               )}
@@ -351,7 +361,7 @@ function ContactForm() {
   }
 
   return (
-    <section className="contact-form-card">
+    <section className="contact-form-card" id="contact-form">
       <div className="contact-card-label">ENVOYEZ-MOI UN MESSAGE</div>
       <h2>Parlons de votre projet</h2>
       <p>
@@ -485,7 +495,9 @@ function ContactForm() {
               <>
                 {" "}
                 Vous pouvez aussi écrire à{" "}
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+                <a href={gmailComposeUrl} target="_blank" rel="noreferrer">
+                  {profile.email}
+                </a>.
               </>
             )}
           </div>
@@ -660,7 +672,7 @@ function ContactCTA() {
         <p>
           Contactez-moi pour présenter votre projet ou poser une question.
         </p>
-        <Button href={`mailto:${profile.email}`}>
+        <Button href={gmailComposeUrl}>
           Me contacter <Icon name="arrow" />
         </Button>
       </div>

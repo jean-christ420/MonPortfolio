@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link, NavLink } from "react-router"
 import ThemeToggle from "./components/ThemeToggle"
 import { ProductArtwork } from "./components/ProjectArtwork"
-import { profile } from "./data/profile"
+import { gmailComposeUrl, profile } from "./data/profile"
 import { projects as portfolioProjects } from "./data/projects"
 import { skills as portfolioSkills } from "./data/skills"
 
@@ -115,8 +115,9 @@ export function Button({
 }) {
   const isInternalLink = href.startsWith("/") || href.startsWith("#")
   const isDownloadLink = href.toLowerCase().endsWith(".pdf")
+  const isGmailComposeLink = href.startsWith("https://mail.google.com/mail/")
 
-  if (isInternalLink) {
+  if (isInternalLink && !isDownloadLink) {
     return (
       <Link
         className={`button ${secondary ? "button-secondary" : ""}`}
@@ -131,8 +132,8 @@ export function Button({
     <a
       className={`button ${secondary ? "button-secondary" : ""}`}
       href={href}
-      target={isDownloadLink ? "_blank" : undefined}
-      rel={isDownloadLink ? "noreferrer" : undefined}
+      target={isGmailComposeLink ? "_blank" : undefined}
+      rel={isGmailComposeLink ? "noreferrer" : undefined}
       download={isDownloadLink ? true : undefined}
     >
       {children}
@@ -181,7 +182,7 @@ export function Header({ active = "Accueil" }: { active?: string }) {
       </nav>
       <div className="header-actions-global">
         <ThemeToggle />
-        <Link className="header-contact" to="/contact">
+        <Link className="header-contact" to="/contact#contact-form">
           <Icon name="mail" size={15} />
           Me contacter
         </Link>
@@ -258,10 +259,10 @@ function Hero() {
             usage quotidien et livrer des outils plus lisibles et plus utiles.
           </p>
           <div className="hero-actions">
-            <Button href="/projets">
+            <Button href="/projets#project-list">
               Voir mes projets <Icon name="arrow" />
             </Button>
-            <Button href="/cv" secondary>
+            <Button href="/cv#cv-experiences" secondary>
               Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
@@ -272,7 +273,7 @@ function Hero() {
             <a href={profile.linkedin} aria-label="LinkedIn">
               <Icon name="linkedin" />
             </a>
-            <a href={`mailto:${profile.email}`} aria-label="E-mail">
+            <a href={gmailComposeUrl} aria-label="E-mail" target="_blank" rel="noreferrer">
               <Icon name="mail" />
             </a>
           </div>
@@ -347,7 +348,7 @@ function About() {
           solutions numériques, de la compréhension du besoin à la réalisation
           d'interfaces et de fonctionnalités utiles.
         </p>
-        <Button href="/a-propos" secondary>
+        <Button href="/a-propos#about-timeline" secondary>
           En savoir plus sur moi <Icon name="arrow" />
         </Button>
       </div>
@@ -379,7 +380,7 @@ function Projects() {
               façon de travailler.
             </p>
           </div>
-          <Link className="text-link" to="/projets">
+          <Link className="text-link" to="/projets#project-list">
             Voir tous les projets <Icon name="arrow" />
           </Link>
         </div>
@@ -431,7 +432,7 @@ function Skills() {
               développer et déployer des solutions complètes.
             </p>
           </div>
-          <Link className="text-link" to="/competences">
+          <Link className="text-link" to="/competences#technologies">
             Voir toutes les compétences <Icon name="arrow" />
           </Link>
         </div>
@@ -520,10 +521,10 @@ function Contact() {
           Écrivez-moi pour en discuter.
         </p>
         <div className="hero-actions">
-          <Button href={`mailto:${profile.email}`}>
+          <Button href={gmailComposeUrl}>
             Me contacter <Icon name="arrow" />
           </Button>
-          <Button href="/cv" secondary>
+          <Button href="/cv#cv-experiences" secondary>
             Voir mon parcours <Icon name="arrow" />
           </Button>
         </div>
@@ -559,7 +560,7 @@ export function Footer() {
           <a href={profile.linkedin} aria-label="LinkedIn">
             <Icon name="linkedin" />
           </a>
-          <a href={`mailto:${profile.email}`} aria-label="E-mail">
+          <a href={gmailComposeUrl} aria-label="E-mail" target="_blank" rel="noreferrer">
             <Icon name="mail" />
           </a>
         </div>

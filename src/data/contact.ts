@@ -1,11 +1,11 @@
-import { profile } from "./profile"
+import { gmailComposeUrl, profile } from "./profile"
 
 export const contactInfo = [
   {
     type: "email",
     label: "Email",
     value: profile.email,
-    href: `mailto:${profile.email}`,
+    href: gmailComposeUrl,
     icon: "mail",
     color: "pink",
   },

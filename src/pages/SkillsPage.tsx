@@ -174,10 +174,10 @@ function SkillsHero() {
             développement web, applications métier et intégration de services.
           </p>
           <div className="hero-actions">
-            <Button href="/projets">
+            <Button href="/projets#project-list">
               Voir mes projets <Icon name="arrow" />
             </Button>
-            <Button href="/cv" secondary>
+            <Button href="/cv#cv-experiences" secondary>
               Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
@@ -468,10 +468,10 @@ function SkillsCta() {
             Vous avez une question sur mes compétences ou un projet ? Écrivez-moi.
           </p>
           <div className="hero-actions">
-            <Button href="/contact">
+            <Button href="/contact#contact-form">
               Me contacter <Icon name="arrow" />
             </Button>
-            <Button href="/projets" secondary>
+            <Button href="/projets#project-list" secondary>
               Voir mes projets
             </Button>
           </div>

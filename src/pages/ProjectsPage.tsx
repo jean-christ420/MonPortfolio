@@ -247,10 +247,10 @@ function ProjectsCta() {
             Vous avez un projet ou une question ? Écrivez-moi pour en discuter.
           </p>
           <div className="hero-actions">
-            <Button href="/contact">
+            <Button href="/contact#contact-form">
               Me contacter <Icon name="arrow" />
             </Button>
-            <Button href="/cv" secondary>
+            <Button href="/cv#cv-experiences" secondary>
               Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
@@ -362,7 +362,6 @@ function ProjectImagePreview({
 
 function ScreenshotProjectDetail({ project }: { project: Project }) {
   const screenshots = project.screenshots ?? []
-  const galleryScreenshots = screenshots
   const [previewIndex, setPreviewIndex] = useState<number | null>(null)
 
   useEffect(() => {
@@ -397,8 +396,8 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
   return (
     <main className="projects-page myshop-project-page">
       <Header active="Projets" />
-      <section className="myshop-detail shell">
-        <a className="myshop-back-link" href="/projets">
+      <section className="myshop-detail shell" id="project-detail">
+        <a className="myshop-back-link" href="/projets#project-list">
           ← Tous les projets
         </a>
         <div className="myshop-detail-hero">
@@ -481,7 +480,7 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
             </p>
           </div>
           <div className="myshop-gallery-grid">
-            {galleryScreenshots.map((screenshot, index) => (
+            {screenshots.map((screenshot, index) => (
               <figure
                 className={`myshop-gallery-item${
                   index === 0 ? " myshop-gallery-cover" : ""
@@ -492,7 +491,7 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
                   className="project-image-preview-trigger"
                   type="button"
                   aria-label={`Agrandir « ${screenshot.title} »`}
-                  onClick={() => setPreviewIndex(index + 1)}
+                  onClick={() => setPreviewIndex(index)}
                 >
                   <img
                     src={screenshot.src}
@@ -508,9 +507,21 @@ function ScreenshotProjectDetail({ project }: { project: Project }) {
             ))}
           </div>
         </section>
-        <Button href="/projets" secondary>
-          Retour aux projets
-        </Button>
+        <div className="myshop-detail-actions">
+          <Button href="/projets#project-list" secondary>
+            Retour aux projets
+          </Button>
+          {project.codeHref && (
+            <a
+              className="code-button"
+              href={project.codeHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Voir le dépôt GitHub <Icon name="github" />
+            </a>
+          )}
+        </div>
       </section>
       <ProjectImagePreview
         projectTitle={project.title}
@@ -544,7 +555,7 @@ export default function ProjectsPage() {
       <ProjectHero />
       <ProjectFilters active={category} onCategory={setCategory} />
       {showFeatured && <FeaturedProject project={featured} />}
-      <section className="all-projects shell">
+      <section className="all-projects shell" id="project-list">
         <div className="all-projects-heading">
           <div>
             <div className="eyebrow">Mes réalisations</div>
@@ -582,7 +593,7 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
   return (
     <main className="projects-page">
       <Header active="Projets" />
-      <section className="project-detail shell">
+      <section className="project-detail shell" id="project-detail">
         <div className="eyebrow">{project.category}</div>
         <h1>{project.title}</h1>
         <p className="project-status">{project.status}</p>
@@ -599,7 +610,7 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
             <TechBadge key={technology}>{technology}</TechBadge>
           ))}
         </div>
-        <Button href="/projets">Retour aux projets</Button>
+        <Button href="/projets#project-list">Retour aux projets</Button>
       </section>
       <Footer />
     </main>

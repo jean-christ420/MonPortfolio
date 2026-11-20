@@ -112,10 +112,10 @@ function AboutHero() {
             différents environnements professionnels.
           </p>
           <div className="hero-actions">
-            <Button href="/projets">
+            <Button href="/projets#project-list">
               Voir mes projets <Icon name="arrow" />
             </Button>
-            <Button href="/cv" secondary>
+            <Button href="/cv#cv-experiences" secondary>
               Voir mon parcours <Icon name="arrow" />
             </Button>
           </div>
@@ -171,7 +171,7 @@ function TimelineIcon({ name }: { name: string }) {
 
 function AboutTimeline() {
   return (
-    <section className="about-timeline">
+    <section className="about-timeline" id="about-timeline">
       <div className="timeline-shade" />
       <div className="shell timeline-inner">
         <div className="about-section-heading">
@@ -330,10 +330,10 @@ function AboutCta() {
             Écrivez-moi pour présenter votre projet ou poser une question.
           </p>
           <div className="hero-actions">
-            <Button href="/contact">
+            <Button href="/contact#contact-form">
               Me contacter <Icon name="arrow" />
             </Button>
-            <Button href="/projets" secondary>
+            <Button href="/projets#project-list" secondary>
               Voir mes projets
             </Button>
           </div>

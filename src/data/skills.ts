@@ -186,7 +186,7 @@ export const expertise = [
     color: "orange",
   },
   {
-    title: "Prototypage & collaboration",
+    title: "Prototypage et collaboration",
     icon: "team",
     description:
       "Prototypage d'interfaces et échanges avec les utilisateurs et les équipes.",

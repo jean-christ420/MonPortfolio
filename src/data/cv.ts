@@ -1,10 +1,10 @@
-import { profile } from "./profile"
+import { gmailComposeUrl, profile } from "./profile"
 
 export const cvStats: string[][] = []
 
 export const cvContact = [
   ["⌖", profile.location, null],
-  ["✉", profile.email, `mailto:${profile.email}`],
+  ["✉", profile.email, gmailComposeUrl],
   ["☎", profile.phone, profile.phoneLink],
   ["in", "LinkedIn", profile.linkedin],
   ["gh", "GitHub", profile.github],
@@ -59,8 +59,8 @@ export const experiences = [
     technology: "Laravel · WordPress · cPanel",
     tasks: [
       "Développer des fonctionnalités d'applications web avec Laravel.",
-      "Créer et administrer le site WordPress, son contenu et ses pages.",
-      "Administrer les utilisateurs et les services d'hébergement via cPanel, et contribuer à la maintenance et au support.",
+      "Administrer le site WordPress et ses contenus.",
+      "Contribuer à la maintenance informatique et au support technique.",
     ],
   },
 ]

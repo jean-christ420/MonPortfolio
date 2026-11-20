@@ -211,7 +211,7 @@ export const projects: Project[] = [
       },
     ],
     detailNotes: [
-      "Le paiement en ligne n’est pas encore intégré.",
+      "L’intégration du paiement en ligne est prévue prochainement.",
       "Les indicateurs du tableau de bord sont des données de démonstration et ne représentent pas des résultats commerciaux réels.",
     ],
     technologies: [
@@ -223,7 +223,8 @@ export const projects: Project[] = [
     ],
     screenshots: myshopScreenshots,
     featured: true,
-    href: "/projets/myshop",
+    href: "/projets/myshop#project-detail",
+    codeHref: "https://github.com/jean-christ420/MyShop",
     artwork: "myshop",
   },
   {
@@ -232,8 +233,11 @@ export const projects: Project[] = [
     category: "Web App",
     status: "Prototype",
     description:
-      "ERP institutionnel est une application de gestion destinée à centraliser et optimiser les processus administratifs, financiers et logistiques d'une institution. Elle propose une interface unifiée pour le suivi du cycle des achats, depuis l'expression des besoins jusqu'au règlement des factures, ainsi que la gestion des dotations et des ressources.",
+      "Le prototype ERP institutionnel explore une application de gestion destinée à centraliser les processus administratifs, financiers et logistiques d'une institution. Il présente des écrans pour visualiser le cycle des achats, depuis l'expression des besoins jusqu'au règlement des factures, ainsi que la gestion des dotations et des ressources.",
     role: "Conception et développement Frontend",
+    detailNotes: [
+      "Les écrans présentent un prototype et ne signifient pas que tous les modules sont opérationnels en production.",
+    ],
     features: [
       "Gestion des besoins et demandes d'achat.",
       "Autorisations et consultations fournisseurs.",
@@ -245,7 +249,8 @@ export const projects: Project[] = [
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
     screenshots: erpScreenshots,
     featured: false,
-    href: "/projets/erp-institutionnel",
+    href: "/projets/erp-institutionnel#project-detail",
+    codeHref: "https://github.com/jean-christ420/ERP-deployer",
     artwork: "erp",
   },
   {
@@ -257,7 +262,7 @@ export const projects: Project[] = [
       "Prototype de plateforme de gestion des achats, pensé pour visualiser les étapes clés d'un processus d'approvisionnement.",
     technologies: [],
     featured: false,
-    href: "/projets/procureflow",
+    href: "/projets/procureflow#project-detail",
     artwork: "procurement",
   },
   {
@@ -291,7 +296,7 @@ export const projects: Project[] = [
     ],
     screenshots: archiSmartScreenshots,
     featured: false,
-    href: "/projets/archi-smart",
+    href: "/projets/archi-smart#project-detail",
     artwork: "architecture",
   },
 ]

@@ -10,7 +10,7 @@ import {
   languages,
   softSkills,
 } from "../data/cv";
-import { profile } from "../data/profile";
+import { gmailComposeUrl, profile } from "../data/profile";
 import "../cv.css";
 
 function CVDownloadButton({ secondary = false }: { secondary?: boolean }) {
@@ -111,7 +111,7 @@ function CVHero() {
           </p>
           <div className="hero-actions">
             <CVDownloadButton />
-            <Button href="/contact" secondary>
+            <Button href="/contact#contact-form" secondary>
               Me contacter <Icon name="arrow" />
             </Button>
           </div>
@@ -150,7 +150,12 @@ function ProfileCard() {
       <div className="cv-contact-list">
         {cvContact.map(([icon, label, href]) =>
           href ? (
-            <a href={href} key={label}>
+            <a
+              href={href}
+              key={label}
+              target={href === gmailComposeUrl ? "_blank" : undefined}
+              rel={href === gmailComposeUrl ? "noreferrer" : undefined}
+            >
               <span>{icon}</span>
               {label}
             </a>
@@ -162,7 +167,7 @@ function ProfileCard() {
           ),
         )}
       </div>
-      <Button href="/contact">
+      <Button href="/contact#contact-form">
         Me contacter <Icon name="arrow" />
       </Button>
     </aside>
@@ -195,7 +200,7 @@ function ProfileSummary() {
 
 function ExperienceSection() {
   return (
-    <section className="cv-experiences">
+    <section className="cv-experiences" id="cv-experiences">
       <CVSectionTitle number="02">Expériences professionnelles</CVSectionTitle>
       <div className="experience-timeline">
         {experiences.map((experience) => (
@@ -446,7 +451,7 @@ function CVRequestSection() {
           </p>
           <div className="hero-actions">
             <CVDownloadButton />
-            <Button href="/contact" secondary>
+            <Button href="/contact#contact-form" secondary>
               Me contacter <Icon name="arrow" />
             </Button>
           </div>

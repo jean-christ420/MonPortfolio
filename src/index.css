@@ -2086,3 +2086,145 @@ p {
     gap: 8px;
   }
 }
+.route-message {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 16px;
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--navy-950, #07152a);
+  color: var(--slate-100, #e7eef8);
+}
+
+.route-message h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.route-message p {
+  margin: 0 auto;
+  max-width: 640px;
+  color: var(--slate-300, #a7b5c8);
+}
+
+.route-message a,
+.route-message button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(126, 231, 255, 0.35);
+  background: transparent;
+  color: var(--cyan-300, #8fe7ff);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.route-message a:hover,
+.route-message button:hover {
+  border-color: rgba(126, 231, 255, 0.7);
+  background: rgba(126, 231, 255, 0.08);
+}
+
+.route-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.route-error-details {
+  max-width: 720px;
+  margin: 8px auto 0;
+  text-align: left;
+  color: var(--slate-300, #a7b5c8);
+}
+
+.route-error-details pre {
+  margin-top: 8px;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--slate-200, #d5deea);
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.route-loading {
+  gap: 18px;
+}
+
+.route-loading-scene {
+  width: min(340px, 80vw);
+  margin: 0 auto;
+}
+
+.route-loading-scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.route-loading-code {
+  opacity: 0.35;
+  transform-origin: left center;
+  animation: routeLoadingCode 1.6s ease-in-out infinite;
+}
+
+.route-loading-code.code-b { animation-delay: 0.2s; }
+.route-loading-code.code-c { animation-delay: 0.4s; }
+.route-loading-code.code-d { animation-delay: 0.6s; }
+
+.route-loading-cursor {
+  animation: routeLoadingCursor 1s steps(1) infinite;
+}
+
+.route-loading-hand {
+  transform-origin: center;
+  animation: routeLoadingTyping 0.7s ease-in-out infinite;
+}
+
+.route-loading-hand.hand-right {
+  animation-delay: 0.35s;
+}
+
+.route-loading-laptop {
+  animation: routeLoadingFloat 3s ease-in-out infinite;
+}
+
+@keyframes routeLoadingCode {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes routeLoadingCursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes routeLoadingTyping {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes routeLoadingFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loading-code,
+  .route-loading-cursor,
+  .route-loading-hand,
+  .route-loading-laptop {
+    animation: none;
+  }
+}
