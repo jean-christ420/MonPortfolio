@@ -41,6 +41,7 @@ const SkillsPage = lazyRetry(() => import("../pages/SkillsPage"))
 const AboutPage = lazyRetry(() => import("../pages/AboutPage"))
 const CVPage = lazyRetry(() => import("../pages/CVPage"))
 const ContactPage = lazyRetry(() => import("../pages/ContactPage"))
+const LegalPage = lazyRetry(() => import("../pages/LegalPage"))
 
 function RouteLoading() {
   return (
@@ -240,6 +241,14 @@ function ContactRoute() {
   )
 }
 
+function LegalRoute() {
+  return (
+    <Suspense fallback={<RouteLoading />}>
+      <LegalPage />
+    </Suspense>
+  )
+}
+
 function NotFound() {
   return (
     <main className="route-message">
@@ -301,6 +310,7 @@ export const router = createBrowserRouter([
       { path: "a-propos", Component: AboutRoute },
       { path: "cv", Component: CVRoute },
       { path: "contact", Component: ContactRoute },
+      { path: "informations-legales", Component: LegalRoute },
       { path: "*", Component: NotFound },
     ],
   },

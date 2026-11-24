@@ -2,6 +2,7 @@
   --contact-bg: #020f19;
   --contact-surface: rgba(5, 29, 43, 0.84);
   --contact-line: rgba(47, 161, 194, 0.28);
+  min-width: 0;
   color: var(--text);
   background:
     radial-gradient(circle at 82% 8%, rgba(72, 49, 190, 0.09), transparent 19%),
@@ -1035,20 +1036,17 @@
   }
 
   .contact-laptop-message {
-    right: 35px;
-    bottom: 65px;
+    position: relative;
+    right: auto;
+    bottom: auto;
     width: min(440px, calc(100% - 32px));
+    margin: 22px auto 0;
     padding: 20px;
   }
 
   .contact-hand-note {
     top: 520px;
     right: 20px;
-  }
-
-  .contact-laptop-message {
-    right: 35px;
-    bottom: 65px;
   }
 
   .contact-main-grid,
@@ -1086,11 +1084,6 @@
 
   .contact-hand-note {
     display: none;
-  }
-
-  .contact-laptop-message {
-    right: 50%;
-    transform: translateX(50%);
   }
 
   .contact-form-row {

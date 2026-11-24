@@ -570,8 +570,10 @@ export function Footer() {
           © {new Date().getFullYear()} {profile.name}. Tous droits réservés.
         </span>
         <div>
-          <a href="#mentions">Mentions légales</a>
-          <a href="#confidentialite">Politique de confidentialité</a>
+          <Link to="/informations-legales#mentions">Mentions légales</Link>
+          <Link to="/informations-legales#confidentialite">
+            Politique de confidentialité
+          </Link>
         </div>
       </div>
     </footer>
